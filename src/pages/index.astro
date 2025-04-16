@@ -139,23 +139,26 @@
 
     <!-- Live Feed Script -->
     <script>
-        // @ts-nocheck
-      fetch('/feed-data.json')
-        .then(res => res.json())
-        .then(data => {
-          const container = document.getElementById("ai-feed");
-          data.forEach((post) => {
-            const card = document.createElement("div");
-            card.className =
-              "bg-white dark:bg-[#1E1E1E] text-left rounded-xl p-6 shadow hover:shadow-xl transition";
-            card.innerHTML = `
-              <h3 class="text-xl font-semibold mb-2">${post.title}</h3>
-              <p class="text-sm text-gray-400 mb-3">${post.source}</p>
-              <a href="${post.url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">Read more →</a>
-            `;
-            container.appendChild(card);
+        //@ts-nocheck
+        fetch('/.netlify/functions/getLiveFeeds')
+          .then(res => res.json())
+          .then(data => {
+            const container = document.getElementById("ai-feed");
+            data.forEach((post) => {
+              const card = document.createElement("div");
+              card.className = "bg-white dark:bg-[#1E1E1E] text-left rounded-xl p-6 shadow hover:shadow-xl transition";
+              card.innerHTML = `
+                <h3 class="text-xl font-semibold mb-2">${post.title}</h3>
+                <p class="text-sm text-gray-400 mb-3">${post.source}</p>
+                <a href="${post.url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">Read more →</a>
+              `;
+              container.appendChild(card);
+            });
+          })
+          .catch(err => {
+            console.error("Failed to load live feeds", err);
           });
-        });
-    </script>
+      </script>
+      
   </body>
 </html>
