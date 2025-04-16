@@ -139,26 +139,32 @@
 
     <!-- Live Feed Script -->
     <script>
-        //@ts-nocheck
-        fetch('/.netlify/functions/getLiveFeeds')
+        // @ts-nocheck
+        fetch('/feed-data.json')
           .then(res => res.json())
           .then(data => {
             const container = document.getElementById("ai-feed");
-            data.forEach((post) => {
+            data.forEach((post, i) => {
               const card = document.createElement("div");
-              card.className = "bg-white dark:bg-[#1E1E1E] text-left rounded-xl p-6 shadow hover:shadow-xl transition";
+              card.className =
+                "bg-white dark:bg-[#1E1E1E] rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 animate-fade-up";
+              card.setAttribute("data-aos", "fade-up");
+              card.setAttribute("data-aos-delay", i * 100); // staggered animation
+      
               card.innerHTML = `
-                <h3 class="text-xl font-semibold mb-2">${post.title}</h3>
-                <p class="text-sm text-gray-400 mb-3">${post.source}</p>
-                <a href="${post.url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">Read more →</a>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">${post.source}</span>
+                  <span class="text-xs text-gray-400">${new Date(post.publishedAt || Date.now()).toLocaleDateString()}</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">${post.title}</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-300 mb-3 line-clamp-3">${post.description || ''}</p>
+                <a href="${post.url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">Read more →</a>
               `;
               container.appendChild(card);
             });
-          })
-          .catch(err => {
-            console.error("Failed to load live feeds", err);
           });
       </script>
+      
       
   </body>
 </html>
