@@ -11,6 +11,9 @@
     <!-- Tailwind Global Styles -->
     <link href="/global.css" rel="stylesheet" />
 
+    <!--NEWS FEED -->
+    <script type="module" src="/news-fetch.js"></script>    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
@@ -115,11 +118,46 @@
 
     <!-- Live AI Feeds -->
     <section class="py-24 bg-gray-50 dark:bg-[#121212]">
-      <div class="max-w-7xl mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-12 text-gray-900 dark:text-white">Live AI Feeds</h2>
-        <div id="ai-feed" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
-      </div>
-    </section>
+        <div class="max-w-7xl mx-auto px-4 text-center">
+          <h2 class="text-4xl font-bold mb-12 text-gray-900 dark:text-white">Live AI Feeds</h2>
+          <div id="ai-feed" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Cards will load here -->
+          </div>
+        </div>
+      </section>
+      <section class="py-24 bg-white dark:bg-[#1E1E1E]">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+          <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">AI Use Cases</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+            
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 shadow hover:shadow-xl transition">
+              <div class="text-3xl mb-4">🔍</div>
+              <h3 class="text-xl font-semibold mb-2 text-blue-600">AI for Market Research</h3>
+              <p class="text-gray-700 dark:text-gray-300 text-sm">Analyze trends, competitors, and customer behavior in real time.</p>
+            </div>
+      
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 shadow hover:shadow-xl transition">
+              <div class="text-3xl mb-4">🤖</div>
+              <h3 class="text-xl font-semibold mb-2 text-blue-600">Intelligent Virtual Agents</h3>
+              <p class="text-gray-700 dark:text-gray-300 text-sm">Chatbots that understand, respond, and learn from every conversation.</p>
+            </div>
+      
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 shadow hover:shadow-xl transition">
+              <div class="text-3xl mb-4">🛠</div>
+              <h3 class="text-xl font-semibold mb-2 text-blue-600">AI-Assisted QA Testing</h3>
+              <p class="text-gray-700 dark:text-gray-300 text-sm">Speed up bug detection and automate test scenarios with smart agents.</p>
+            </div>
+      
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 shadow hover:shadow-xl transition">
+              <div class="text-3xl mb-4">📈</div>
+              <h3 class="text-xl font-semibold mb-2 text-blue-600">Predictive Business Analytics</h3>
+              <p class="text-gray-700 dark:text-gray-300 text-sm">Forecast business outcomes and user behavior using machine learning.</p>
+            </div>
+      
+          </div>
+        </div>
+      </section>
+            
 
     <!-- Scripts -->
     <script type="module" src="/toggle-theme.js"></script>
