@@ -17,11 +17,32 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
+    <!--SEO Checks -->
+    <meta name="description" content="Ervexa is a modern AI & automation company building intelligent systems, QA solutions, and smart agents.">
+<meta name="keywords" content="AI, automation, machine learning, QA, tech, AI agents, Ervexa">
+<meta name="author" content="Ervexa">
+
+<!-- OpenGraph -->
+<meta property="og:title" content="Ervexa | AI Agents & Automation Experts">
+<meta property="og:description" content="Build smart agents, automate testing, and explore ML-powered solutions with Ervexa.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ervexa.netlify.app/">
+<meta property="og:image" content="https://ervexa.netlify.app/og-image.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ervexa | Build With AI">
+<meta name="twitter:description" content="Explore AI Agents, QA Automation, and intelligent business systems.">
+<meta name="twitter:image" content="https://ervexa.netlify.app/og-image.png">
+
+
     <style>
       body {
         font-family: 'Inter', sans-serif;
       }
     </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
   </head>
 
   <body class="bg-white text-black dark:bg-[#1E1E1E] dark:text-white transition-colors duration-300">
@@ -62,6 +83,9 @@
           <p class="text-gray-500 dark:text-gray-300 text-lg max-w-xl mx-auto lg:mx-0">
             Explore AI automation, QA engineering, and next-gen productivity with cutting-edge tech.
           </p>
+          <a href="#ai-use-cases" class="mt-6 inline-block text-blue-600 font-semibold hover:underline transition" data-aos="fade-up" data-aos-delay="300">
+            ↓ Explore Use Cases
+          </a>          
         </div>
         <div class="flex-1">
           <lottie-player
@@ -125,7 +149,7 @@
           </div>
         </div>
       </section>
-      <section class="py-24 bg-white dark:bg-[#1E1E1E]">
+      <section id="ai-use-cases" class="py-24 bg-white dark:bg-[#1E1E1E]">
         <div class="max-w-6xl mx-auto px-4 text-center">
           <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">AI Use Cases</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
@@ -173,35 +197,16 @@
     </script>
 
     <!-- AOS Animation Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" onload="AOS.init();"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    //@ts-nocheck
+  AOS.init({
+    once: true,
+    duration: 800,
+    offset: 100,
+  });
+</script>
 
-    <!-- Live Feed Script -->
-    <script>
-        // @ts-nocheck
-        fetch('/feed-data.json')
-          .then(res => res.json())
-          .then(data => {
-            const container = document.getElementById("ai-feed");
-            data.forEach((post, i) => {
-              const card = document.createElement("div");
-              card.className =
-                "bg-white dark:bg-[#1E1E1E] rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 animate-fade-up";
-              card.setAttribute("data-aos", "fade-up");
-              card.setAttribute("data-aos-delay", i * 100); // staggered animation
-      
-              card.innerHTML = `
-                <div class="flex items-center justify-between mb-2">
-                  <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">${post.source}</span>
-                  <span class="text-xs text-gray-400">${new Date(post.publishedAt || Date.now()).toLocaleDateString()}</span>
-                </div>
-                <h3 class="text-lg font-semibold mb-2">${post.title}</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-300 mb-3 line-clamp-3">${post.description || ''}</p>
-                <a href="${post.url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">Read more →</a>
-              `;
-              container.appendChild(card);
-            });
-          });
-      </script>
       
       
   </body>
