@@ -1,213 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ervexa</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ervexa</title>
 
-    <!-- Lottie Player -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <!-- Tailwind -->
+  <link href="/global.css" rel="stylesheet" />
 
-    <!-- Tailwind Global Styles -->
-    <link href="/global.css" rel="stylesheet" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
-    <!--NEWS FEED -->
-    <script type="module" src="/news-fetch.js"></script>    
+  <!-- AOS & Lottie -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- SEO -->
+  <meta name="description" content="Ervexa is a modern AI & automation company building intelligent systems, QA solutions, and smart agents.">
+  <meta name="keywords" content="AI, automation, machine learning, QA, tech, AI agents, Ervexa">
+  <meta name="author" content="Ervexa">
+  <meta property="og:title" content="Ervexa | AI Agents & Automation Experts">
+  <meta property="og:description" content="Build smart agents, automate testing, and explore ML-powered solutions with Ervexa.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ervexa.netlify.app/">
+  <meta property="og:image" content="https://ervexa.netlify.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ervexa | Build With AI">
+  <meta name="twitter:description" content="Explore AI Agents, QA Automation, and intelligent business systems.">
+  <meta name="twitter:image" content="https://ervexa.netlify.app/og-image.png">
 
-    <!--SEO Checks -->
-    <meta name="description" content="Ervexa is a modern AI & automation company building intelligent systems, QA solutions, and smart agents.">
-<meta name="keywords" content="AI, automation, machine learning, QA, tech, AI agents, Ervexa">
-<meta name="author" content="Ervexa">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
 
-<!-- OpenGraph -->
-<meta property="og:title" content="Ervexa | AI Agents & Automation Experts">
-<meta property="og:description" content="Build smart agents, automate testing, and explore ML-powered solutions with Ervexa.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://ervexa.netlify.app/">
-<meta property="og:image" content="https://ervexa.netlify.app/og-image.png">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ervexa | Build With AI">
-<meta name="twitter:description" content="Explore AI Agents, QA Automation, and intelligent business systems.">
-<meta name="twitter:image" content="https://ervexa.netlify.app/og-image.png">
-
-
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-      }
-    </style>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
-  </head>
-
-  <body class="bg-white text-black dark:bg-[#1E1E1E] dark:text-white transition-colors duration-300">
-
-    <!-- Navbar -->
-    <nav class="bg-white dark:bg-[#1E1E1E] border-b dark:border-gray-700 shadow-md sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="text-2xl font-bold text-[#2563eb] flex items-center gap-2">ervexa</div>
-
-        <div class="hidden md:flex gap-4 items-center">
-          <a href="#" class="hover:text-[#2563eb] transition">Home</a>
-          <a href="#" class="hover:text-[#2563eb] transition">About</a>
-          <a href="#" class="hover:text-[#2563eb] transition">Projects</a>
-          <a href="#" class="hover:text-[#2563eb] transition">Contact</a>
-          <button id="theme-toggle" class="text-2xl ml-4 transition-transform hover:scale-110">
-            <span id="theme-icon">🌙</span>
-          </button>
-        </div>
-
-        <div class="md:hidden flex items-center">
-          <button id="menu-toggle" class="text-2xl">☰</button>
-        </div>
-      </div>
-
-      <div id="mobile-menu" class="md:hidden hidden flex-col gap-4 px-6 pb-4 text-center">
+<body class="bg-white text-black dark:bg-[#1E1E1E] dark:text-white transition-colors duration-300">
+  <!-- Navbar -->
+  <nav class="bg-white dark:bg-[#1E1E1E] border-b dark:border-gray-700 shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold text-[#2563eb] flex items-center gap-2">ervexa</div>
+      <div class="hidden md:flex gap-4 items-center">
         <a href="#" class="hover:text-[#2563eb] transition">Home</a>
-        <a href="#" class="hover:text-[#2563eb] transition">About</a>
-        <a href="#" class="hover:text-[#2563eb] transition">Projects</a>
+        <a href="#ai-use-cases" class="hover:text-[#2563eb] transition">Use Cases</a>
+        <a href="#live-ai" class="hover:text-[#2563eb] transition">Feeds</a>
         <a href="#" class="hover:text-[#2563eb] transition">Contact</a>
+        <button id="theme-toggle" class="text-2xl ml-4 transition-transform hover:scale-110">
+          <span id="theme-icon">🌙</span>
+        </button>
       </div>
-    </nav>
+      <div class="md:hidden flex items-center">
+        <button id="menu-toggle" class="text-2xl">☰</button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden flex-col gap-4 px-6 pb-4 text-center">
+      <a href="#" class="hover:text-[#2563eb] transition">Home</a>
+      <a href="#ai-use-cases" class="hover:text-[#2563eb] transition">Use Cases</a>
+      <a href="#live-ai" class="hover:text-[#2563eb] transition">Feeds</a>
+      <a href="#" class="hover:text-[#2563eb] transition">Contact</a>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <main class="max-w-7xl mx-auto px-4 py-16 text-center">
-      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-        <div class="flex-1">
-          <h1 class="text-5xl font-bold mb-6 text-blue-600">🔥 Welcome to Ervexa</h1>
-          <p class="text-gray-500 dark:text-gray-300 text-lg max-w-xl mx-auto lg:mx-0">
-            Explore AI automation, QA engineering, and next-gen productivity with cutting-edge tech.
-          </p>
-          <a href="#ai-use-cases" class="mt-6 inline-block text-blue-600 font-semibold hover:underline transition" data-aos="fade-up" data-aos-delay="300">
-            ↓ Explore Use Cases
-          </a>          
+  <!-- Hero -->
+  <main class="max-w-7xl mx-auto px-4 py-16 text-center">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="flex-1">
+        <h1 class="text-5xl font-bold mb-6 text-blue-600">🔥 Welcome to Ervexa</h1>
+        <p class="text-gray-500 dark:text-gray-300 text-lg max-w-xl mx-auto lg:mx-0">
+          Explore AI automation, QA engineering, and next-gen productivity with cutting-edge tech.
+        </p>
+        <a href="#ai-use-cases" class="mt-6 inline-block text-blue-600 font-semibold hover:underline transition" data-aos="fade-up" data-aos-delay="300">↓ Explore Use Cases</a>
+      </div>
+      <div class="flex-1">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kyu7xb1v.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+      </div>
+    </div>
+  </main>
+
+  <!-- Feature -->
+  <section class="py-24 bg-gray-100 dark:bg-gray-900">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">What We Do</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-md p-6 transition hover:shadow-xl">
+          <div class="text-4xl mb-4">🤖</div>
+          <h3 class="text-xl font-semibold mb-2">AI Agents</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">Smart agents that act and adapt in real-time.</p>
         </div>
-        <div class="flex-1">
-          <lottie-player
-            src="https://assets2.lottiefiles.com/packages/lf20_kyu7xb1v.json"
-            background="transparent"
-            speed="1"
-            style="width: 300px; height: 300px;"
-            loop
-            autoplay
-          ></lottie-player>
+        <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-md p-6 transition hover:shadow-xl">
+          <div class="text-4xl mb-4">🧪</div>
+          <h3 class="text-xl font-semibold mb-2">QA Automation</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">Ship faster with scalable automated testing.</p>
+        </div>
+        <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-md p-6 transition hover:shadow-xl">
+          <div class="text-4xl mb-4">📊</div>
+          <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">Optimize operations using intelligent models.</p>
+        </div>
+        <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-md p-6 transition hover:shadow-xl">
+          <div class="text-4xl mb-4">🧠</div>
+          <h3 class="text-xl font-semibold mb-2">Intelligent Systems</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">End-to-end solutions that think and respond.</p>
         </div>
       </div>
-    </main>
+    </div>
+  </section>
 
-    <!-- Feature Section -->
-    <section class="py-24 bg-gray-100 dark:bg-gray-900">
-      <div class="max-w-6xl mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">What We Do</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-md p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-            <div class="text-4xl mb-4">🤖</div>
-            <h3 class="text-xl font-semibold mb-2">AI Agents</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Build smart, self-learning agents that act, adapt, and deliver.</p>
-          </div>
-          <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-md p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-            <div class="text-4xl mb-4">🧪</div>
-            <h3 class="text-xl font-semibold mb-2">QA Automation</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Deliver stable releases faster with robust automated QA pipelines.</p>
-          </div>
-          <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-md p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-            <div class="text-4xl mb-4">📊</div>
-            <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Predict, optimize, and uncover insights with ML-powered solutions.</p>
-          </div>
-          <div class="bg-white dark:bg-[#1E1E1E] rounded-2xl shadow-md p-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-            <div class="text-4xl mb-4">🧠</div>
-            <h3 class="text-xl font-semibold mb-2">Intelligent Systems</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Architect systems that think and act for maximum impact.</p>
-          </div>
+  <!-- AI Feed -->
+  <section id="live-ai" class="py-24 bg-gray-50 dark:bg-[#121212]">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-12 text-gray-900 dark:text-white">Live AI Feeds</h2>
+      <div id="ai-feed" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- JavaScript will inject cards here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section id="ai-use-cases" class="py-24 bg-white dark:bg-[#1E1E1E]">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">AI Use Cases</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow hover:shadow-xl transition">
+          <div class="text-3xl mb-4">🔍</div>
+          <h3 class="text-xl font-semibold mb-2 text-blue-600">AI for Market Research</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm">Analyze trends & customer behavior in real-time.</p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow hover:shadow-xl transition">
+          <div class="text-3xl mb-4">🤖</div>
+          <h3 class="text-xl font-semibold mb-2 text-blue-600">Virtual Agents</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm">Smart bots that learn and chat naturally.</p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow hover:shadow-xl transition">
+          <div class="text-3xl mb-4">🛠</div>
+          <h3 class="text-xl font-semibold mb-2 text-blue-600">QA Test Automation</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm">Detect bugs, auto-generate test cases faster.</p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl shadow hover:shadow-xl transition">
+          <div class="text-3xl mb-4">📈</div>
+          <h3 class="text-xl font-semibold mb-2 text-blue-600">Predictive Analytics</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm">Forecast sales and trends with AI modeling.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA -->
-    <section class="py-20 bg-[#2563eb] dark:bg-blue-700 text-white text-center relative overflow-hidden">
-      <div class="max-w-3xl mx-auto px-4" data-aos="fade-up" data-aos-delay="100">
-        <h2 class="text-4xl font-bold mb-4">Ready to build with Ervexa?</h2>
-        <p class="text-lg text-blue-100 mb-8">Let’s craft intelligent systems, automate your processes, and bring your ideas to life.</p>
-        <a href="#" class="inline-block px-6 py-3 bg-white text-[#2563eb] font-semibold rounded-full shadow-md hover:bg-blue-100 transition">
-          Get Started
-        </a>
-      </div>
-    </section>
-
-    <!-- Live AI Feeds -->
-    <section class="py-24 bg-gray-50 dark:bg-[#121212]">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-          <h2 class="text-4xl font-bold mb-12 text-gray-900 dark:text-white">Live AI Feeds</h2>
-          <div id="ai-feed" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <!-- Cards will load here -->
-          </div>
-        </div>
-      </section>
-      <section id="ai-use-cases" class="py-24 bg-white dark:bg-[#1E1E1E]">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-          <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">AI Use Cases</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
-            
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 shadow hover:shadow-xl transition">
-              <div class="text-3xl mb-4">🔍</div>
-              <h3 class="text-xl font-semibold mb-2 text-blue-600">AI for Market Research</h3>
-              <p class="text-gray-700 dark:text-gray-300 text-sm">Analyze trends, competitors, and customer behavior in real time.</p>
-            </div>
-      
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 shadow hover:shadow-xl transition">
-              <div class="text-3xl mb-4">🤖</div>
-              <h3 class="text-xl font-semibold mb-2 text-blue-600">Intelligent Virtual Agents</h3>
-              <p class="text-gray-700 dark:text-gray-300 text-sm">Chatbots that understand, respond, and learn from every conversation.</p>
-            </div>
-      
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 shadow hover:shadow-xl transition">
-              <div class="text-3xl mb-4">🛠</div>
-              <h3 class="text-xl font-semibold mb-2 text-blue-600">AI-Assisted QA Testing</h3>
-              <p class="text-gray-700 dark:text-gray-300 text-sm">Speed up bug detection and automate test scenarios with smart agents.</p>
-            </div>
-      
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 shadow hover:shadow-xl transition">
-              <div class="text-3xl mb-4">📈</div>
-              <h3 class="text-xl font-semibold mb-2 text-blue-600">Predictive Business Analytics</h3>
-              <p class="text-gray-700 dark:text-gray-300 text-sm">Forecast business outcomes and user behavior using machine learning.</p>
-            </div>
-      
-          </div>
-        </div>
-      </section>
-            
-
-    <!-- Scripts -->
-    <script type="module" src="/toggle-theme.js"></script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const menuToggle = document.getElementById("menu-toggle");
-        const mobileMenu = document.getElementById("mobile-menu");
-        menuToggle?.addEventListener("click", () => {
-          if (mobileMenu) mobileMenu.classList.toggle("hidden");
-        });
+  <!-- Scripts -->
+  <script type="module" src="/toggle-theme.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" onload="AOS.init({ once: true, duration: 800, offset: 100 })"></script>
+  <script type="module" src="/news-fetch.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuToggle?.addEventListener("click", () => {
+        mobileMenu?.classList.toggle("hidden");
       });
-    </script>
-
-    <!-- AOS Animation Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    //@ts-nocheck
-  AOS.init({
-    once: true,
-    duration: 800,
-    offset: 100,
-  });
-</script>
-
-      
-      
-  </body>
+    });
+  </script>
+</body>
 </html>
