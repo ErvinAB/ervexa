@@ -43,7 +43,7 @@
         <a href="#" class="hover:text-[#2563eb] transition">Home</a>
         <a href="#ai-use-cases" class="hover:text-[#2563eb] transition">Use Cases</a>
         <a href="#live-ai" class="hover:text-[#2563eb] transition">Feeds</a>
-        <a href="#" class="hover:text-[#2563eb] transition">Contact</a>
+        <a href="#contact" class="hover:text-[#2563eb] transition">Contact</a>
         <button id="theme-toggle" class="text-2xl ml-4 transition-transform hover:scale-110">
           <span id="theme-icon">🌙</span>
         </button>
@@ -143,6 +143,28 @@
       </div>
     </div>
   </section>
+<!-- Contact form -->
+  <section class="py-24 bg-gray-100 dark:bg-[#1B1B1B]" id="contact">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Let's Connect</h2>
+      <p class="text-gray-600 dark:text-gray-300 mb-8">Have a project or idea? Reach out and let's build something intelligent together.</p>
+      
+      <form name="contact" method="POST" data-netlify="true" class="grid gap-6 text-left">
+        <input type="hidden" name="form-name" value="contact" />
+        
+        <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2A2A2A] text-black dark:text-white" />
+        
+        <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2A2A2A] text-black dark:text-white" />
+        
+        <textarea name="message" rows="5" placeholder="Your Message" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2A2A2A] text-black dark:text-white"></textarea>
+        
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded transition">
+          Send Message 🚀
+        </button>
+      </form>
+    </div>
+  </section>
+  
 
   <!-- Scripts -->
   <script type="module" src="/toggle-theme.js"></script>
