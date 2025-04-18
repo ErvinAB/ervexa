@@ -36,45 +36,37 @@
 
 <body class="bg-white text-black dark:bg-[#1E1E1E] dark:text-white transition-colors duration-300">
   <!-- Navbar -->
-  <nav class="bg-white dark:bg-[#1E1E1E] border-b dark:border-gray-700 shadow-md sticky top-0 z-50">
+  <!-- Navbar -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-white/80 dark:bg-[#0a0a0a]/80 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="text-2xl font-bold text-[#2563eb] flex items-center gap-2">ervexa</div>
-      <div class="hidden md:flex gap-4 items-center">
-        <a href="#" class="hover:text-[#2563eb] transition">Home</a>
-        <a href="#ai-use-cases" class="hover:text-[#2563eb] transition">Use Cases</a>
-        <a href="#live-ai" class="hover:text-[#2563eb] transition">Feeds</a>
-        <a href="#contact" class="hover:text-[#2563eb] transition">Contact</a>
-        <button id="theme-toggle" class="text-2xl ml-4 transition-transform hover:scale-110">
-          <span id="theme-icon">🌙</span>
-        </button>
+      <div class="text-lg font-semibold text-black dark:text-white tracking-tight">ervexa</div>
+      <div class="flex items-center gap-4">
+        <a href="#ai-feed" class="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">AI Feeds</a>
+        <a href="#ai-use-cases" class="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">Use Cases</a>
+        <button id="theme-toggle" class="ml-4 text-xl">🌙</button>
       </div>
-      <div class="md:hidden flex items-center">
-        <button id="menu-toggle" class="text-2xl">☰</button>
-      </div>
-    </div>
-    <div id="mobile-menu" class="md:hidden hidden flex-col gap-4 px-6 pb-4 text-center">
-      <a href="#" class="hover:text-[#2563eb] transition">Home</a>
-      <a href="#ai-use-cases" class="hover:text-[#2563eb] transition">Use Cases</a>
-      <a href="#live-ai" class="hover:text-[#2563eb] transition">Feeds</a>
-      <a href="#" class="hover:text-[#2563eb] transition">Contact</a>
     </div>
   </nav>
-
-  <!-- Hero -->
-  <main class="max-w-7xl mx-auto px-4 py-16 text-center">
-    <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-      <div class="flex-1">
-        <h1 class="text-5xl font-bold mb-6 text-blue-600">🔥 Welcome to Ervexa</h1>
-        <p class="text-gray-500 dark:text-gray-300 text-lg max-w-xl mx-auto lg:mx-0">
-          Explore AI automation, QA engineering, and next-gen productivity with cutting-edge tech.
-        </p>
-        <a href="#ai-use-cases" class="mt-6 inline-block text-blue-600 font-semibold hover:underline transition" data-aos="fade-up" data-aos-delay="300">↓ Explore Use Cases</a>
-      </div>
-      <div class="flex-1">
-        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_kyu7xb1v.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+  
+  <!-- Hero Section -->
+  <header class="pt-32 pb-20 text-center bg-gradient-to-b from-white to-gray-100 dark:from-[#1E1E1E] dark:to-[#111]">
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+        Build Smarter with AI
+      </h1>
+      <p class="mt-6 text-lg text-gray-600 dark:text-gray-300">
+        Ervexa helps you deploy automation, AI agents, and machine learning models with confidence.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="#ai-use-cases" class="px-6 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full font-medium hover:opacity-90 transition">
+          Explore Use Cases
+        </a>
+        <a href="#contact" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          Contact Us
+        </a>
       </div>
     </div>
-  </main>
+  </header>  
 
   <!-- Feature -->
   <section class="py-24 bg-gray-100 dark:bg-gray-900">
