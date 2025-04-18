@@ -38,6 +38,8 @@
     -webkit-box-orient: vertical;
   }
   </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
 
 <body class="bg-white text-black dark:bg-[#1E1E1E] dark:text-white transition-colors duration-300">
@@ -100,22 +102,30 @@
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="bg-white dark:bg-[#1E1E1E] rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700 transition hover:shadow-md" data-aos="fade-up" data-aos-delay="100">
-          <div class="text-3xl mb-4">🤖</div>
+          <div class="mb-4 text-blue-600">
+            <i data-lucide="bot" class="w-8 h-8"></i>
+          </div>          
           <h3 class="text-xl font-semibold mb-2">AI Agents</h3>
           <p class="text-gray-600 dark:text-gray-300 text-sm">Autonomous systems that adapt, learn, and evolve to enhance decision-making.</p>
         </div>
         <div class="bg-white dark:bg-[#1E1E1E] rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700 transition hover:shadow-md" data-aos="fade-up" data-aos-delay="200">
-          <div class="text-3xl mb-4">🧪</div>
+          <div class="mb-4 text-blue-600">
+            <i data-lucide="flask-conical" class="w-8 h-8"></i>
+          </div>          
           <h3 class="text-xl font-semibold mb-2">Automation</h3>
           <p class="text-gray-600 dark:text-gray-300 text-sm">Streamline QA pipelines with robust, scalable automation tools.</p>
         </div>
         <div class="bg-white dark:bg-[#1E1E1E] rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700 transition hover:shadow-md" data-aos="fade-up" data-aos-delay="300">
-          <div class="text-3xl mb-4">📊</div>
+          <div class="mb-4 text-blue-600">
+            <i data-lucide="bar-chart-3" class="w-8 h-8"></i>
+          </div>  
           <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
           <p class="text-gray-600 dark:text-gray-300 text-sm">Deploy predictive models to uncover patterns and insights.</p>
         </div>
         <div class="bg-white dark:bg-[#1E1E1E] rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700 transition hover:shadow-md" data-aos="fade-up" data-aos-delay="400">
-          <div class="text-3xl mb-4">🧠</div>
+          <div class="mb-4 text-blue-600">
+            <i data-lucide="brain-circuit" class="w-8 h-8"></i>
+          </div>          
           <h3 class="text-xl font-semibold mb-2">Intelligent Systems</h3>
           <p class="text-gray-600 dark:text-gray-300 text-sm">Engineer scalable solutions that automate, learn, and optimize over time.</p>
         </div>
@@ -199,5 +209,8 @@
       });
     });
   </script>
+  <script>
+    lucide.createIcons();
+  </script>  
 </body>
 </html>
