@@ -185,6 +185,39 @@
     </div>
   </section>
 
+  <!-- Performance Stats Section -->
+<section class="py-24 bg-white dark:bg-[#0e0e0e]">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-bold mb-12 text-gray-900 dark:text-white" data-aos="fade-up">
+      Powered by Performance
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+      
+      <div class="space-y-2" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-5xl font-bold text-blue-600 dark:text-blue-400" id="uptime">0%</div>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">Uptime</p>
+      </div>
+      
+      <div class="space-y-2" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-5xl font-bold text-blue-600 dark:text-blue-400" id="requests">0</div>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">AI Requests Served</p>
+      </div>
+      
+      <div class="space-y-2" data-aos="fade-up" data-aos-delay="300">
+        <div class="text-5xl font-bold text-blue-600 dark:text-blue-400" id="deploys">0</div>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">Deploys</p>
+      </div>
+      
+      <div class="space-y-2" data-aos="fade-up" data-aos-delay="400">
+        <div class="text-5xl font-bold text-blue-600 dark:text-blue-400" id="countries">0</div>
+        <p class="text-gray-600 dark:text-gray-300 text-sm">Countries Reached</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
   <!-- Testimonials Section -->
 <section class="py-24 bg-white dark:bg-[#1E1E1E]">
   <div class="max-w-6xl mx-auto px-6 text-center">
@@ -359,6 +392,28 @@
     }
   });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.umd.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const options = { duration: 2 };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          new CountUp('uptime', 99.99, { ...options, decimalPlaces: 2, suffix: '%' }).start();
+          new CountUp('requests', 5200000, { ...options, separator: ',' }).start();
+          new CountUp('deploys', 1245, options).start();
+          new CountUp('countries', 42, options).start();
+          obs.disconnect(); // Only animate once
+        }
+      });
+    });
+
+    const target = document.querySelector('#uptime');
+    if (target) observer.observe(target);
+  });
+</script>
+
 
 </body>
 </html>
