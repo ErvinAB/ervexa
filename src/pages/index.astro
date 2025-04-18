@@ -301,5 +301,64 @@
     }
   });
 </script>
+<!-- Chat Trigger Button -->
+<button id="chat-toggle"
+  class="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition z-50">
+  💬
+</button>
+<!-- Chat Box -->
+<div id="chat-box"
+  class="fixed bottom-20 right-6 bg-white dark:bg-[#1E1E1E] text-black dark:text-white shadow-lg rounded-xl w-80 p-4 hidden z-50">
+  <div class="flex justify-between items-center mb-3">
+    <h3 class="font-bold text-lg">Ask Ervexa</h3>
+    <button id="close-chat" class="text-gray-400 hover:text-red-500">✖</button>
+  </div>
+  <div id="chat-log" class="h-48 overflow-y-auto text-sm border border-gray-200 dark:border-gray-700 p-2 mb-3 rounded">
+    <div class="text-gray-500">Hi there! How can I help you today?</div>
+  </div>
+  <form id="chat-form" class="flex gap-2">
+    <input type="text" id="user-input" placeholder="Type your question..."
+      class="flex-1 p-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2A2A2A] text-black dark:text-white"
+      required />
+    <button type="submit"
+      class="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 transition text-sm">Send</button>
+  </form>
+</div>
+
+<script>
+  const chatToggle = document.getElementById("chat-toggle");
+  const chatBox = document.getElementById("chat-box");
+  const closeChat = document.getElementById("close-chat");
+  const chatForm = document.getElementById("chat-form");
+  const chatLog = document.getElementById("chat-log");
+  const userInput = document.getElementById("user-input");
+
+  chatToggle.addEventListener("click", () => {
+    chatBox.classList.toggle("hidden");
+  });
+
+  closeChat.addEventListener("click", () => {
+    chatBox.classList.add("hidden");
+  });
+
+  chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const message = userInput.value.trim();
+    if (message) {
+      chatLog.innerHTML += `<div class="text-right text-blue-600 mb-1">${message}</div>`;
+      chatLog.innerHTML += `<div class="text-left text-gray-500 italic mb-2">Thinking...</div>`;
+      chatLog.scrollTop = chatLog.scrollHeight;
+      
+      // Placeholder for future integration
+      setTimeout(() => {
+        chatLog.innerHTML = chatLog.innerHTML.replace("Thinking...", "This is a sample response from Ervexa.");
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }, 1000);
+
+      userInput.value = "";
+    }
+  });
+</script>
+
 </body>
 </html>
