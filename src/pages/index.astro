@@ -201,7 +201,7 @@
       <div class="space-y-2" data-aos="fade-up" data-aos-delay="200">
         <div class="text-5xl font-bold text-blue-600 dark:text-blue-400" id="requests">29</div>
         <p class="text-gray-600 dark:text-gray-300 text-sm">AI Requests Served</p>
-      </div>
+      </div> 
       
       <div class="space-y-2" data-aos="fade-up" data-aos-delay="300">
         <div class="text-5xl font-bold text-blue-600 dark:text-blue-400" id="deploys">89</div>
@@ -412,6 +412,55 @@
     const target = document.querySelector('#uptime');
     if (target) observer.observe(target);
   });
+</script>
+
+<!-- Footer -->
+<footer class="bg-white dark:bg-[#0A0A0A] border-t border-gray-200 dark:border-gray-800">
+  <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-sm text-gray-600 dark:text-gray-400">
+    
+    <!-- Left: Logo + Tagline -->
+    <div>
+      <h3 class="text-lg font-bold text-black dark:text-white">Ervexa</h3>
+      <p class="mt-2 max-w-xs">Smart AI solutions for automation, QA, and innovation.</p>
+    </div>
+
+    <!-- Middle: Navigation Links -->
+    <div class="flex flex-col sm:items-center">
+      <h4 class="text-md font-semibold mb-2 text-black dark:text-white">Navigation</h4>
+      <a href="#live-ai" class="hover:text-blue-600 transition">AI Feeds</a>
+      <a href="#ai-use-cases" class="hover:text-blue-600 transition">Use Cases</a>
+      <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+      <a href="#blog" class="hover:text-blue-600 transition">Blog</a>
+    </div>
+
+    <!-- Right: Social Icons -->
+    <div class="flex flex-col sm:items-end">
+      <h4 class="text-md font-semibold mb-2 text-black dark:text-white">Connect</h4>
+      <div class="flex gap-4">
+        <a href="https://github.com/ErvinAB" target="_blank" aria-label="GitHub" class="hover:text-blue-600">
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ervin-abedin" target="_blank" aria-label="LinkedIn" class="hover:text-blue-600">
+          <i data-lucide="linkedin" class="w-5 h-5"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="hover:text-blue-600">
+          <i data-lucide="twitter" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Line -->
+  <div class="border-t border-gray-200 dark:border-gray-700 text-center py-4 text-xs text-gray-500 dark:text-gray-400">
+    © <span id="year"></span> Ervexa. Built with ❤️ by Ervin.
+  </div>
+</footer>
+
+<!-- Add this in your existing script block -->
+<script>
+  // Auto-update footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 
