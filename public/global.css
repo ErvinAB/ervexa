@@ -18,3 +18,10 @@ html {
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
