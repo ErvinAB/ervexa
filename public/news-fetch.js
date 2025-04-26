@@ -1,4 +1,4 @@
-fetch("/feed-data.json")
+fetch("https://newsdata.io/api/1/news?apikey=pub_7990657d124bd3d232cd322d98d09b3f13734&q=artificial%20intelligence&language=en")
   .then((res) => res.json())
   .then((data) => {
     const container = document.getElementById("ai-feed");
