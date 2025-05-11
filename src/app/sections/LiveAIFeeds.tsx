@@ -2,8 +2,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Bookmark } from 'lucide-react';
-import { fetchLiveFeeds } from '../utils/fetchLiveFeeds';
-import { mockFeeds, FeedPost } from '../utils/mockFeeds';
+import { fetchLiveFeeds, FeedPost } from '../utils/fetchLiveFeeds';
 
 export default function LiveAIFeeds() {
   const [feeds, setFeeds] = useState<FeedPost[]>([]);
@@ -11,7 +10,7 @@ export default function LiveAIFeeds() {
   useEffect(() => {
     const loadFeeds = async () => {
       const live = await fetchLiveFeeds();
-      setFeeds(live.length > 0 ? live : mockFeeds);
+      setFeeds(live);
     };
     loadFeeds();
   }, []);
@@ -38,7 +37,7 @@ export default function LiveAIFeeds() {
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-          {feeds.slice(0, 6).map((post: FeedPost, index: number) => (
+          {feeds.slice(0, 6).map((post, index) => (
             <motion.a
               key={index}
               href={post.url}
@@ -61,20 +60,6 @@ export default function LiveAIFeeds() {
             </motion.a>
           ))}
         </div>
-
-        <motion.div
-          className="mt-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          <a
-            href="#"
-            className="inline-block mt-4 bg-white text-black rounded-full px-6 py-3 text-sm font-medium hover:bg-gray-200 transition"
-          >
-            View All Feeds
-          </a>
-        </motion.div>
       </div>
     </section>
   );
