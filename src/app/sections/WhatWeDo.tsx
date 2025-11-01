@@ -1,75 +1,87 @@
-'use client';
-import { motion } from 'framer-motion';
-import { Brain, Settings, BarChart2 } from 'lucide-react';
-
-const features = [
-  {
-    title: "AI Agents",
-    description: "Deploy intelligent systems that automate decisions and scale effortlessly.",
-    icon: Brain,
-  },
-  {
-    title: "Custom Workflows",
-    description: "Design smart pipelines tailored to your business logic and data.",
-    icon: Settings,
-  },
-  {
-    title: "Real-Time Insights",
-    description: "Monitor data, performance, and KPIs with instant, actionable dashboards.",
-    icon: BarChart2,
-  },
-];
+import { Bot, Workflow, ActivitySquare, ShieldCheck } from "lucide-react";
 
 export default function WhatWeDo() {
+  const services = [
+    {
+      icon: Bot,
+      title: "AI Assistants for Internal Teams",
+      tag: "Answer. Summarize. Escalate.",
+      desc: "We build AI agents that read your data, draft responses, and notify the right person only when it actually matters — instead of pinging humans for everything.",
+    },
+    {
+      icon: Workflow,
+      title: "Workflow Automation & Orchestration",
+      tag: "n8n / webhooks / glue",
+      desc: "We connect the tools you already use and automate the handoffs: create records, sync data, send the alert, file the PDF, update the sheet. No more manual copy-paste.",
+    },
+    {
+      icon: ActivitySquare,
+      title: "Monitoring, Alerts & Audit Trails",
+      tag: "Ops / Compliance / Risk",
+      desc: "Bots watch for new events (new contract, new client, new change) and push a structured summary to Slack/Telegram — plus a log so you can prove who knew what, and when.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Quality & Reliability Automation",
+      tag: "Release safety",
+      desc: "We add automated checks around your most critical flows so you stop finding out about problems from angry customers. Includes self-healing UI checks if needed.",
+    },
+  ];
+
   return (
-    <section className="relative z-10 w-full bg-black text-white py-24 px-6">
-      <div className="max-w-7xl mx-auto text-center">
-        <motion.h2
-          className="text-3xl sm:text-4xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          What We Do
-        </motion.h2>
-
-        <motion.p
-          className="text-gray-400 max-w-2xl mx-auto mb-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          Ervexa helps teams build, automate, and scale cutting-edge AI solutions with precision and elegance.
-        </motion.p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className="group relative overflow-hidden rounded-2xl"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              {/* Gradient border effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
-
-              {/* Card content */}
-              <div className="relative z-10 border border-white/10 bg-white/5 backdrop-blur-sm p-8 rounded-2xl hover:scale-[1.03] transition-transform duration-300">
-                <motion.div
-                  className="mb-4"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <feature.icon size={36} className="text-cyan-400" />
-                </motion.div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-sm">{feature.description}</p>
-              </div>
-            </motion.div>
-          ))}
+    <section
+      id="services"
+      className="px-6 py-16 md:py-24 max-w-7xl mx-auto"
+    >
+      <div className="mb-10 max-w-2xl">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="text-xs font-medium text-zinc-400 uppercase tracking-wider">
+            What we do
+          </span>
         </div>
+
+        <h2 className="mt-3 text-2xl md:text-3xl font-semibold tracking-tight text-zinc-100">
+          We remove repetitive work with targeted AI and automation.
+        </h2>
+
+        <p className="mt-4 text-sm md:text-base text-zinc-400 leading-relaxed">
+          We come in where your team is wasting hours doing something by hand,
+          or where mistakes are expensive. Then we replace that with an agent,
+          a workflow, or both.
+        </p>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {services.map((item) => (
+          <div
+            key={item.title}
+            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:border-zinc-600/60 hover:shadow-[0_20px_60px_-10px_rgba(0,122,255,0.4)] hover:bg-zinc-900/60"
+          >
+            {/* subtle glow on hover */}
+            <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-100/5 opacity-0 blur-xl transition group-hover:opacity-30 bg-[radial-gradient(circle_at_0%_0%,rgba(0,122,255,0.4),transparent_70%)]" />
+
+            <div className="relative flex items-start gap-4">
+              <div className="rounded-xl bg-blue-600/20 text-blue-300 p-2 ring-1 ring-blue-500/40 shadow-[0_0_30px_rgba(0,122,255,0.6)]">
+                <item.icon className="h-5 w-5" />
+              </div>
+
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-zinc-100 font-medium text-base leading-tight">
+                    {item.title}
+                  </h3>
+                  <span className="rounded-full border border-zinc-700/60 bg-zinc-900/60 px-2 py-0.5 text-[10px] text-zinc-400 font-medium">
+                    {item.tag}
+                  </span>
+                </div>
+
+                <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

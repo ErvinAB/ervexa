@@ -1,89 +1,107 @@
-'use client';
-import { motion } from 'framer-motion';
-import { Code2, Zap, MailCheck } from 'lucide-react';
-
-const agents = [
-  {
-    name: "Inbox Screener Agent",
-    icon: MailCheck,
-    description: "Sorts emails by urgency and extracts actionable items using NLP.",
-    code: `const flagged = inboxAgent.filterUrgent(emails)\nconsole.log(flagged.slice(0, 3))`,
-  },
-  {
-    name: "Auto Reply Generator",
-    icon: Zap,
-    description: "Generates human-like responses based on message context.",
-    code: `const reply = autoReply.generate(context)\nconsole.log(reply.preview)`,
-  },
-  {
-    name: "Code Summarizer",
-    icon: Code2,
-    description: "Summarizes code changes in PRs for documentation or review.",
-    code: `const summary = summarizer.run(diff)\nconsole.log(summary.text)`,
-  },
-];
-
 export default function AgentShowcase() {
+  const cases = [
+    {
+      badge: "Operations",
+      title: "Contract monitoring + instant escalation",
+      problem:
+        "The ops/compliance team had to manually review every new contract and forward it around. Slow, easy to miss, zero traceability.",
+      solution:
+        "We built an automation that ingests every new contract, detects risky changes, deduplicates by contract ID, and posts an instant summary to Telegram. It also writes an audit log to Firestore.",
+      result:
+        "No more manual forwarding. Leadership sees critical changes the moment they happen — and there's a record.",
+    },
+    {
+      badge: "Internal AI Agent",
+      title: "Support / back-office assistant",
+      problem:
+        "People kept answering the same questions by digging through Notion, spreadsheets, and Slack history.",
+      solution:
+        "We deployed an internal AI assistant that reads those sources, drafts answers, and only escalates to a human when it's actually non-standard.",
+      result:
+        "Faster replies, fewer interrupts, and smoother onboarding of new staff.",
+    },
+    {
+      badge: "Reliability",
+      title: "Release safety without midnight firefighting",
+      problem:
+        "Every release risked breaking something critical in production and nobody noticed until a client complained.",
+      solution:
+        "We added automated checks around core revenue paths, plus self-healing UI guards. If something breaks, the right person gets pinged instantly.",
+      result:
+        "Shipping became calmer. No more guessing if today's deploy is going to blow up billing.",
+    },
+  ];
+
   return (
-    <section className="w-full bg-black text-white py-24 px-6 relative overflow-hidden">
-      {/* Optional animated background pulse or blur */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-cyan-500/10 blur-3xl rounded-full z-0" />
-
-      <div className="max-w-7xl mx-auto text-center relative z-10">
-        <motion.h2
-          className="text-3xl sm:text-4xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Featured AI Agents
-        </motion.h2>
-
-        <motion.p
-          className="text-gray-400 max-w-2xl mx-auto mb-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          Explore some of the intelligent agents powering real automation and insights at Ervexa.
-        </motion.p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {agents.map((agent, index) => (
-            <motion.div
-              key={index}
-              className="relative overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm rounded-2xl p-6 text-left hover:scale-[1.02] transition duration-300 shadow-md hover:shadow-cyan-500/10"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <agent.icon className="text-cyan-400" size={24} />
-                <h3 className="text-lg font-semibold">{agent.name}</h3>
-              </div>
-              <p className="text-sm text-gray-400 mb-4">{agent.description}</p>
-
-              <pre className="bg-black/80 text-xs text-cyan-300 p-3 rounded-lg font-mono whitespace-pre-wrap overflow-auto border border-cyan-400/10 shadow-inner shadow-cyan-500/10">
-                <code>{agent.code}</code>
-              </pre>
-
-              <div className="mt-4 flex gap-3">
-                <a
-                  href="#"
-                  className="text-sm px-4 py-2 rounded-full bg-white text-black font-medium hover:bg-gray-200 transition"
-                >
-                  View Code
-                </a>
-                <a
-                  href="#"
-                  className="text-sm px-4 py-2 rounded-full border border-white/20 text-white hover:bg-white/10 transition"
-                >
-                  Try Demo
-                </a>
-              </div>
-            </motion.div>
-          ))}
+    <section
+      id="use-cases"
+      className="px-6 py-16 md:py-24 max-w-7xl mx-auto"
+    >
+      <div className="mb-10 max-w-2xl">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="text-xs font-medium text-zinc-400 uppercase tracking-wider">
+            Automations in production
+          </span>
         </div>
+
+        <h2 className="mt-3 text-2xl md:text-3xl font-semibold tracking-tight text-zinc-100">
+          Real problems we’ve already removed.
+        </h2>
+
+        <p className="mt-4 text-sm md:text-base text-zinc-400 leading-relaxed">
+          We step in where people are doing the same painful thing every day,
+          or where a single miss would be expensive. We build the agent,
+          hook it into your stack, and make it report back.
+        </p>
+      </div>
+
+      <div className="space-y-6">
+        {cases.map((c) => (
+          <div
+            key={c.title}
+            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:border-zinc-600/60 hover:shadow-[0_20px_60px_-10px_rgba(0,122,255,0.4)] hover:bg-zinc-900/60"
+          >
+            {/* glow */}
+            <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-100/5 opacity-0 blur-xl transition group-hover:opacity-30 bg-[radial-gradient(circle_at_0%_0%,rgba(0,122,255,0.4),transparent_70%)]" />
+
+            <div className="relative flex flex-col gap-4 md:flex-row md:gap-6">
+              <div className="flex-shrink-0">
+                <span className="rounded-full border border-blue-500/40 bg-blue-600/10 text-blue-300 text-[10px] font-medium px-2 py-1 shadow-[0_0_20px_rgba(0,122,255,0.6)]">
+                  {c.badge}
+                </span>
+              </div>
+
+              <div className="flex-1">
+                <h3 className="text-zinc-100 font-medium text-base leading-tight">
+                  {c.title}
+                </h3>
+
+                <dl className="mt-3 grid gap-3 text-sm text-zinc-400 md:grid-cols-3">
+                  <div>
+                    <dt className="text-[11px] uppercase text-zinc-500 tracking-wide">
+                      Problem
+                    </dt>
+                    <dd className="mt-1 leading-relaxed">{c.problem}</dd>
+                  </div>
+
+                  <div>
+                    <dt className="text-[11px] uppercase text-zinc-500 tracking-wide">
+                      Solution
+                    </dt>
+                    <dd className="mt-1 leading-relaxed">{c.solution}</dd>
+                  </div>
+
+                  <div>
+                    <dt className="text-[11px] uppercase text-zinc-500 tracking-wide">
+                      Result
+                    </dt>
+                    <dd className="mt-1 leading-relaxed">{c.result}</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

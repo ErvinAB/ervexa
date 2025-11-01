@@ -1,50 +1,57 @@
-'use client';
-import { motion } from 'framer-motion';
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen bg-black text-white flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0 bg-gradient-to-tr from-[#0f0f0f] to-[#1a1a1a]" />
+    <section className="relative px-6 pt-24 pb-20 md:pt-28 md:pb-24 max-w-7xl mx-auto">
+      {/* animated glow */}
+      <motion.div
+        initial={{ opacity: 0.2, scale: 0.8 }}
+        animate={{ opacity: 0.4, scale: 1 }}
+        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+        className="pointer-events-none absolute inset-0 flex justify-center"
+      >
+        <div className="h-64 w-64 md:h-80 md:w-80 rounded-full bg-blue-500/20 blur-[120px]" />
+      </motion.div>
 
-      {/* Centered Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <motion.h1
-          className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          Empowering the Future of AI
-        </motion.h1>
+      <div className="relative max-w-3xl">
+        <div className="inline-flex items-center gap-2 rounded-full bg-zinc-900/60 border border-zinc-700/60 px-3 py-1 text-[11px] font-medium text-zinc-300 shadow-[0_0_20px_rgba(0,122,255,0.5)]">
+          <span className="text-blue-400">Ervexa</span>
+          <span>Automation & AI Workflows</span>
+        </div>
 
-        <motion.p
-          className="mt-6 text-lg sm:text-xl text-gray-400"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          Ervexa builds intelligent systems to automate, analyze, and scale tomorrow’s solutions.
-        </motion.p>
+        <h1 className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-white">
+          AI agents and automation for the boring, expensive parts of your business.
+        </h1>
 
-        <motion.div
-          className="mt-10 flex flex-wrap justify-center gap-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.4 }}
-        >
+        <p className="mt-6 text-base md:text-lg text-zinc-400 leading-relaxed">
+          We design and deploy custom automations, AI copilots, and decision
+          workflows that remove manual work, speed up response time, and reduce
+          mistakes — across operations, compliance, support, QA, and more.
+        </p>
+
+        <div className="mt-8 flex flex-col sm:flex-row gap-4">
           <a
             href="#contact"
-            className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition"
+            className="inline-flex items-center justify-center rounded-xl bg-blue-600/80 hover:bg-blue-600 text-white px-5 py-3 text-sm font-medium shadow-[0_20px_60px_-10px_rgba(0,122,255,0.6)]"
           >
-            Get in Touch
+            Work with us
+            <ArrowRight className="ml-2 h-4 w-4" />
           </a>
+
           <a
-            href="#ai-use-cases"
-            className="px-6 py-3 border border-white/20 rounded-full text-white hover:bg-white/10 transition"
+            href="#use-cases"
+            className="inline-flex items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900/40 hover:bg-zinc-900/70 hover:border-zinc-500 text-zinc-200 px-5 py-3 text-sm font-medium"
           >
-            Explore Use Cases
+            See automations we’ve built
           </a>
-        </motion.div>
+        </div>
+
+        <p className="mt-6 text-[13px] text-zinc-500">
+          Built with LLMs, n8n, and targeted integrations — not hype.
+        </p>
       </div>
     </section>
   );
