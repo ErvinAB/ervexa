@@ -1,11 +1,27 @@
 import { NextResponse } from "next/server";
 
-// We'll fetch from Newsdata.io (or similar). Put your API key in Netlify env: NEWSDATA_API_KEY
-async function fetchNews() {
+interface RawNewsItem {
+  title?: string;
+  source_id?: string;
+  link?: string;
+  pubDate?: string;
+}
+
+interface NormalizedNewsItem {
+  title: string;
+  source: string;
+  url: string;
+  published: string;
+}
+
+// call external API for AI / automation / ML news
+async function fetchNews(): Promise<NormalizedNewsItem[]> {
   try {
     const resp = await fetch(
       `https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_API_KEY}&q=artificial%20intelligence,automation,ml&language=en&country=us,gb,de`,
-      { cache: "no-store" }
+      {
+        cache: "no-store",
+      }
     );
 
     if (!resp.ok) {
@@ -15,13 +31,18 @@ async function fetchNews() {
 
     const data = await resp.json();
 
-    // normalize to the fields we want
-    const items = (data.results || []).slice(0, 6).map((item: any) => ({
-      title: item.title ?? "Untitled",
-      source: item.source_id ?? "Unknown",
-      url: item.link ?? "#",
-      published: item.pubDate ?? new Date().toISOString(),
-    }));
+    const results: RawNewsItem[] = Array.isArray(data.results)
+      ? data.results
+      : [];
+
+    const items: NormalizedNewsItem[] = results.slice(0, 6).map(
+      (item: RawNewsItem): NormalizedNewsItem => ({
+        title: item.title ?? "Untitled",
+        source: item.source_id ?? "Unknown",
+        url: item.link ?? "#",
+        published: item.pubDate ?? new Date().toISOString(),
+      })
+    );
 
     return items;
   } catch (err) {
