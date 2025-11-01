@@ -14,7 +14,7 @@ export const metadata = {
     title: "Ervexa – Automation & AI Workflows",
     description:
       "AI agents and automation for the boring, expensive parts of your business.",
-    images: ["/og-image.png"], // create a placeholder in /public
+    images: ["/og-image.png"],
   },
   icons: {
     icon: "/favicon.svg",
@@ -24,7 +24,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="relative overflow-hidden bg-black text-zinc-100 antialiased">
-      {/* global subtle glow behind the page */}
+      {/* global soft blue glow in the background */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
         <div className="h-64 w-64 md:h-80 md:w-80 rounded-full bg-blue-500/20 blur-[120px] opacity-30" />
       </div>
