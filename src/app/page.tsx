@@ -24,7 +24,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="relative overflow-hidden bg-black text-zinc-100 antialiased">
-      {/* global soft blue glow in the background */}
+      {/* background glow */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center">
         <div className="h-64 w-64 md:h-80 md:w-80 rounded-full bg-blue-500/20 blur-[120px] opacity-30" />
       </div>
