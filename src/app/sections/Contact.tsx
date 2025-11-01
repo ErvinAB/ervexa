@@ -24,10 +24,8 @@ export default function Contact() {
           className="mt-10 max-w-xl space-y-6"
           name="contact"
           method="POST"
-          data-netlify="true"
         >
           {/* Netlify hidden input */}
-          <input type="hidden" name="form-name" value="contact" />
   
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="flex flex-col">
