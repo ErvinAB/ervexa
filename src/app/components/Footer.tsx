@@ -1,22 +1,49 @@
 export default function Footer() {
-    return (
-      <footer className="w-full bg-black text-white py-10 px-6 border-t border-white/10 mt-24">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-        <div className="flex items-center gap-2 text-white">
-  <img src="/logo.svg" alt="Ervexa Logo" className="h-6 w-auto" />
-  <span className="text-gray-400 text-sm">© {new Date().getFullYear()} Ervexa</span>
-</div>
-          <div className="flex gap-4">
+  return (
+    <footer className="px-6 pt-16 pb-10 border-t border-zinc-800 bg-black/60">
+      <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-4">
+        <div className="md:col-span-2">
+          <div className="text-white font-semibold text-lg">Ervexa</div>
           <p className="mt-3 text-sm text-zinc-500 leading-relaxed max-w-sm">
-  AI agents and automation for real business workflows.
-  We remove repetitive work, create audit trails, and surface the right info to the right person.
-</p>
-
-            <a href="https://github.com/ErvinAB/ervexa" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">GitHub</a>
-            <a href="#contact" className="hover:text-white transition">Contact</a>
-          </div>
+            AI agents and automation for real business workflows.
+            We remove repetitive work, create audit trails, and surface the right
+            info to the right person at the right time.
+          </p>
+          <p className="mt-4 text-[12px] text-zinc-600">
+            Based in North Macedonia · Available EU/remote
+          </p>
         </div>
-      </footer>
-    );
-  }
-  
+
+        <div>
+          <div className="text-zinc-200 text-sm font-medium">Sections</div>
+          <ul className="mt-3 space-y-2 text-[13px] text-zinc-500">
+            <li><a href="#services" className="hover:text-zinc-200">What we do</a></li>
+            <li><a href="#use-cases" className="hover:text-zinc-200">Automations in production</a></li>
+            <li><a href="#contact" className="hover:text-zinc-200">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div className="text-zinc-200 text-sm font-medium">Contact</div>
+          <ul className="mt-3 space-y-2 text-[13px] text-zinc-500">
+            <li className="text-zinc-300">contact@ervexa.com</li>
+            <li>
+              <a
+                className="hover:text-zinc-200"
+                href="https://www.linkedin.com/in/ervin-abedin/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn ↗
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-12 text-[12px] text-zinc-600 text-center border-t border-zinc-800/60 pt-6">
+        © 2025 Ervexa. All rights reserved.
+      </div>
+    </footer>
+  );
+}

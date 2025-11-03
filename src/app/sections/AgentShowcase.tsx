@@ -4,7 +4,7 @@ export default function AgentShowcase() {
       badge: "Operations",
       title: "Contract monitoring + instant escalation",
       problem:
-        "The ops/compliance team had to manually review every new contract and forward it around. Slow, easy to miss, zero traceability.",
+        "The ops/compliance team had to manually review every new contract and forward it to the right people. Slow, easy to miss, zero traceability.",
       solution:
         "We built an automation that ingests every new contract, detects risky changes, deduplicates by contract ID, and posts an instant summary to Telegram. It also writes an audit log to Firestore.",
       result:
@@ -14,11 +14,11 @@ export default function AgentShowcase() {
       badge: "Internal AI Agent",
       title: "Support / back-office assistant",
       problem:
-        "People kept answering the same questions by digging through Notion, spreadsheets, and Slack history.",
+        "Staff kept answering the same questions by digging through Notion, spreadsheets, and Slack history.",
       solution:
-        "We deployed an internal AI assistant that reads those sources, drafts answers, and only escalates to a human when it's actually non-standard.",
+        "We deployed an internal AI assistant that reads those sources, drafts answers, and only escalates to a human when it's actually unusual.",
       result:
-        "Faster replies, fewer interrupts, and smoother onboarding of new staff.",
+        "Faster replies, fewer interrupts, smoother onboarding of new hires.",
     },
     {
       badge: "Reliability",
@@ -28,7 +28,7 @@ export default function AgentShowcase() {
       solution:
         "We added automated checks around core revenue paths, plus self-healing UI guards. If something breaks, the right person gets pinged instantly.",
       result:
-        "Shipping became calmer. No more guessing if today's deploy is going to blow up billing.",
+        "Shipping became calmer. No more guessing if today's deploy will blow up billing.",
     },
   ];
 
