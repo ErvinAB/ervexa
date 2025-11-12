@@ -12,13 +12,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Use Link for internal navigation and correct public/ path */}
         <Link href="/" className="flex items-center">
-          <Image
-            src={theme === "dark" ? "/ervexaFinalLogoWhiteSVG.svg" : "/ervexaFinalLogoBlackSVG.svg"}
-            alt="Ervexa Logo"
-            width={160}
-            height={40}
-            priority
-            className="h-8 w-auto"
+        <Image
+          src={theme === "dark" ? "/ervexaFinalLogoWhiteSVG.svg" : "/ervexaFinalLogoBlackSVG.svg"}
+          alt="Ervexa Logo"
+          width={160}
+          height={40}
+          priority
+          className={`h-8 w-auto transition duration-300 ${
+          theme === "dark" ? "brightness-150 contrast-125" : ""
+          }`}
           />
         </Link>
 
