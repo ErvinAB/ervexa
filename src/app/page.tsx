@@ -17,7 +17,7 @@ export const metadata = {
     images: ["/og-image.png"],
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: "/ervexaIconWhiteSVG.svg",
   },
 };
 
