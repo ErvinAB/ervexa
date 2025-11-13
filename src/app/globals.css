@@ -12,6 +12,16 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(88,102,255,0.7)); }
+  50% { filter: drop-shadow(0 0 18px rgba(88,102,255,1)); }
+}
+
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
