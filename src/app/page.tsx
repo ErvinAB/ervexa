@@ -7,17 +7,17 @@ import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
 export const metadata = {
-  title: "Ervexa – Automation & AI Workflows",
+  title: "Stagbyte – Automation & AI Workflows",
   description:
     "We build custom AI agents, automations, and decision workflows that remove repetitive work and reduce risk across operations, compliance, support, QA, and more.",
   openGraph: {
-    title: "Ervexa – Automation & AI Workflows",
+    title: "Stagbyte – Automation & AI Workflows",
     description:
       "AI agents and automation for the boring, expensive parts of your business.",
     images: ["/og-image.png"],
   },
   icons: {
-    icon: "/ervexaIconWhiteSVG.svg",
+    icon: "/stagHeadWhiteSVG.svg",
   },
 };
 

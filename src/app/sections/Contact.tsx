@@ -98,7 +98,7 @@ export default function Contact() {
   
           <p className="text-[11px] text-zinc-500">
             Or email directly:{" "}
-            <span className="text-zinc-300">contact@ervexa.com</span>
+            <span className="text-zinc-300">contact@Stagbyte.com</span>
           </p>
         </form>
       </section>
