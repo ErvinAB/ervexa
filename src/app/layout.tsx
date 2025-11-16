@@ -13,21 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ervexa – Build and Deploy AI Agents",
-  description: "Build, deploy, and scale intelligent AI agents with Ervexa. Stay ahead with real-time AI feeds and automation tools.",
-  keywords: ["AI", "agents", "automation", "machine learning", "startup", "ervexa"],
-  metadataBase: new URL("https://ervexa.netlify.app"), // update with actual domain if needed
+  title: "Stagbyte – Build and Deploy AI Agents",
+  description: "Build, deploy, and scale intelligent AI agents with Stagbyte. Stay ahead with real-time AI feeds and automation tools.",
+  keywords: ["AI", "agents", "automation", "machine learning", "startup", "Stagbyte"],
+  metadataBase: new URL("https://stagbyte.netlify.app"), // update with actual domain if needed
   openGraph: {
-    title: "Ervexa – Build and Deploy AI Agents",
-    description: "Explore AI agents that automate, analyze, and scale. Ervexa empowers innovation.",
-    url: "https://ervexa.netlify.app",
-    siteName: "Ervexa",
+    title: "Stagbyte – Build and Deploy AI Agents",
+    description: "Explore AI agents that automate, analyze, and scale. Stagbyte empowers innovation.",
+    url: "https://stagbyte.netlify.app",
+    siteName: "stagbyte",
     images: [
       {
         url: "/og-cover.png", // put this in /public
         width: 1200,
         height: 630,
-        alt: "Ervexa AI Agents Preview",
+        alt: "stagbyte AI Agents Preview",
       },
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ervexa – AI Agents for Automation",
+    title: "stagbyte – AI Agents for Automation",
     description: "Discover tools to automate your business and workflows using smart AI agents.",
     images: ["/og-cover.png"],
     creator: "@yourTwitterHandle", // optional

@@ -10,8 +10,8 @@ export default function Navbar() {
         {/* Logo with blue glow */}
         <Link href="/" className="flex items-center">
           <Image
-            src="/ervexaFinalLogoWhiteSVG.svg"
-            alt="Ervexa Logo"
+            src="/StagbyteTXTSVGWhite.svg"
+            alt="Stagbyte Logo"
             width={160}
             height={40}
             priority

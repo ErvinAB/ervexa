@@ -19,7 +19,7 @@ export default function Hero() {
       <div className="relative max-w-3xl">
         {/* badge */}
         <div className="inline-flex items-center gap-2 rounded-full bg-zinc-900/60 border border-zinc-700/60 px-3 py-1 text-[11px] font-medium text-zinc-300 shadow-[0_0_20px_rgba(0,122,255,0.5)]">
-          <span className="text-blue-400">Ervexa</span>
+          <span className="text-blue-400">Stagbyte</span>
           <span>Automation & AI Workflows</span>
         </div>
 
