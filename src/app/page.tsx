@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 export const metadata = {
   title: "Stagbyte – Automation & AI Workflows",
   description:
-    "We build custom AI agents, automations, and decision workflows that remove repetitive work and reduce risk across operations, compliance, support, QA, and more.",
+    "We build custom AI agents, automations, and decision workflows that remove repetitive work and reduce risk across operations, compliance, support, QA and more.",
   openGraph: {
     title: "Stagbyte – Automation & AI Workflows",
     description:
