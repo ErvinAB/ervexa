@@ -81,3 +81,18 @@ body {
   background-size: 220px 220px; /* change for more/less density */
   opacity: 0.03;                 /* change for stronger/weaker pattern */
 }
+
+
+.bg-stagbyte-single {
+  position: absolute;
+  right: 0; /* move to the right side */
+  top: 0;
+  width: 1200px;     /* adjust size */
+  height: 1200px;
+  background-image: url("/patterns/patternWhite.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.06;      /* subtle */
+  pointer-events: none;
+  transform: translate(20%, -10%); /* move off-screen for a pro look */
+}
