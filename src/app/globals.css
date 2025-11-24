@@ -87,9 +87,9 @@ body {
   position: absolute;
   right: 0; /* move to the right side */
   top: 0;
-  width: 1200px;     /* adjust size */
+  width: 1800px;     /* adjust size */
   height: 1200px;
-  background-image: url("/patterns/patternWhite.svg");
+  background-image: url("/patterns/patternWhiteSide.svg");
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 0.06;      /* subtle */
