@@ -88,11 +88,11 @@ body {
   right: 0; /* move to the right side */
   top: 0;
   width: 1800px;     /* adjust size */
-  height: 1200px;
+  height: 1000px;
   background-image: url("/patterns/patternWhiteSide.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 0.06;      /* subtle */
+  opacity: 0.03;      /* subtle */
   pointer-events: none;
   transform: translate(20%, -10%); /* move off-screen for a pro look */
 }
