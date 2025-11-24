@@ -10,7 +10,7 @@ export default function Navbar() {
         {/* Logo with blue glow */}
         <Link href="/" className="flex items-center">
           <Image
-            src="/stagbyteFullSVG.svg"
+            src="/white.svg"
             alt="Stagbyte Logo"
             width={160}
             height={40}
