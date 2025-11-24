@@ -6,9 +6,6 @@ import { ArrowRight } from "lucide-react";
 export default function Hero() {
   return (
     <section className="relative px-6 pt-24 pb-20 md:pt-28 md:pb-24 max-w-7xl mx-auto">
-      {/* STAGBYTE PATTERN BACKGROUND */}
-      <div className="bg-stagbyte-single" />
-
       {/* subtle animated glow */}
       <motion.div
         initial={{ opacity: 0.2, scale: 0.8 }}
