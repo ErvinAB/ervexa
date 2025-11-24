@@ -76,7 +76,7 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: url("/patternWhite.svg");
+  background-image: url("/patterns/patternWhite.svg");
   background-repeat: repeat;
   background-size: 220px 220px; /* change for more/less density */
   opacity: 0.03;                 /* change for stronger/weaker pattern */
