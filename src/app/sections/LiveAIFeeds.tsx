@@ -3,28 +3,17 @@
 import { useEffect, useState } from "react";
 import { Activity, Globe } from "lucide-react";
 import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
-
-interface FeedItem {
-  title: string;
-  link: string;
-  pubDate: string;
-  source: string;
-}
+import { fetchLiveFeeds, FeedPost } from "../utils/fetchLiveFeeds";
 
 export default function LiveAIFeeds() {
-  const [feeds, setFeeds] = useState<FeedItem[]>([]);
+  const [feeds, setFeeds] = useState<FeedPost[]>([]);
 
   useEffect(() => {
-    // Simulated feed data for now (replace with real fetch if needed)
-    const MOCK_FEEDS = [
-      { title: "OpenAI releases GPT-5 preview with enhanced reasoning", link: "#", pubDate: "10 min ago", source: "OpenAI" },
-      { title: "Anthropic's Claude 3.5 Sonnet tops coding benchmarks", link: "#", pubDate: "1 hour ago", source: "Anthropic" },
-      { title: "Meta introduces new self-supervised learning algorithm", link: "#", pubDate: "2 hours ago", source: "Meta AI" },
-      { title: "Google DeepMind solves 50-year-old math problem", link: "#", pubDate: "3 hours ago", source: "DeepMind" },
-      { title: "New autonomous agent framework launched on GitHub", link: "#", pubDate: "5 hours ago", source: "GitHub" },
-    ];
-
-    setFeeds(MOCK_FEEDS);
+    const loadFeeds = async () => {
+      const data = await fetchLiveFeeds();
+      setFeeds(data);
+    };
+    loadFeeds();
   }, []);
 
   return (
@@ -76,7 +65,13 @@ export default function LiveAIFeeds() {
             {/* Feed Content */}
             <div className="p-4 space-y-4 overflow-y-auto h-[calc(100%-45px)] custom-scrollbar">
               {feeds.map((item, i) => (
-                <div key={i} className="group flex gap-4 p-3 rounded hover:bg-zinc-800/30 transition-colors border-b border-zinc-800/30 last:border-0">
+                <a
+                  key={i}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex gap-4 p-3 rounded hover:bg-zinc-800/30 transition-colors border-b border-zinc-800/30 last:border-0 block"
+                >
                   <div className="mt-1">
                     <div className="w-2 h-2 rounded-full bg-cyan-500/50 group-hover:bg-cyan-400 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.5)] transition-all" />
                   </div>
@@ -91,7 +86,7 @@ export default function LiveAIFeeds() {
                       <span>{item.pubDate}</span>
                     </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 

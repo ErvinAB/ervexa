@@ -3,6 +3,7 @@ export type FeedPost = {
   url: string;
   description: string;
   source: string;
+  pubDate: string;
 };
 
 type NewsdataItem = {
@@ -11,12 +12,13 @@ type NewsdataItem = {
   description?: string;
   content?: string;
   source_id?: string;
+  pubDate?: string;
 };
 
 export async function fetchLiveFeeds(): Promise<FeedPost[]> {
   try {
     const res = await fetch(
-      'https://newsdata.io/api/1/news?apikey=pub_7990657d124bd3d232cd322d98d09b3f13734&language=en&category=business,education,science,technology'
+      'https://newsdata.io/api/1/news?apikey=pub_aedaad6af0054d59ac4905d5deb5ec61&language=en&category=technology,science&q=artificial%20intelligence'
     );
 
     if (!res.ok) throw new Error('API failed');
@@ -28,6 +30,7 @@ export async function fetchLiveFeeds(): Promise<FeedPost[]> {
       url: item.link,
       description: item.description || item.content || 'No summary available.',
       source: item.source_id || 'Unknown',
+      pubDate: item.pubDate || 'Just now',
     }));
   } catch (err) {
     console.error('Failed to fetch live feeds:', err);

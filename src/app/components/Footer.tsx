@@ -30,7 +30,7 @@ export default function Footer() {
             <li>
               <a
                 className="hover:text-zinc-200"
-                href="https://www.linkedin.com/in/ervin-abedin/"
+                href="https://www.linkedin.com/company/stagbyte"
                 target="_blank"
                 rel="noopener noreferrer"
               >
