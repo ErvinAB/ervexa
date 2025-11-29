@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Database, Brain, Zap, MessageSquare, FileText, Share2, ArrowRight } from "lucide-react";
+import { Database, Brain, Zap, ArrowRight } from "lucide-react";
 
 const NODES = [
     {
