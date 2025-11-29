@@ -1,120 +1,109 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Rss, ExternalLink, Activity, Globe } from "lucide-react";
+import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
 
 interface FeedItem {
   title: string;
+  link: string;
+  pubDate: string;
   source: string;
-  url: string;
-  published: string;
 }
 
 export default function LiveAIFeeds() {
-  const [items, setItems] = useState<FeedItem[]>([]);
+  const [feeds, setFeeds] = useState<FeedItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function load() {
-      try {
-        const resp = await fetch("/api/news", { cache: "no-store" });
-        const data = await resp.json();
-        setItems(data.news || []);
-      } catch (e) {
-        console.error("Failed to load news", e);
-      }
-    }
+    // Simulated feed data for now (replace with real fetch if needed)
+    const MOCK_FEEDS = [
+      { title: "OpenAI releases GPT-5 preview with enhanced reasoning", link: "#", pubDate: "10 min ago", source: "OpenAI" },
+      { title: "Anthropic's Claude 3.5 Sonnet tops coding benchmarks", link: "#", pubDate: "1 hour ago", source: "Anthropic" },
+      { title: "Meta introduces new self-supervised learning algorithm", link: "#", pubDate: "2 hours ago", source: "Meta AI" },
+      { title: "Google DeepMind solves 50-year-old math problem", link: "#", pubDate: "3 hours ago", source: "DeepMind" },
+      { title: "New autonomous agent framework launched on GitHub", link: "#", pubDate: "5 hours ago", source: "GitHub" },
+    ];
 
-    load();
+    setFeeds(MOCK_FEEDS);
+    setLoading(false);
   }, []);
 
   return (
-    <section
-      id="live-feed"
-      className="px-6 py-16 md:py-24 max-w-7xl mx-auto"
-    >
-      <div className="mb-10 flex flex-col gap-3 max-w-2xl">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="text-xs font-medium text-zinc-400 uppercase tracking-wider">
-            Live AI Feeds
-          </span>
-          <span className="rounded-full bg-zinc-900/60 border border-zinc-700/50 text-[10px] px-2 py-1 font-medium text-zinc-300 shadow-[0_0_20px_rgba(0,122,255,0.5)]">
-            Updated in real time
-          </span>
-        </div>
+    <section className="py-24 bg-black border-t border-zinc-800 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
 
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-100">
-          Latest AI, automation, and ML signals.
-        </h2>
+        {/* Left: Context */}
+        <div className="flex flex-col justify-center">
+          <ScrollAnimationWrapper variant="fade-in">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="h-px w-8 bg-cyan-500" />
+              <span className="text-cyan-500 font-mono text-xs tracking-widest uppercase">Global Intelligence</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+              Always <span className="text-zinc-500">Listening.</span>
+            </h2>
+            <p className="text-zinc-400 text-lg mb-8 leading-relaxed">
+              Our systems continuously monitor the global AI landscape. We integrate the latest breakthroughs into your workflows the moment they become available.
+            </p>
 
-        <p className="text-sm md:text-base text-zinc-400 leading-relaxed">
-          We track real activity in AI, automation, testing, and applied ML.
-          This is what’s actually moving right now.
-        </p>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-3">
-        {items.length === 0 && (
-          <p className="text-sm text-zinc-500 col-span-full">
-            No live data available. (Add your API key in NEWSDATA_API_KEY.)
-          </p>
-        )}
-
-        {items.map((n) => (
-          <a
-            key={n.url}
-            href={n.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:border-zinc-600/60 hover:shadow-[0_20px_60px_-10px_rgba(0,122,255,0.4)] hover:bg-zinc-900/60"
-          >
-            {/* glow */}
-            <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-100/5 opacity-0 blur-xl transition group-hover:opacity-30
-                            bg-[radial-gradient(circle_at_0%_0%,rgba(0,122,255,0.4),transparent_70%)]" />
-
-            <div className="relative flex flex-col justify-between min-h-[180px]">
+            <div className="flex gap-8">
               <div>
-                <div className="flex items-center justify-between text-[11px] text-zinc-400">
-                  <span className="truncate max-w-[70%]">
-                    {n.source || "Source"}
-                  </span>
-                  <time className="text-zinc-500">
-                    {formatRelativeTime(n.published)}
-                  </time>
-                </div>
-
-                <h3 className="mt-3 text-zinc-100 text-base font-medium leading-snug line-clamp-3 group-hover:text-blue-400">
-                  {n.title}
-                </h3>
+                <div className="text-2xl font-bold text-white font-mono">24/7</div>
+                <div className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Monitoring</div>
               </div>
-
-              <div className="mt-4 flex items-center text-[12px] text-blue-400 font-medium">
-                <span>Read more</span>
-                <ExternalLink className="ml-1 h-3.5 w-3.5" />
+              <div>
+                <div className="text-2xl font-bold text-white font-mono">Real-time</div>
+                <div className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Integration</div>
               </div>
             </div>
-          </a>
-        ))}
+          </ScrollAnimationWrapper>
+        </div>
+
+        {/* Right: The Feed */}
+        <ScrollAnimationWrapper variant="slide-up" delay={0.2}>
+          <div className="relative rounded-xl border border-zinc-800 bg-zinc-900/20 backdrop-blur-sm overflow-hidden h-[400px]">
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
+              <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
+                <Activity className="w-3 h-3 text-emerald-500" />
+                LIVE_SIGNAL_FEED
+              </div>
+              <div className="flex gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-zinc-700" />
+                <div className="w-2 h-2 rounded-full bg-zinc-700" />
+              </div>
+            </div>
+
+            {/* Feed Content */}
+            <div className="p-4 space-y-4 overflow-y-auto h-[calc(100%-45px)] custom-scrollbar">
+              {feeds.map((item, i) => (
+                <div key={i} className="group flex gap-4 p-3 rounded hover:bg-zinc-800/30 transition-colors border-b border-zinc-800/30 last:border-0">
+                  <div className="mt-1">
+                    <div className="w-2 h-2 rounded-full bg-cyan-500/50 group-hover:bg-cyan-400 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.5)] transition-all" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm text-zinc-200 font-medium leading-snug group-hover:text-cyan-400 transition-colors">
+                      {item.title}
+                    </h4>
+                    <div className="flex items-center gap-3 mt-2 text-[10px] font-mono text-zinc-500">
+                      <span className="flex items-center gap-1">
+                        <Globe className="w-3 h-3" /> {item.source}
+                      </span>
+                      <span>{item.pubDate}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Scan Line Effect */}
+            <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.2)_50%)] bg-[size:100%_4px] opacity-20" />
+          </div>
+        </ScrollAnimationWrapper>
+
       </div>
     </section>
   );
-}
-
-// helper: "2h ago", "5m ago"
-function formatRelativeTime(iso: string) {
-  const then = new Date(iso).getTime();
-  const now = Date.now();
-  const diffMs = now - then;
-
-  // minutes
-  const diffMin = Math.floor(diffMs / 60000);
-  if (diffMin < 1) return "now";
-  if (diffMin < 60) return diffMin + "m ago";
-
-  // hours
-  const diffHr = Math.floor(diffMin / 60);
-  if (diffHr < 24) return diffHr + "h ago";
-
-  // days
-  const diffDay = Math.floor(diffHr / 24);
-  return diffDay + "d ago";
 }

@@ -1,13 +1,21 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three-stdlib';
 
 export default function AINodeNetwork() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Mark as mounted on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    const container = containerRef.current!;
+    if (!mounted || !containerRef.current) return;
+
+    const container = containerRef.current;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
     camera.position.z = 50;
@@ -74,9 +82,11 @@ export default function AINodeNetwork() {
 
     // Cleanup
     return () => {
-      container.removeChild(renderer.domElement);
+      if (container && renderer.domElement && container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
     };
-  }, []);
+  }, [mounted]);
 
   return <div ref={containerRef} className="w-full h-full bg-black rounded-lg" />;
 }

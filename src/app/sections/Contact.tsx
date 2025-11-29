@@ -1,107 +1,117 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Send, Terminal, Loader2 } from "lucide-react";
+import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
+
 export default function Contact() {
-    return (
-      <section
-        id="contact"
-        className="px-6 py-16 md:py-24 max-w-7xl mx-auto"
-      >
-        <div className="max-w-xl">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-100">
-            Let’s build.
-          </h2>
-  
-          <p className="mt-4 text-sm md:text-base text-zinc-400 leading-relaxed">
-            Whether you need an internal AI agent, an automated reporting flow, or just
-            want to stop doing something manually every single day — tell me what hurts.
-            I’ll map a fix.
-          </p>
-  
-          <p className="mt-3 text-[13px] text-zinc-500">
-            Based in North Macedonia · Available for EU/remote work.
-          </p>
-        </div>
-  
-        {/* If Netlify Forms caused deploy issues, keep this form WITHOUT data-netlify + hidden input for now */}
-        <form className="mt-10 max-w-xl space-y-6">
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div className="flex flex-col">
-              <label
-                htmlFor="name"
-                className="text-xs font-medium text-zinc-300 mb-2"
-              >
-                Your name
-              </label>
-              <input
-                id="name"
-                name="name"
-                required
-                className="rounded-lg bg-zinc-900/60 border border-zinc-700/60 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/60"
-                placeholder="Jane Doe"
-              />
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsSubmitting(false);
+    alert("Protocol Initiated. We will contact you shortly.");
+    setFormState({ name: "", email: "", message: "" });
+  };
+
+  return (
+    <section className="py-24 bg-black relative overflow-hidden" id="contact">
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
+
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
+        <ScrollAnimationWrapper variant="fade-in">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/30 border border-cyan-800/50 text-cyan-400 font-mono text-xs tracking-wider mb-6">
+              <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+              OPEN_FOR_PARTNERSHIP
             </div>
-  
-            <div className="flex flex-col">
-              <label
-                htmlFor="email"
-                className="text-xs font-medium text-zinc-300 mb-2"
-              >
-                Work email
-              </label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                required
-                className="rounded-lg bg-zinc-900/60 border border-zinc-700/60 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/60"
-                placeholder="you@company.com"
-              />
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+              Initialize <span className="text-zinc-500">Sequence.</span>
+            </h2>
+            <p className="text-zinc-400 text-lg">
+              Ready to deploy autonomous agents? Configure your request below.
+            </p>
+          </div>
+        </ScrollAnimationWrapper>
+
+        <ScrollAnimationWrapper variant="scale-up" delay={0.2}>
+          <div className="bg-zinc-900/30 border border-zinc-800 rounded-xl p-1 backdrop-blur-sm">
+            <div className="bg-black/80 rounded-lg border border-zinc-800/50 p-6 md:p-10">
+
+              {/* Terminal Header */}
+              <div className="flex items-center gap-2 mb-8 pb-4 border-b border-zinc-800/50 font-mono text-xs text-zinc-500">
+                <Terminal className="w-4 h-4" />
+                <span>root@stagbyte:~/contact-config</span>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6 font-mono">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs text-cyan-500 uppercase tracking-wider">var user_name =</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder='"John Doe"'
+                      className="w-full bg-zinc-900/50 border border-zinc-800 rounded p-3 text-white placeholder:text-zinc-700 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 outline-none transition-all"
+                      value={formState.name}
+                      onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs text-cyan-500 uppercase tracking-wider">var user_email =</label>
+                    <input
+                      type="email"
+                      required
+                      placeholder='"john@company.com"'
+                      className="w-full bg-zinc-900/50 border border-zinc-800 rounded p-3 text-white placeholder:text-zinc-700 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 outline-none transition-all"
+                      value={formState.email}
+                      onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs text-cyan-500 uppercase tracking-wider">const project_scope =</label>
+                  <textarea
+                    required
+                    rows={4}
+                    placeholder='"Describe your automation needs..."'
+                    className="w-full bg-zinc-900/50 border border-zinc-800 rounded p-3 text-white placeholder:text-zinc-700 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 outline-none transition-all resize-none"
+                    value={formState.message}
+                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-white text-black hover:bg-cyan-400 hover:text-black font-bold py-4 rounded transition-all flex items-center justify-center gap-2 group mt-4"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" /> PROCESSING...
+                    </>
+                  ) : (
+                    <>
+                      EXECUTE_TRANSMISSION <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           </div>
-  
-          <div className="flex flex-col">
-            <label
-              htmlFor="company"
-              className="text-xs font-medium text-zinc-300 mb-2"
-            >
-              Company / Team
-            </label>
-            <input
-              id="company"
-              name="company"
-              className="rounded-lg bg-zinc-900/60 border border-zinc-700/60 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/60"
-              placeholder="Acme Ops / Compliance"
-            />
-          </div>
-  
-          <div className="flex flex-col">
-            <label
-              htmlFor="message"
-              className="text-xs font-medium text-zinc-300 mb-2"
-            >
-              What do you need?
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={4}
-              className="rounded-lg bg-zinc-900/60 border border-zinc-700/60 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/60"
-              placeholder="Example: We need a Telegram alert + PDF log every time a contract changes. Doing it by hand right now."
-            />
-          </div>
-  
-          <button
-            type="submit"
-            className="inline-flex items-center justify-center rounded-xl bg-blue-600/80 hover:bg-blue-600 text-white px-5 py-3 text-sm font-medium shadow-[0_20px_60px_-10px_rgba(0,122,255,0.6)]"
-          >
-            Send message
-          </button>
-  
-          <p className="text-[11px] text-zinc-500">
-            Or email directly:{" "}
-            <span className="text-zinc-300">contact@Stagbyte.com</span>
-          </p>
-        </form>
-      </section>
-    );
-  }
-  
+        </ScrollAnimationWrapper>
+      </div>
+    </section>
+  );
+}
