@@ -12,19 +12,166 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Existing glow pulse animation */
 @keyframes glowPulse {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(88,102,255,0.7)); }
-  50% { filter: drop-shadow(0 0 18px rgba(88,102,255,1)); }
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 10px rgba(88, 102, 255, 0.7));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 18px rgba(88, 102, 255, 1));
+  }
 }
 
 .glow-pulse {
   animation: glowPulse 3s ease-in-out infinite;
 }
 
+/* Ripple effect for buttons */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Card lift animation */
+@keyframes cardLift {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+/* Icon pulse animation */
+@keyframes iconPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(0, 122, 255, 0.6));
+  }
+
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 30px rgba(0, 122, 255, 0.9));
+  }
+}
+
+/* Badge glow animation */
+@keyframes badgeGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(0, 122, 255, 1);
+  }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Smooth underline animation */
+@keyframes underlineExpand {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+/* Navbar background transition */
+@keyframes navbarBlur {
+  0% {
+    backdrop-filter: blur(0px);
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Utility classes */
+.card-hover-lift {
+  transition: transform 0.3s cubic-bezier(0.25, 0.4, 0.25, 1),
+    box-shadow 0.3s cubic-bezier(0.25, 0.4, 0.25, 1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+.icon-hover-pulse {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.icon-hover-pulse:hover {
+  animation: iconPulse 1.5s ease-in-out infinite;
+}
+
+.badge-animate {
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.25, 0.4, 0.25, 1);
+}
+
+/* Button ripple container */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

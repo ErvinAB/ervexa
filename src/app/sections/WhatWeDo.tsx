@@ -1,87 +1,104 @@
-import { Bot, Workflow, ActivitySquare, ShieldCheck } from "lucide-react";
+"use client";
+
+import { MessageSquare, FileText, Share2, ArrowRight, CheckCircle2 } from "lucide-react";
+import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
+import ArchitectureDiagram from "../components/ArchitectureDiagram";
+
+const ARCHITECTURES = [
+  {
+    id: "triage",
+    title: "AUTONOMOUS_TRIAGE_CORE",
+    description: "Intercepts inbound communications, classifies intent using LLMs, and executes routing logic or drafts responses instantly.",
+    icon: MessageSquare,
+    stats: ["< 1min Response Time", "24/7 Availability", "Zero Hallucination Mode"],
+    color: "text-blue-400"
+  },
+  {
+    id: "doc-proc",
+    title: "DOCUMENT_SYNTHESIS_ENGINE",
+    description: "Ingests unstructured PDFs, invoices, and contracts. Extracts structured JSON data and syncs directly to your ERP/CRM.",
+    icon: FileText,
+    stats: ["99.8% Accuracy", "Multi-Modal Vision", "Auto-Validation"],
+    color: "text-purple-400"
+  },
+  {
+    id: "outreach",
+    title: "GROWTH_ORCHESTRATOR_V1",
+    description: "Scrapes public signals, enriches lead profiles, and generates hyper-personalized outreach sequences at scale.",
+    icon: Share2,
+    stats: ["Dynamic Personalization", "Multi-Channel Sync", "A/B Testing Native"],
+    color: "text-amber-400"
+  }
+];
 
 export default function WhatWeDo() {
-  const services = [
-    {
-      icon: Bot,
-      title: "AI Assistants for Internal Teams",
-      tag: "Answer. Summarize. Escalate.",
-      desc: "We build AI agents that read your internal data, draft replies, and only wake up a human when something is actually non-standard.",
-    },
-    {
-      icon: Workflow,
-      title: "Workflow Automation & Orchestration",
-      tag: "n8n / webhooks / glue",
-      desc: "We connect the tools you already use and automate the boring handoffs: create records, sync data, send the alert, file the PDF, update the sheet. No more manual copy-paste.",
-    },
-    {
-      icon: ActivitySquare,
-      title: "Monitoring, Alerts & Audit Trails",
-      tag: "Ops / Compliance / Risk",
-      desc: "Bots watch for new events (new contract, new client, risky change) and post structured summaries to Slack/Telegram — plus we keep an audit log so you can prove who knew what, and when.",
-    },
-    {
-      icon: ShieldCheck,
-      title: "Quality & Reliability Automation",
-      tag: "Release safety",
-      desc: "We wrap your most critical flows in automated checks so you stop finding out about problems from angry customers. Includes self-healing UI checks if needed.",
-    },
-  ];
-
   return (
-    <section
-      id="services"
-      className="px-6 py-16 md:py-24 max-w-7xl mx-auto"
-    >
-      <div className="mb-10 max-w-2xl">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="text-xs font-medium text-zinc-400 uppercase tracking-wider">
-            What we do
-          </span>
+    <section className="relative py-24 bg-black overflow-hidden" id="use-cases">
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+
+        {/* Section Header */}
+        <div className="mb-20">
+          <ScrollAnimationWrapper variant="fade-in">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="h-px w-8 bg-cyan-500" />
+              <span className="text-cyan-500 font-mono text-xs tracking-widest uppercase">System Architectures</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+              Deployable <span className="text-zinc-500">Intelligence.</span>
+            </h2>
+            <p className="text-zinc-400 max-w-2xl text-lg">
+              We don&apos;t just build &quot;chatbots&quot;. We engineer robust, multi-agent systems designed to solve specific, high-value business bottlenecks.
+            </p>
+          </ScrollAnimationWrapper>
         </div>
 
-        <h2 className="mt-3 text-2xl md:text-3xl font-semibold tracking-tight text-zinc-100">
-          We remove repetitive work with targeted AI and automation.
-        </h2>
+        {/* Architecture Visual */}
+        <div className="mb-24">
+          <ScrollAnimationWrapper variant="scale-in">
+            <ArchitectureDiagram />
+          </ScrollAnimationWrapper>
+        </div>
 
-        <p className="mt-4 text-sm md:text-base text-zinc-400 leading-relaxed">
-          We come in where your team is wasting hours doing something by hand,
-          or where mistakes are expensive. Then we replace that with an agent,
-          a workflow, or both.
-        </p>
-      </div>
+        {/* Use Cases Grid */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {ARCHITECTURES.map((arch, index) => (
+            <ScrollAnimationWrapper key={arch.id} variant="slide-up" delay={index * 0.1}>
+              <div className="group relative p-6 h-full rounded-xl border border-zinc-800 bg-zinc-900/20 hover:bg-zinc-900/40 transition-colors duration-300">
+                {/* Hover Glow */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br from-white to-transparent rounded-xl pointer-events-none`} />
 
-      <div className="grid gap-6 md:grid-cols-2">
-        {services.map((item) => (
-          <div
-            key={item.title}
-            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:border-zinc-600/60 hover:shadow-[0_20px_60px_-10px_rgba(0,122,255,0.4)] hover:bg-zinc-900/60"
-          >
-            {/* glow */}
-            <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-100/5 opacity-0 blur-xl transition group-hover:opacity-30 bg-[radial-gradient(circle_at_0%_0%,rgba(0,122,255,0.4),transparent_70%)]" />
-
-            <div className="relative flex items-start gap-4">
-              <div className="rounded-xl bg-blue-600/20 text-blue-300 p-2 ring-1 ring-blue-500/40 shadow-[0_0_30px_rgba(0,122,255,0.6)]">
-                <item.icon className="h-5 w-5" />
-              </div>
-
-              <div className="flex-1">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-zinc-100 font-medium text-base leading-tight">
-                    {item.title}
-                  </h3>
-                  <span className="rounded-full border border-zinc-700/60 bg-zinc-900/60 px-2 py-0.5 text-[10px] text-zinc-400 font-medium">
-                    {item.tag}
-                  </span>
+                <div className="mb-6">
+                  <div className={`w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 ${arch.color}`}>
+                    <arch.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-mono text-sm font-bold text-white mb-2 tracking-wider">{arch.title}</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+                    {arch.description}
+                  </p>
                 </div>
 
-                <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-                  {item.desc}
-                </p>
+                <div className="space-y-3 pt-6 border-t border-zinc-800/50">
+                  {arch.stats.map((stat, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs font-mono text-zinc-500">
+                      <CheckCircle2 className={`w-3 h-3 ${arch.color}`} />
+                      <span>{stat}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-4">
+                  <button className="text-xs font-mono text-white flex items-center gap-2 group-hover:gap-3 transition-all">
+                    INITIALIZE_MODULE <ArrowRight className="w-3 h-3" />
+                  </button>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            </ScrollAnimationWrapper>
+          ))}
+        </div>
+
       </div>
     </section>
   );
