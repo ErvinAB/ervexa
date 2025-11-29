@@ -1,17 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Terminal, Cpu, Network } from "lucide-react";
+import { Terminal, Cpu, Network } from "lucide-react";
 import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
 import ButtonWithRipple from "../components/ButtonWithRipple";
 import AINodeNetwork from "../components/AINodeNetwork";
 import SystemStatus from "../components/SystemStatus";
 import { usePersonalization } from "../context/PersonalizationContext";
-import { getPersonalizedHeadline, getPersonalizedCTA } from "../utils/personalization-utils";
+import { getPersonalizedCTA } from "../utils/personalization-utils";
 
 export default function Hero() {
-  const { persona, isReturningUser, trackClick } = usePersonalization();
-  const headline = getPersonalizedHeadline(persona, isReturningUser);
+  const { persona, trackClick } = usePersonalization();
   const ctaText = getPersonalizedCTA(persona);
 
   return (
@@ -57,7 +56,7 @@ export default function Hero() {
             <p className="text-lg text-zinc-400 max-w-xl leading-relaxed border-l-2 border-zinc-800 pl-6">
               We engineer intelligent agent swarms and decision workflows that autonomously handle your complex operations.
               <span className="block mt-2 text-zinc-500 font-mono text-sm">
-                // No manual intervention required.
+                {"//"} No manual intervention required.
               </span>
             </p>
           </ScrollAnimationWrapper>
@@ -137,7 +136,7 @@ export default function Hero() {
             <div className="space-y-2 font-mono text-xs text-zinc-500">
               <div className="flex gap-4">
                 <span className="text-zinc-700">01</span>
-                <span>import <span className="text-cyan-400">AgentSwarm</span> from '@stagbyte/core';</span>
+                <span>import <span className="text-cyan-400">AgentSwarm</span> from &apos;@stagbyte/core&apos;;</span>
               </div>
               <div className="flex gap-4">
                 <span className="text-zinc-700">02</span>
@@ -149,7 +148,7 @@ export default function Hero() {
               </div>
               <div className="flex gap-4">
                 <span className="text-zinc-700">04</span>
-                <span className="pl-4">mode: <span className="text-emerald-400">'AUTONOMOUS'</span>,</span>
+                <span className="pl-4">mode: <span className="text-emerald-400">&apos;AUTONOMOUS&apos;</span>,</span>
               </div>
               <div className="flex gap-4">
                 <span className="text-zinc-700">05</span>

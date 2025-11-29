@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Send, Terminal, Loader2 } from "lucide-react";
 import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
 
@@ -44,7 +43,7 @@ export default function Contact() {
           </div>
         </ScrollAnimationWrapper>
 
-        <ScrollAnimationWrapper variant="scale-up" delay={0.2}>
+        <ScrollAnimationWrapper variant="scale-in" delay={0.2}>
           <div className="bg-zinc-900/30 border border-zinc-800 rounded-xl p-1 backdrop-blur-sm">
             <div className="bg-black/80 rounded-lg border border-zinc-800/50 p-6 md:p-10">
 

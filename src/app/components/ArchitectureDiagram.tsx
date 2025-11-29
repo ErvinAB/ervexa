@@ -60,7 +60,7 @@ export default function ArchitectureDiagram() {
 
                             {/* Hover Details */}
                             <div className="absolute inset-0 bg-black/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
-                                <span className="font-mono text-[10px] text-cyan-400">VIEW_LOGS >></span>
+                                <span className="font-mono text-[10px] text-cyan-400">VIEW_LOGS &gt;&gt;</span>
                             </div>
                         </motion.div>
 

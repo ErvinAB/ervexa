@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { MessageSquare, FileText, Share2, ArrowRight, CheckCircle2 } from "lucide-react";
 import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
 import ArchitectureDiagram from "../components/ArchitectureDiagram";
@@ -51,14 +50,14 @@ export default function WhatWeDo() {
               Deployable <span className="text-zinc-500">Intelligence.</span>
             </h2>
             <p className="text-zinc-400 max-w-2xl text-lg">
-              We don't just build "chatbots". We engineer robust, multi-agent systems designed to solve specific, high-value business bottlenecks.
+              We don&apos;t just build &quot;chatbots&quot;. We engineer robust, multi-agent systems designed to solve specific, high-value business bottlenecks.
             </p>
           </ScrollAnimationWrapper>
         </div>
 
         {/* Architecture Visual */}
         <div className="mb-24">
-          <ScrollAnimationWrapper variant="scale-up">
+          <ScrollAnimationWrapper variant="scale-in">
             <ArchitectureDiagram />
           </ScrollAnimationWrapper>
         </div>

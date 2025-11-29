@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Rss, ExternalLink, Activity, Globe } from "lucide-react";
+import { Activity, Globe } from "lucide-react";
 import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
 
 interface FeedItem {
@@ -14,7 +13,6 @@ interface FeedItem {
 
 export default function LiveAIFeeds() {
   const [feeds, setFeeds] = useState<FeedItem[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Simulated feed data for now (replace with real fetch if needed)
@@ -27,7 +25,6 @@ export default function LiveAIFeeds() {
     ];
 
     setFeeds(MOCK_FEEDS);
-    setLoading(false);
   }, []);
 
   return (

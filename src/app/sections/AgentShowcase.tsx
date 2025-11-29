@@ -1,9 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink, Code2, Terminal } from "lucide-react";
+import { Code2 } from "lucide-react";
 import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
-import Image from "next/image";
 
 const AGENTS = [
   {
