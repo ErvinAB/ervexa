@@ -26,7 +26,7 @@ export default function Footer() {
         <div>
           <div className="text-zinc-200 text-sm font-medium">Contact</div>
           <ul className="mt-3 space-y-2 text-[13px] text-zinc-500">
-            <li className="text-zinc-300">contact@stagbyte.com</li>
+
             <li>
               <a
                 className="hover:text-zinc-200"
