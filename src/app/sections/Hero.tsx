@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal, Cpu, Network } from "lucide-react";
+import { Terminal, Cpu, Network, Shield } from "lucide-react";
 import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
 import ButtonWithRipple from "../components/ButtonWithRipple";
 import AINodeNetwork from "../components/AINodeNetwork";
@@ -64,6 +64,17 @@ export default function Hero() {
           {/* CTAs */}
           <ScrollAnimationWrapper variant="slide-up" delay={0.4}>
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
+              {/* Shadow Cleaner CTA - Featured */}
+              <ButtonWithRipple
+                href="/shadow-cleaner"
+                variant="primary"
+                onClick={() => trackClick("hero-shadow-cleaner")}
+                className="group !rounded-none !bg-gradient-to-r !from-purple-600 !to-cyan-600 hover:!from-purple-500 hover:!to-cyan-500 !text-white border-0 font-mono !shadow-[0_0_30px_rgba(168,85,247,0.3)]"
+              >
+                <Shield className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
+                SCAN_YOUR_SHADOWS
+              </ButtonWithRipple>
+
               <ButtonWithRipple
                 href="#contact"
                 variant="primary"
