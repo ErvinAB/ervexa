@@ -3,6 +3,7 @@ import Hero from "./sections/Hero";
 import WhatWeDo from "./sections/WhatWeDo";
 import LiveAIFeeds from "./sections/LiveAIFeeds";
 import AgentShowcase from "./sections/AgentShowcase";
+import ShadowCleanerHero from "./sections/ShadowCleanerHero";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
@@ -38,6 +39,8 @@ export default function Home() {
       <LiveAIFeeds />
 
       <AgentShowcase />
+
+      <ShadowCleanerHero />
 
       <Contact />
 

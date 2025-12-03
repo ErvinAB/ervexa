@@ -53,6 +53,23 @@ const post = await llm.write({
   tone: 'professional'
 });`,
     status: "PROCESSING"
+  },
+  {
+    id: "04",
+    name: "SHADOW_CLEANER_ALPHA",
+    role: "Privacy & Security Guardian",
+    description: "Scans digital footprints, detects scam patterns, and eliminates exposure points across Telegram, email, and messaging platforms.",
+    stats: {
+      efficiency: "24/7",
+      volume: "Real-time",
+      platform: "Multi-Channel"
+    },
+    codeSnippet: `const score = await scanShadows({
+  email: user.email,
+  telegram: contacts
+});
+if (score < 50) alert(user);`,
+    status: "ACTIVE"
   }
 ];
 
@@ -85,7 +102,7 @@ export default function AgentShowcase() {
           </div>
         </ScrollAnimationWrapper>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           {AGENTS.map((agent, index) => (
             <ScrollAnimationWrapper key={agent.id} variant="slide-up" delay={index * 0.1}>
               <div className="group relative bg-zinc-900/30 border border-zinc-800 hover:border-cyan-500/50 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">

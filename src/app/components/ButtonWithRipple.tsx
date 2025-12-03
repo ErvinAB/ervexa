@@ -9,6 +9,7 @@ interface ButtonWithRippleProps {
     className?: string;
     type?: "button" | "submit" | "reset";
     variant?: "primary" | "secondary";
+    disabled?: boolean;
 }
 
 export default function ButtonWithRipple({
@@ -18,8 +19,11 @@ export default function ButtonWithRipple({
     className = "",
     type = "button",
     variant = "primary",
+    disabled = false,
 }: ButtonWithRippleProps) {
     const handleRipple = (e: MouseEvent<HTMLElement>) => {
+        if (disabled) return;
+
         const button = e.currentTarget;
         const ripple = document.createElement("span");
         const rect = button.getBoundingClientRect();
@@ -51,18 +55,18 @@ export default function ButtonWithRipple({
             "border border-zinc-700 bg-zinc-900/40 hover:bg-zinc-900/70 hover:border-zinc-500 text-zinc-200 hover:scale-105",
     };
 
-    const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;
+    const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
 
     if (href) {
         return (
-            <a href={href} className={combinedClasses} onClick={handleRipple}>
+            <a href={disabled ? undefined : href} className={combinedClasses} onClick={handleRipple}>
                 {children}
             </a>
         );
     }
 
     return (
-        <button type={type} className={combinedClasses} onClick={handleRipple}>
+        <button type={type} className={combinedClasses} onClick={handleRipple} disabled={disabled}>
             {children}
         </button>
     );
