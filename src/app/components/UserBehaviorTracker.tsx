@@ -9,6 +9,9 @@ export default function UserBehaviorTracker() {
     const maxScrollDepth = useRef(0);
 
     useEffect(() => {
+        // Only run in browser environment
+        if (typeof window === "undefined") return;
+
         // Track time on page
         const interval = setInterval(() => {
             const timeOnPage = Math.floor((Date.now() - startTime.current) / 1000);
@@ -17,6 +20,8 @@ export default function UserBehaviorTracker() {
 
         // Track scroll depth
         const handleScroll = () => {
+            if (typeof window === "undefined") return;
+
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrollDepth = Math.floor((window.scrollY / scrollHeight) * 100);
 
@@ -26,7 +31,7 @@ export default function UserBehaviorTracker() {
             }
         };
 
-        // Track section visibility with IntIntersectionObserver
+        // Track section visibility with IntersectionObserver
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -41,9 +46,11 @@ export default function UserBehaviorTracker() {
             { threshold: 0.5 } // Track when 50% visible
         );
 
-        // Observe all sections
-        const sections = document.querySelectorAll("section[id]");
-        sections.forEach((section) => observer.observe(section));
+        // Observe all sections (with a small delay to ensure DOM is ready)
+        setTimeout(() => {
+            const sections = document.querySelectorAll("section[id]");
+            sections.forEach((section) => observer.observe(section));
+        }, 100);
 
         window.addEventListener("scroll", handleScroll);
 
