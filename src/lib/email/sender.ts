@@ -5,10 +5,14 @@
 import { Resend } from 'resend';
 import { supabase } from '../supabase/client';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Use placeholder key during build if real key is missing
+const resendApiKey = process.env.RESEND_API_KEY || 're_123456789';
 
+const resend = new Resend(resendApiKey);
+
+// Warn if using placeholder, but don't crash the build
 if (!process.env.RESEND_API_KEY) {
-    console.warn('RESEND_API_KEY not set. Email sending will fail.');
+    console.warn('⚠️  RESEND_API_KEY not set. Using placeholder for build. Email sending will fail at runtime.');
 }
 
 /**
