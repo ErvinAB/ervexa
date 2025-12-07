@@ -4,11 +4,19 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrlEnv = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKeyEnv = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error('Missing Supabase environment variables. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local');
+// Check for valid configuration
+const isValidUrl = supabaseUrlEnv && supabaseUrlEnv.startsWith('http') && supabaseUrlEnv !== 'your-project-url-here';
+const isValidKey = supabaseAnonKeyEnv && supabaseAnonKeyEnv !== 'your-anon-key-here';
+
+// Use env vars if valid, otherwise use placeholder (prevents build crash)
+const supabaseUrl = isValidUrl ? supabaseUrlEnv : 'https://placeholder.supabase.co';
+const supabaseAnonKey = isValidKey ? supabaseAnonKeyEnv : 'placeholder';
+
+if (!isValidUrl || !isValidKey) {
+    console.warn('⚠️  Supabase environment variables missing or invalid. Using placeholder client.');
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
