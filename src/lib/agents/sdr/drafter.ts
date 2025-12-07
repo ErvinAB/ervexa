@@ -9,7 +9,7 @@ export async function draftOutreach(company: CompanyAnalysis, myValueProp: strin
   }
 
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
   const prompt = `
     You are a world-class Sales Development Representative (SDR).
@@ -61,7 +61,7 @@ export async function draftOutreach(company: CompanyAnalysis, myValueProp: strin
 
     // Check if it's a 404 (Model not found) or 400 (Bad Request)
     if (err.message?.includes('404')) {
-      throw new Error('Gemini Model not found. Try using "gemini-pro" or check if your API key has access to this model.');
+      throw new Error('Gemini Model not found. Try using "gemini-1.5-flash" or check if your API key has access to this model.');
     }
 
     throw new Error(`Gemini API Failed: ${err.message || 'Unknown error'}`);

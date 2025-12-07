@@ -8,7 +8,7 @@ const AGENTS = [
     id: "01",
     name: "SALES_DEV_UNIT_ALPHA",
     role: "Autonomous Outbound",
-    description: "Scrapes LinkedIn for qualified leads, enriches data via Clearbit, and drafts personalized connection requests.",
+    description: "Analyzes company websites and drafts personalized cold emails in seconds. Input a URL, get a tailored outreach message.",
     stats: {
       efficiency: "+450%",
       volume: "2k/day",
@@ -18,7 +18,8 @@ const AGENTS = [
   target: lead.profileUrl,
   message: generateIntro(lead)
 });`,
-    status: "ONLINE"
+    status: "ONLINE",
+    href: "/dashboard/sdr"
   },
   {
     id: "02",
@@ -40,36 +41,37 @@ const AGENTS = [
   {
     id: "03",
     name: "CONTENT_ENGINE_V2",
-    role: "SEO & Social Gen",
-    description: "Monitors industry news, generates SEO-optimized blog posts, and schedules social media snippets automatically.",
+    role: "AI Content Generation",
+    description: "Generates high-quality content for LinkedIn, Twitter, and blogs in seconds. AI-powered variations with engagement scoring and SEO optimization.",
     stats: {
-      efficiency: "10x",
-      volume: "Daily",
-      platform: "WordPress/Twitter"
+      efficiency: "5 variations",
+      volume: "Instant",
+      platform: "LinkedIn/Twitter/Blog"
     },
-    codeSnippet: `const trends = await scanNews();
-const post = await llm.write({
-  topic: trends[0],
-  tone: 'professional'
+    codeSnippet: `const content = await generate({
+  topic: "AI automation",
+  platform: "linkedin",
+  tone: "professional"
 });`,
-    status: "PROCESSING"
+    status: "ONLINE",
+    href: "/content-engine"
   },
   {
     id: "04",
     name: "SHADOW_CLEANER_ALPHA",
     role: "Privacy & Security Guardian",
-    description: "Scans digital footprints, detects scam patterns, and eliminates exposure points across Telegram, email, and messaging platforms.",
+    description: "Scans email for data breaches, detects scam messages across platforms, and calculates your Shadow Score for digital privacy health.",
     stats: {
-      efficiency: "24/7",
+      efficiency: "30sec",
       volume: "Real-time",
-      platform: "Multi-Channel"
+      platform: "Email/SMS/Telegram"
     },
     codeSnippet: `const score = await scanShadows({
   email: user.email,
-  telegram: contacts
-});
-if (score < 50) alert(user);`,
-    status: "ACTIVE"
+  checkDarkWeb: true
+});`,
+    status: "ONLINE",
+    href: "/shadow-cleaner"
   }
 ];
 
@@ -103,9 +105,9 @@ export default function AgentShowcase() {
         </ScrollAnimationWrapper>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-          {AGENTS.map((agent, index) => (
-            <ScrollAnimationWrapper key={agent.id} variant="slide-up" delay={index * 0.1}>
-              <div className="group relative bg-zinc-900/30 border border-zinc-800 hover:border-cyan-500/50 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
+          {AGENTS.map((agent, index) => {
+            const CardContent = (
+              <div className="group relative bg-zinc-900/30 border border-zinc-800 hover:border-cyan-500/50 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)] cursor-pointer">
 
                 {/* Header */}
                 <div className="p-6 border-b border-zinc-800 bg-zinc-900/50 flex justify-between items-start">
@@ -147,7 +149,7 @@ export default function AgentShowcase() {
                     </div>
                     <div>
                       <div className="text-[10px] text-zinc-600 uppercase">Target</div>
-                      <div className="text-sm font-mono text-white truncate">{agent.stats.platform}</div>
+                      <div className="text-sm font-mono text-white">{agent.stats.platform}</div>
                     </div>
                   </div>
                 </div>
@@ -155,8 +157,20 @@ export default function AgentShowcase() {
                 {/* Hover Effect Line */}
                 <div className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </div>
-            </ScrollAnimationWrapper>
-          ))}
+            );
+
+            return (
+              <ScrollAnimationWrapper key={agent.id} variant="slide-up" delay={index * 0.1}>
+                {"href" in agent && agent.href ? (
+                  <a href={agent.href} className="block">
+                    {CardContent}
+                  </a>
+                ) : (
+                  CardContent
+                )}
+              </ScrollAnimationWrapper>
+            );
+          })}
         </div>
 
       </div>
