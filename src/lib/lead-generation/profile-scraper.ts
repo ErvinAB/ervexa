@@ -4,7 +4,7 @@
  * Finds decision makers at target companies
  */
 
-import type { Lead, ProfileSearchFilters } from './types';
+import type { Lead } from './types';
 
 interface ScrapedProfile {
     name: string;
@@ -27,7 +27,8 @@ interface ScrapedProfile {
  */
 export async function findDecisionMakers(
     companyName: string,
-    titles: string[] = ['CTO', 'VP Engineering', 'Head of Operations']
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _titles: string[] = ['CTO', 'VP Engineering', 'Head of Operations']
 ): Promise<Partial<Lead>[]> {
     console.warn('Use legal data providers like Apollo.io or Hunter.io');
 

@@ -6,7 +6,7 @@
 
 import { getTargetCompanies } from './company-scraper';
 import { findDecisionMakers } from './profile-scraper';
-import { qualifyLead, enrichLead } from './lead-qualifier';
+import { qualifyLead } from './lead-qualifier';
 import { addLeads, getHighPriorityLeads } from './lead-database';
 import type { Lead } from './types';
 

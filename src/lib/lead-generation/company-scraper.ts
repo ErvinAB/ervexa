@@ -92,6 +92,7 @@ export async function scrapeLinkedInCompanies(
  * This is the RECOMMENDED approach for production
  */
 export async function getCompaniesFromSalesNavigator(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _filters: CompanySearchFilters
 ): Promise<Lead[]> {
     // Requires LinkedIn Sales Navigator subscription

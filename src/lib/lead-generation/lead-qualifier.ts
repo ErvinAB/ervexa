@@ -116,7 +116,8 @@ function scoreTechStack(techStack?: string[]): number {
  * - Expanding to new markets
  * - New product launches
  */
-function scoreGrowthIndicators(lead: Lead): number {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function scoreGrowthIndicators(_lead: Lead): number {
     // This would check:
     // - Recent job postings (hiring = growth)
     // - Funding announcements
@@ -167,7 +168,7 @@ function scorePainPoints(painPoints?: string[]): number {
  * 
  * Use various APIs to gather more information
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 export async function enrichLead(lead: Lead): Promise<Lead> {
     // 1. Get company data from Clearbit
     // 2. Find tech stack from BuiltWith
