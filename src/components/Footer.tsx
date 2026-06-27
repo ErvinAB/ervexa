@@ -59,12 +59,22 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href={socialLinks.linkedinCompany}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 hover:text-zinc-400 transition-colors"
+                >
+                  <Linkedin className="h-3.5 w-3.5" /> Stagbyte
+                </a>
+              </li>
+              <li>
+                <a
                   href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 hover:text-zinc-400 transition-colors"
                 >
-                  <Linkedin className="h-3.5 w-3.5" /> LinkedIn
+                  <Linkedin className="h-3.5 w-3.5" /> Ervin
                 </a>
               </li>
               <li>

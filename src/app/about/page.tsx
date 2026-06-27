@@ -99,12 +99,22 @@ export default function AboutPage() {
                   </li>
                   <li>
                     <a
+                      href={socialLinks.linkedinCompany}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-zinc-100 transition-colors"
+                    >
+                      <Linkedin className="h-3.5 w-3.5" /> Stagbyte on LinkedIn
+                    </a>
+                  </li>
+                  <li>
+                    <a
                       href={socialLinks.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-zinc-100 transition-colors"
                     >
-                      <Linkedin className="h-3.5 w-3.5" /> LinkedIn
+                      <Linkedin className="h-3.5 w-3.5" /> Ervin on LinkedIn
                     </a>
                   </li>
                   <li>

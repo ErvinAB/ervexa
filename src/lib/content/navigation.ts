@@ -16,6 +16,7 @@ export const navigation: NavItem[] = [
 
 export const socialLinks = {
   github: "https://github.com/ErvinAB",
-  linkedin: "https://www.linkedin.com/in/ervin-abedin-8a6040235/",
-  email: "ervin.abedin@outlook.com",
+  linkedin: "https://www.linkedin.com/in/ervin-abedin/",
+  linkedinCompany: "https://www.linkedin.com/company/stagbyte/",
+  email: "e.abedin@arvionix.com",
 };
