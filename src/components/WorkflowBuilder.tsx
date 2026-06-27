@@ -6,6 +6,8 @@ import {
   addEdge,
   useNodesState,
   useEdgesState,
+  Handle,
+  Position,
   type Connection,
   type Edge,
   type Node,
@@ -79,17 +81,24 @@ interface NodeData extends Record<string, unknown> { def: NodeDef; label: string
 function WorkflowNode({ data }: { data: Record<string, unknown> }) {
   const def = data.def as NodeDef;
   const Icon = def.icon;
+  const cat = def.category;
   return (
-    <div className="rounded-lg border bg-zinc-900 px-4 py-3 shadow-lg" style={{ borderColor: `${def.color}40`, minWidth: 160 }}>
+    <div className="rounded-lg border bg-zinc-900 px-4 py-3 shadow-lg relative" style={{ borderColor: `${def.color}40`, minWidth: 160 }}>
+      {cat !== "trigger" && (
+        <Handle type="target" position={Position.Left} className="!h-2.5 !w-2.5 !border-2 !border-zinc-700 !bg-zinc-900" />
+      )}
       <div className="flex items-center gap-2">
         <div className="rounded p-1.5" style={{ backgroundColor: `${def.color}20` }}>
           <Icon className="h-3.5 w-3.5" style={{ color: def.color }} />
         </div>
         <div>
           <p className="text-xs font-medium text-zinc-200">{def.label}</p>
-          <p className="text-[10px] text-zinc-600 capitalize">{def.category}</p>
+          <p className="text-[10px] text-zinc-600 capitalize">{cat}</p>
         </div>
       </div>
+      {cat !== "output" && (
+        <Handle type="source" position={Position.Right} className="!h-2.5 !w-2.5 !border-2 !border-zinc-700 !bg-zinc-900" />
+      )}
     </div>
   );
 }
@@ -101,6 +110,7 @@ export default function WorkflowBuilder() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
 
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
@@ -142,6 +152,30 @@ export default function WorkflowBuilder() {
     event.dataTransfer.setData("application/reactflow", type);
     event.dataTransfer.effectAllowed = "move";
   };
+
+  const deleteSelected = useCallback(() => {
+    if (!selectedNode) return;
+    setNodes((nds) => nds.filter((n) => n.id !== selectedNode.id));
+    setEdges((eds) => eds.filter((e) => e.source !== selectedNode.id && e.target !== selectedNode.id));
+    setSelectedNode(null);
+  }, [selectedNode, setNodes, setEdges]);
+
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if ((event.key === "Delete" || event.key === "Backspace") && selectedNode) {
+        deleteSelected();
+      }
+    },
+    [selectedNode, deleteSelected],
+  );
+
+  const onNodeClick = useCallback((_: React.MouseEvent, node: Node) => {
+    setSelectedNode(node);
+  }, []);
+
+  const onPaneClick = useCallback(() => {
+    setSelectedNode(null);
+  }, []);
 
   const exportJSON = useCallback(() => {
     const flow = { nodes, edges };
@@ -210,21 +244,24 @@ export default function WorkflowBuilder() {
 
       {/* Canvas */}
       <div ref={reactFlowWrapper} className="flex-1 rounded-lg border border-zinc-800/30 bg-zinc-950/60">
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          onInit={setReactFlowInstance}
-          onDragOver={onDragOver}
-          onDrop={onDrop}
-          nodeTypes={nodeTypes}
-          fitView
-          colorMode="dark"
-          style={{ background: "transparent" }}
-          proOptions={{ hideAttribution: true }}
-        >
+        <div className="h-full w-full" onKeyDown={onKeyDown} tabIndex={0}>
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            onInit={setReactFlowInstance}
+            onDragOver={onDragOver}
+            onDrop={onDrop}
+            onNodeClick={onNodeClick}
+            onPaneClick={onPaneClick}
+            nodeTypes={nodeTypes}
+            fitView
+            colorMode="dark"
+            style={{ background: "transparent" }}
+            proOptions={{ hideAttribution: true }}
+          >
           <Background color="#27272a" gap={20} />
           <Controls className="!bg-zinc-900 !border-zinc-800 !text-zinc-400" />
           <MiniMap
@@ -233,6 +270,7 @@ export default function WorkflowBuilder() {
             maskColor="rgba(0,0,0,0.7)"
           />
         </ReactFlow>
+        </div>
       </div>
 
       {/* Export buttons */}
@@ -255,10 +293,37 @@ export default function WorkflowBuilder() {
           </div>
         </div>
 
+        {/* Node properties */}
+        {selectedNode && (
+          <div className="rounded-lg border border-zinc-800/40 bg-zinc-900/20 p-3">
+            <p className="mb-2 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">Selected node</p>
+            <p className="text-xs text-zinc-300">{(selectedNode.data as NodeData)?.def?.label}</p>
+            <p className="text-[10px] text-zinc-600 capitalize mb-2">{(selectedNode.data as NodeData)?.def?.category}</p>
+            <button
+              onClick={deleteSelected}
+              className="flex w-full items-center justify-center gap-1 rounded border border-red-900/50 bg-red-950/20 px-2.5 py-1.5 text-[11px] text-red-400 hover:bg-red-950/40 transition-colors"
+            >
+              Delete
+            </button>
+          </div>
+        )}
+
         <div className="rounded-lg border border-zinc-800/40 bg-zinc-900/20 p-3">
-          <p className="mb-2 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">Info</p>
+          <p className="mb-2 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">How to use</p>
+          <ul className="space-y-1.5 text-[10px] text-zinc-600 leading-relaxed">
+            <li>• <span className="text-zinc-500">Add:</span> Drag a node from the left panel onto the canvas.</li>
+            <li>• <span className="text-zinc-500">Connect:</span> Drag from a node&apos;s right handle (dot) to another node&apos;s left handle.</li>
+            <li>• <span className="text-zinc-500">Select:</span> Click a node to see its properties panel.</li>
+            <li>• <span className="text-zinc-500">Delete:</span> Select a node then press Delete/Backspace, or use the button.</li>
+            <li>• <span className="text-zinc-500">Move:</span> Drag a node to reposition it on the canvas.</li>
+          </ul>
+        </div>
+
+        <div className="rounded-lg border border-zinc-800/40 bg-zinc-900/20 p-3">
+          <p className="mb-2 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">About</p>
           <p className="text-[10px] text-zinc-600 leading-relaxed">
-            Drag nodes from the left panel onto the canvas. Connect them by dragging between handles.
+            Prototype any automation flow — test frameworks, agentic workflows, data pipelines,
+            n8n orchestration, or custom tooling. Export as n8n-compatible JSON to build the real thing.
           </p>
         </div>
       </div>

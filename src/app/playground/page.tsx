@@ -17,8 +17,8 @@ export default function PlaygroundPage() {
       <Header />
       <PageHeader
         eyebrow="Playground"
-        title="Build a workflow visually"
-        description="Drag trigger, action, logic, and output nodes onto the canvas. Connect them to prototype an automation workflow. Export as n8n-compatible JSON."
+        title="Prototype automation workflows visually"
+        description="Drag, connect, and configure nodes to design any automation flow — test suites, agentic pipelines, n8n workflows, data validation, or custom tooling. Export as n8n-compatible JSON and build it for real."
       />
       <div className="mx-auto max-w-6xl px-6 py-12">
         <AnimateInView>
