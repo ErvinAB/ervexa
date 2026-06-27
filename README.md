@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stagbyte
 
-## Getting Started
+Quality engineering, automated intelligently.
 
-First, run the development server:
+Stagbyte is an independent quality engineering and automation studio building QA automation frameworks, intelligent testing agents, data-reliability systems, and engineering workflow automation.
+
+## Tech stack
+
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS v4
+- React 19
+- Lucide icons
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
 
-## Learn More
+```
+src/
+├── app/             # Pages and routes
+│   ├── about/
+│   ├── capabilities/
+│   ├── contact/
+│   ├── insights/
+│   ├── projects/
+│   │   └── [slug]/
+│   └── workflows/
+├── components/      # Reusable components
+├── lib/
+│   ├── content/     # Content collections
+│   └── metadata.ts  # SEO metadata
+public/              # Static assets
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The site deploys via Netlify. Configuration is in `netlify.toml`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Projects
 
-## Deploy on Vercel
+- [Swarm QA Framework](https://github.com/ErvinAB/aiFramework)
+- [Data Reliability Suite](https://github.com/ErvinAB/dataQA)
+- Evidence-Based Job Application Automation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Connect
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [GitHub](https://github.com/ErvinAB)
+- [LinkedIn](https://www.linkedin.com/in/ervin-abedin-8a6040235/)
+- Email: ervin.abedin@outlook.com
