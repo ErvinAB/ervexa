@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Github, TestTube, Bot, Workflow, Code2 } from "lucide-react";
+import { ArrowUpRight, TestTube, Bot, Workflow, Code2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionNav from "@/components/SectionNav";
@@ -14,7 +14,6 @@ import TechIcon from "@/components/TechIcon";
 import { projects } from "@/lib/content/projects";
 import { capabilities } from "@/lib/content/capabilities";
 import { technologies } from "@/lib/content/technologies";
-import { socialLinks } from "@/lib/content/navigation";
 import { organizationSchema } from "@/lib/schemas";
 
 export const metadata: Metadata = {
@@ -79,25 +78,17 @@ export default function Home() {
 
               <div className="mt-12 flex flex-wrap gap-3 kinetic-word" style={{ animationDelay: "0.9s", opacity: 0, animation: "word-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards" }}>
                 <Link
+                  href="/playground"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-cyan-600 px-6 py-3 font-mono text-sm text-white hover:bg-cyan-500 transition-all hover:scale-105 hover:shadow-lg hover:shadow-cyan-900/50"
+                >
+                  Try Playground <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link
                   href="/projects"
                   className="inline-flex items-center gap-1.5 rounded-full border border-zinc-700 bg-zinc-800 px-6 py-3 font-mono text-sm text-zinc-100 hover:bg-zinc-700 transition-all hover:scale-105 hover:shadow-lg hover:shadow-zinc-900/50"
                 >
-                  Explore Projects <ArrowUpRight className="h-3.5 w-3.5" />
+                  Explore Projects
                 </Link>
-                <Link
-                  href="/capabilities"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 px-6 py-3 font-mono text-sm text-zinc-400 hover:text-zinc-100 hover:border-zinc-700 transition-all hover:scale-105"
-                >
-                  View Capabilities
-                </Link>
-                <a
-                  href={socialLinks.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 px-6 py-3 font-mono text-sm text-zinc-500 hover:text-zinc-100 hover:border-zinc-700 transition-all hover:scale-105"
-                >
-                  <Github className="h-3.5 w-3.5" /> GitHub
-                </a>
               </div>
             </div>
 
@@ -201,6 +192,18 @@ export default function Home() {
               </p>
             </div>
             <PipelineInteractive />
+            <div className="mt-10 flex items-center justify-between rounded-lg border border-cyan-900/30 bg-cyan-950/10 px-6 py-4">
+              <div>
+                <p className="text-sm font-medium text-zinc-200">Build your own workflow</p>
+                <p className="mt-1 text-xs text-zinc-500">Drag-and-drop visual builder — no sign-up needed</p>
+              </div>
+              <Link
+                href="/playground"
+                className="inline-flex shrink-0 items-center gap-1 rounded-full border border-cyan-800/40 px-4 py-2 font-mono text-xs text-cyan-400 hover:bg-cyan-950/20 transition-all hover:scale-105"
+              >
+                Open Playground <ArrowUpRight className="h-3 w-3" />
+              </Link>
+            </div>
           </div>
         </section>
       </AnimateInView>
