@@ -5,12 +5,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimateInView from "@/components/AnimateInView";
 import PageHeader from "@/components/PageHeader";
+import ServiceWizard from "@/components/ServiceWizard";
 import { capabilities } from "@/lib/content/capabilities";
 
 export const metadata: Metadata = {
   title: "Capabilities",
   description:
-    "QA Automation Engineering, Agentic Quality Engineering, Workflow Automation, Data Quality, and Custom Automation Engineering by Stagbyte.",
+    "Test Automation Engineering, Agentic Automation, Workflow Orchestration, Data Pipelines, and Custom Automation Engineering by Stagbyte.",
 };
 
 export default function CapabilitiesPage() {
@@ -20,7 +21,7 @@ export default function CapabilitiesPage() {
       <PageHeader
         eyebrow="Capabilities"
         title="What Stagbyte builds"
-        description="Stagbyte applies quality engineering principles to every automation workflow. From maintainable test frameworks and agentic QA systems to reliable workflow automation and data-quality pipelines."
+        description="Stagbyte engineers automation across five disciplines: test automation, agentic systems, workflow orchestration, data pipelines, and custom automation tooling."
       />
 
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -92,6 +93,24 @@ export default function CapabilitiesPage() {
         </div>
       </div>
 
+      {/* Service wizard */}
+      <AnimateInView>
+        <section className="border-t border-zinc-800/30 py-20">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-px w-6 bg-cyan-500/50" />
+              <p className="font-mono text-xs text-cyan-500 uppercase tracking-[0.15em]">Not sure where to start?</p>
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl max-w-2xl mb-6">
+              Tell us what you need
+            </h2>
+            <div className="max-w-xl">
+              <ServiceWizard />
+            </div>
+          </div>
+        </section>
+      </AnimateInView>
+
       {/* CTA */}
       <AnimateInView>
         <section className="border-t border-zinc-800/30 py-16">
@@ -101,8 +120,8 @@ export default function CapabilitiesPage() {
                 Need a specific capability?
               </h2>
               <p className="mt-2 text-sm text-zinc-400 max-w-xl">
-                Not all projects fit into predefined categories. Stagbyte evaluates each
-                problem and recommends the right approach.
+                Not every automation problem fits predefined categories. Stagbyte evaluates
+                each situation and recommends the right approach.
               </p>
               <div className="mt-6">
                 <Link

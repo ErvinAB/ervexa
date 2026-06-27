@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Github, Terminal, ChevronLeft, ChevronRight, BarChart3, GitBranch, Bug, Gauge } from "lucide-react";
+import { ArrowUpRight, Github, ChevronLeft, ChevronRight, BarChart3, GitBranch, Bug, Gauge } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimateInView from "@/components/AnimateInView";
@@ -9,6 +9,7 @@ import StatusBadge from "@/components/StatusBadge";
 import WorkflowSteps from "@/components/WorkflowSteps";
 import PipelineDiagram from "@/components/PipelineDiagram";
 import CodeBlock from "@/components/CodeBlock";
+import QuickStartTerminal from "@/components/QuickStartTerminal";
 import TechIcon from "@/components/TechIcon";
 import JsonLd from "@/components/JsonLd";
 import { projectSchema } from "@/lib/schemas";
@@ -257,24 +258,7 @@ export default async function ProjectPage({ params }: Props) {
                     <span className="h-px w-6 bg-cyan-500/50" />
                     <h2 className="font-mono text-xs text-cyan-500 uppercase tracking-widest">Quick start</h2>
                   </div>
-                  <div className="group rounded-lg border border-zinc-800/50 bg-zinc-900/20 p-5 transition-all hover:border-zinc-700/40 hover:bg-zinc-900/30">
-                    <div className="mb-3 flex items-center gap-2">
-                      <Terminal className="h-3.5 w-3.5 text-zinc-600" />
-                      <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">
-                        Terminal
-                      </span>
-                    </div>
-                    <div className="space-y-1.5">
-                      {project.quickStart.map((cmd, i) => (
-                        <div
-                          key={i}
-                          className="font-mono text-[11px] text-zinc-400 leading-relaxed"
-                        >
-                          {cmd}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <QuickStartTerminal commands={project.quickStart} />
                 </section>
               </AnimateInView>
             )}

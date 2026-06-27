@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Stagbyte — Quality Engineering, Automated Intelligently";
+export const alt = "Stagbyte — Automation Engineering";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -57,7 +57,7 @@ export default async function Image() {
             lineHeight: 1.4,
           }}
         >
-          Quality engineering, automated intelligently.
+          Automation engineering for modern teams.
         </div>
         <div
           style={{
@@ -67,10 +67,10 @@ export default async function Image() {
           }}
         >
           {[
-            "QA Automation",
-            "Agentic Testing",
-            "Data Reliability",
-            "Workflow Automation",
+            "Test Automation",
+            "Agentic Systems",
+            "Workflow Orchestration",
+            "Data Pipelines",
           ].map((tag) => (
             <div
               key={tag}

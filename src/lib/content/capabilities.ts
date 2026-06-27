@@ -11,11 +11,11 @@ export interface Capability {
 export const capabilities: Capability[] = [
   {
     id: "qa-automation",
-    title: "QA Automation Engineering",
+    title: "Test Automation Engineering",
     summary:
-      "Maintainable UI, API, backend, mobile, and regression automation designed around product risk, system behaviour, and release reliability.",
+      "Automated UI, API, backend, mobile, and regression testing designed around risk, system behaviour, and release confidence.",
     description:
-      "Stagbyte designs and builds test automation frameworks that focus on what matters: product risk, system behaviour, and release confidence. Frameworks are structured for maintainability, parallel execution, CI/CD integration, and clear reporting.",
+      "Stagbyte builds test automation that goes beyond recording scripts. Everything is architected for maintainability, parallel execution, CI/CD integration, and actionable reporting. Frameworks are language-agnostic and chosen for the specific product context.",
     details: [
       "Playwright automation with Page Objects and component models",
       "Selenium and Cypress test suites",
@@ -52,11 +52,11 @@ export const capabilities: Capability[] = [
   },
   {
     id: "agentic-quality",
-    title: "Agentic Quality Engineering",
+    title: "Agentic Automation Engineering",
     summary:
-      "Agent loops that explore applications, generate testing assets, analyse failures, support self-healing, and improve automation workflows.",
+      "AI agent systems that explore, generate, analyse, heal, and predict — augmenting engineering teams with intelligent automation.",
     description:
-      "Stagbyte builds agentic QA systems that assist engineers with application exploration, test strategy, test data generation, Page Object creation, suite generation, failure classification, and controlled self-healing. AI agents augment engineers — they do not replace them.",
+      "Stagbyte builds agentic systems that automate complex engineering workflows: application exploration, test generation, failure analysis, locator healing, risk-based test selection, and root-cause summarisation. AI agents handle the repetitive work; engineers review and decide.",
     details: [
       "Application exploration and structure analysis",
       "Requirement analysis from specifications",
@@ -124,11 +124,11 @@ export const capabilities: Capability[] = [
   },
   {
     id: "data-quality",
-    title: "Data Quality and Reliability",
+    title: "Data Automation Engineering",
     summary:
-      "Automated validation for schemas, business rules, pipelines, warehouse integrity, anomalies, and data drift.",
+      "Automated pipelines for data validation, schema enforcement, quality monitoring, anomaly detection, and ETL reconciliation.",
     description:
-      "Stagbyte builds data validation systems that check schemas, enforce data contracts, validate business rules, reconcile source-to-target data, detect anomalies, and track lineage. Quality checks run in CI/CD pipelines and alert on failures.",
+      "Stagbyte builds data automation systems that ingest, validate, transform, and monitor data through automated pipelines. Quality checks, contract enforcement, drift detection, and lineage tracking run automatically in CI/CD.",
     details: [
       "Schema validation against data contracts",
       "Data contract enforcement with type and format checks",
@@ -160,7 +160,7 @@ export const capabilities: Capability[] = [
     id: "custom-automation",
     title: "Custom Automation Engineering",
     summary:
-      "Custom software services for complex automation requirements including event-driven processing, browser automation, and secure internal integrations.",
+      "Bespoke automation services for complex requirements: event-driven processing, browser automation, data pipelines, and secure integrations.",
     description:
       "When visual workflow builders and low-code platforms are insufficient, Stagbyte builds custom automation services. These range from Python data processing services to TypeScript event-driven systems, each with proper testing, observability, and deployment.",
     details: [

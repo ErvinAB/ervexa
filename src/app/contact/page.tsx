@@ -10,7 +10,7 @@ import { socialLinks } from "@/lib/content/navigation";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Have an automation problem, unreliable test suite, or repetitive workflow? Contact Stagbyte.",
+    "Have an engineering process that needs automation? Contact Stagbyte.",
 };
 
 export default function ContactPage() {
@@ -20,7 +20,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Have an automation problem?"
-        description="Describe the process, system, or quality problem. Stagbyte will help determine whether it needs QA automation, an agentic workflow, low-code orchestration, or custom engineering."
+        description="Describe the process, system, or quality problem. Stagbyte will help determine whether it needs test automation, an agentic workflow, low-code orchestration, or custom engineering."
       />
 
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -51,12 +51,12 @@ export default function ContactPage() {
                 </p>
                 <ul className="space-y-1.5">
                   {[
-                    "QA Automation Framework",
+                    "Test Automation Framework",
+                    "Agentic Automation System",
+                    "Workflow Orchestration (n8n)",
+                    "Data Pipeline",
+                    "Performance Testing (k6)",
                     "API or Backend Testing",
-                    "AI QA or Agentic Testing",
-                    "Data Quality",
-                    "n8n Workflow Automation",
-                    "Low-Code or No-Code Automation",
                     "Custom Automation Engineering",
                     "CI/CD Integration",
                     "Technical Collaboration",

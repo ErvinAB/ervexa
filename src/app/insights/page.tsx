@@ -9,7 +9,7 @@ import { insights } from "@/lib/content/insights";
 export const metadata: Metadata = {
   title: "Insights",
   description:
-    "Articles on QA automation, agentic testing, data quality, workflow automation, and engineering practices by Stagbyte.",
+    "Articles on test automation, agentic systems, data pipelines, workflow orchestration, and automation engineering practices by Stagbyte.",
 };
 
 export default function InsightsPage() {
@@ -22,7 +22,7 @@ export default function InsightsPage() {
       <PageHeader
         eyebrow="Insights"
         title="Articles and technical writing"
-        description="Practical writing on QA automation, agentic testing, data quality, workflow automation, and engineering practices."
+        description="Practical writing on test automation, agentic systems, data pipelines, workflow orchestration, and engineering practices."
       />
 
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -31,8 +31,8 @@ export default function InsightsPage() {
             <div className="rounded-lg border border-zinc-800/30 bg-zinc-900/10 p-10 text-center">
               <p className="text-sm text-zinc-400">Articles are being written.</p>
               <p className="mt-2 text-xs text-zinc-500 max-w-md mx-auto">
-                Technical content on QA automation, agentic testing, data quality, and
-                workflow automation is in development.
+                Technical content on test automation, agentic systems, data pipelines,
+                and workflow orchestration is in development.
               </p>
             </div>
           </AnimateInView>

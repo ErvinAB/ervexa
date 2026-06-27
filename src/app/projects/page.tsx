@@ -8,7 +8,7 @@ import { projects } from "@/lib/content/projects";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Engineering portfolio: Swarm QA Framework, Data Reliability Suite, and Evidence-Based Job Application Automation by Stagbyte.",
+    "Automation engineering portfolio: test automation frameworks, agentic systems, performance pipelines, and data reliability suites by Stagbyte.",
 };
 
 export default function ProjectsPage() {
@@ -20,7 +20,7 @@ export default function ProjectsPage() {
         <PageHeader
           eyebrow="Projects"
           title="Engineering portfolio"
-          description="Real projects in QA automation, agentic testing, data reliability, and workflow automation. Each project is documented with architecture, engineering decisions, and honest limitations."
+          description="Real projects in test automation, agentic systems, performance pipelines, data reliability, and workflow automation. Each is documented with architecture, decisions, and honest limitations."
         />
 
         <div className="mx-auto max-w-6xl px-6 py-12">

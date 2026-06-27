@@ -23,8 +23,8 @@ export default function Footer() {
               Stagbyte
             </Link>
             <p className="mt-3 max-w-xs text-xs text-zinc-500 leading-relaxed">
-              Quality engineering, automated intelligently. QA automation frameworks, agentic
-              testing, data reliability, and engineering workflow automation.
+              Automation engineering for modern teams. Test automation, agentic systems,
+              workflow orchestration, data pipelines, and custom automation.
             </p>
           </div>
 

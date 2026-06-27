@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimateInView from "@/components/AnimateInView";
 import PageHeader from "@/components/PageHeader";
+import FAQ from "@/components/FAQ";
 
 export const metadata: Metadata = {
   title: "Automation Workflows",
@@ -118,7 +119,7 @@ export default function WorkflowsPage() {
       <PageHeader
         eyebrow="Workflows"
         title="Automation that works reliably"
-        description="Stagbyte does not only connect applications. It quality-engineers workflows — with validation, testing, error handling, monitoring, and human approval built in."
+        description="Stagbyte does not only connect applications. It engineers workflows — with validation, testing, error handling, monitoring, and human approval built in."
       />
 
       {/* Implementation spectrum */}
@@ -300,6 +301,27 @@ export default function WorkflowsPage() {
                   <span className="text-xs text-zinc-400">{principle}</span>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+      </AnimateInView>
+
+      {/* FAQ */}
+      <AnimateInView>
+        <section className="border-b border-zinc-800/30 py-16">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-6 bg-cyan-500/50" />
+              <h2 className="font-mono text-xs text-cyan-500 uppercase tracking-widest">Frequently asked questions</h2>
+            </div>
+            <div className="max-w-2xl">
+              <FAQ items={[
+                { question: "When should I use no-code vs low-code vs custom automation?", answer: "No-code works for simple, linear workflows with standard connectors. Low-code (n8n) handles conditional logic, error handling, and custom API calls. Custom engineering is necessary for high-volume data processing, complex business rules, event-driven systems, and secure internal integrations. Stagbyte can help evaluate which level fits." },
+                { question: "Do you build the automation on our infrastructure?", answer: "Yes. Stagbyte builds automation that runs on your infrastructure — self-hosted n8n, your CI/CD pipelines, your cloud environment. We do not require access to your internal systems beyond what is needed for implementation and testing." },
+                { question: "How do you handle sensitive data in workflows?", answer: "Automation is designed with data minimisation, encryption in transit and at rest, audit logging, and human approval gates for sensitive operations. Credentials are managed through secure secret stores, never hardcoded." },
+                { question: "What if the automation breaks when the underlying system changes?", answer: "All Stagbyte-built automation includes monitoring, error detection, and notification. Tests run automatically to detect regressions. When something changes, you are notified before the automation fails silently. Maintenance and adaptation are part of the engineering approach." },
+                { question: "Can you integrate with our existing tools?", answer: "Stagbyte works with most modern APIs, databases, and SaaS platforms. Common integrations include GitHub, GitLab, Jira, Linear, Slack, email, Google Sheets, Airtable, PostgreSQL, REST APIs, and webhooks. If your tool has an API, it can be integrated." },
+              ]} />
             </div>
           </div>
         </section>

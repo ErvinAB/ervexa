@@ -5,28 +5,28 @@ const baseUrl = "https://stagbyte.netlify.app";
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Stagbyte — Quality Engineering, Automated Intelligently",
+    default: "Stagbyte — Automation Engineering",
     template: "%s — Stagbyte",
   },
   description:
-    "QA automation frameworks, agentic testing, data reliability, and engineering workflow automation. AI-native quality engineering by Ervin Abedin.",
-  keywords: [
-    "QA automation",
-    "Playwright",
+    "Test automation, agentic systems, workflow orchestration, data pipelines, and custom automation engineering by Stagbyte.",
+   keywords: [
     "test automation",
-    "AI QA",
-    "agentic testing",
-    "data quality",
-    "n8n automation",
-    "workflow automation",
-    "quality engineering",
+    "Playwright",
+    "agentic automation",
+    "workflow orchestration",
+    "data pipelines",
+    "automation engineering",
+    "n8n",
+    "CI/CD automation",
+    "performance testing",
     "TypeScript",
     "Python",
   ],
   openGraph: {
-    title: "Stagbyte — Quality Engineering, Automated Intelligently",
+    title: "Stagbyte — Automation Engineering",
     description:
-      "QA automation frameworks, agentic testing, data reliability, and engineering workflow automation.",
+      "Test automation, agentic systems, workflow orchestration, data pipelines, and custom automation engineering.",
     url: baseUrl,
     siteName: "Stagbyte",
     locale: "en_US",
@@ -35,9 +35,9 @@ export const defaultMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stagbyte — Quality Engineering",
+    title: "Stagbyte — Automation Engineering",
     description:
-      "QA automation frameworks, agentic testing, data reliability, and engineering workflow automation.",
+      "Test automation, agentic systems, workflow orchestration, data pipelines, and custom automation engineering.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
   robots: { index: true, follow: true },

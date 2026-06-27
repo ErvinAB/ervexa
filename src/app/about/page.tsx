@@ -10,23 +10,23 @@ import { socialLinks } from "@/lib/content/navigation";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Stagbyte is an independent quality engineering and automation studio created by Ervin Abedin, a Senior QA Automation Engineer and AI QA Engineer.",
+    "Stagbyte is an independent automation engineering studio created by Ervin Abedin — test automation, agentic systems, workflow orchestration, data pipelines, and custom automation.",
 };
 
-const focusAreas = [
-  "Senior QA automation architecture",
-  "AI and machine-learning quality validation",
-  "Backend and API testing",
-  "Agentic QA systems",
-  "Data quality engineering",
-  "CI/CD integration",
-  "Cloud testing (Azure, AWS)",
-  "Workflow automation",
-  "Local-first AI systems",
-  "Low-code orchestration (n8n)",
-  "Custom automation engineering",
-  "Docker and Kubernetes",
-];
+  const focusAreas = [
+    "Test automation engineering",
+    "Agentic automation systems",
+    "Workflow orchestration (n8n)",
+    "Data automation pipelines",
+    "Custom automation engineering",
+    "API and backend testing",
+    "CI/CD integration",
+    "Local-first AI systems",
+    "Performance testing (k6)",
+    "Cloud infrastructure (Azure, AWS)",
+    "Docker and containerisation",
+    "Mobile automation (Appium, XCTest)",
+  ];
 
 export default function AboutPage() {
   return (
@@ -35,7 +35,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About"
         title="Stagbyte"
-        description="An independent quality engineering and automation studio."
+        description="An independent automation engineering studio."
       />
 
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -43,21 +43,20 @@ export default function AboutPage() {
           <AnimateInView className="md:col-span-3">
             <div className="space-y-6 text-sm text-zinc-400 leading-relaxed">
               <p>
-                Stagbyte is an independent quality engineering and automation studio created
-                by Ervin Abedin, a Senior QA Automation Engineer and AI QA Engineer based in
+                Stagbyte is an independent automation engineering studio created
+                by Ervin Abedin, an automation engineer based in
                 Skopje, North Macedonia.
               </p>
               <p>
-                Ervin has more than six years of experience designing automation frameworks,
-                validating APIs and distributed systems, integrating quality checks into CI/CD
-                pipelines, and improving release reliability across web, mobile, backend, data,
-                and AI-powered products.
+                Ervin has more than six years of experience designing automation systems —
+                test frameworks, AI agent workflows, data pipelines, and CI/CD orchestration —
+                across web, mobile, backend, data, and AI-powered products.
               </p>
               <p>
-                Stagbyte is where that experience is applied to practical tools, agentic QA
-                systems, data-reliability frameworks, and automation workflows. Every system
-                is built with reliability, observability, and maintainability as core
-                requirements.
+                Stagbyte is where that experience is applied to practical projects: automation
+                frameworks, agentic systems, data-reliability pipelines, workflow orchestration,
+                and custom automation. Every system is built with reliability, observability,
+                and maintainability as core requirements.
               </p>
             </div>
           </AnimateInView>
@@ -138,8 +137,8 @@ export default function AboutPage() {
                 Want to work together?
               </h2>
               <p className="mt-2 text-sm text-zinc-400 max-w-xl">
-                Whether you need a test automation framework, agentic QA system, data-quality
-                pipeline, or workflow automation — Stagbyte can help.
+                Whether you need a test automation framework, agentic system, data pipeline,
+                or workflow automation — Stagbyte can help.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link

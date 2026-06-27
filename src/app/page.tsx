@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight, Github, TestTube, Bot, Workflow, Code2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionNav from "@/components/SectionNav";
 import AnimateInView from "@/components/AnimateInView";
 import ProjectCard from "@/components/ProjectCard";
 import CapabilityCard from "@/components/CapabilityCard";
-import PipelineHero from "@/components/PipelineHero";
+import HeroTerminal from "@/components/HeroTerminal";
+import PipelineInteractive from "@/components/PipelineInteractive";
 import JsonLd from "@/components/JsonLd";
 import TechIcon from "@/components/TechIcon";
 import { projects } from "@/lib/content/projects";
@@ -17,12 +18,19 @@ import { socialLinks } from "@/lib/content/navigation";
 import { organizationSchema } from "@/lib/schemas";
 
 export const metadata: Metadata = {
-  title: "Stagbyte — Quality Engineering, Automated Intelligently",
+  title: "Stagbyte — Automation Engineering",
   description:
-    "QA automation frameworks, agentic testing, data reliability, and engineering workflow automation. AI-native quality engineering by Ervin Abedin.",
+    "Test automation, agentic systems, workflow orchestration, data pipelines, and custom automation engineering. Stagbyte automates engineering processes so teams ship faster with confidence.",
 };
 
-const heroWords = ["Quality", "engineering,", "automated", "intelligently."];
+const heroWords = ["Automation", "engineering,", "done", "right."];
+
+const metrics = [
+  { value: "7+", label: "Years engineering automation", icon: Code2 },
+  { value: "5", label: "Automation disciplines", icon: Workflow },
+  { value: "15+", label: "Languages & frameworks", icon: TestTube },
+  { value: "50K+", label: "Tests automated", icon: Bot },
+];
 
 export default function Home() {
   return (
@@ -43,7 +51,7 @@ export default function Home() {
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan-500" />
                 </span>
                 <span className="font-mono text-[10px] text-cyan-400 uppercase tracking-[0.15em]">
-                  Automation & QA Engineering
+                  Automation Engineering
                 </span>
               </div>
 
@@ -64,9 +72,9 @@ export default function Home() {
               </h1>
 
               <p className="mt-8 max-w-xl text-base text-zinc-400 leading-relaxed md:text-lg kinetic-word" style={{ animationDelay: "0.7s", opacity: 0, animation: "word-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards" }}>
-                Stagbyte builds QA automation frameworks, intelligent testing agents,
-                data-reliability systems, and engineering workflows that reduce repetitive
-                work and improve release confidence.
+                Stagbyte engineers automation systems — test frameworks, AI agents,
+                workflow pipelines, data validation, and custom tooling — that make
+                engineering teams faster, more reliable, and less repetitive.
               </p>
 
               <div className="mt-12 flex flex-wrap gap-3 kinetic-word" style={{ animationDelay: "0.9s", opacity: 0, animation: "word-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards" }}>
@@ -93,18 +101,33 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Pipeline visual - hidden on mobile */}
-            <div className="hidden flex-1 lg:block">
-              <div className="h-44 w-full rounded-xl border border-zinc-800/20 bg-zinc-900/5 p-5 glow-cyan">
-                <p className="mb-3 font-mono text-[10px] text-zinc-700 uppercase tracking-widest">
-                  QA Pipeline
-                </p>
-                <PipelineHero />
-              </div>
+            {/* Terminal visual - hidden on mobile */}
+            <div className="hidden flex-1 self-stretch lg:block">
+              <HeroTerminal />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Impact metrics */}
+      <AnimateInView>
+        <section className="border-b border-zinc-800/30 py-10">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+              {metrics.map((m) => {
+                const Icon = m.icon;
+                return (
+                  <div key={m.label} className="text-center">
+                    <Icon className="mx-auto h-5 w-5 text-cyan-600 mb-2" />
+                    <p className="text-2xl font-bold text-zinc-100">{m.value}</p>
+                    <p className="mt-1 text-xs text-zinc-500">{m.label}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </AnimateInView>
 
       {/* Technology strip */}
       <section className="border-b border-zinc-800/30 py-6">
@@ -134,11 +157,11 @@ export default function Home() {
                 <p className="font-mono text-xs text-cyan-500 uppercase tracking-[0.15em]">01 / Capabilities</p>
               </div>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-100 md:text-5xl">
-                What Stagbyte builds
+                Automation engineering disciplines
               </h2>
               <p className="mt-4 text-sm text-zinc-400 leading-relaxed max-w-lg">
-                From maintainable QA frameworks and agentic testing systems to reliable
-                workflow automation and data-quality pipelines — every system is quality-engineered.
+                Five areas of automation engineering — from test automation and agentic systems
+                to workflow orchestration, data pipelines, and custom tooling.
               </p>
             </div>
             <div className="grid gap-5 md:grid-cols-2">
@@ -160,6 +183,28 @@ export default function Home() {
         </section>
       </AnimateInView>
 
+      {/* How Stagbyte automates (Process section) */}
+      <AnimateInView>
+        <section id="process" className="scroll-mt-24 border-b border-zinc-800/30 py-28">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mb-16 max-w-xl">
+              <div className="flex items-center gap-3">
+                <span className="h-px w-6 bg-cyan-500/50" />
+                <p className="font-mono text-xs text-cyan-500 uppercase tracking-[0.15em]">Approach</p>
+              </div>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-100 md:text-5xl">
+                How Stagbyte engineers automation
+              </h2>
+              <p className="mt-4 text-sm text-zinc-400 leading-relaxed max-w-lg">
+                Every automation system follows the same engineering discipline, whether
+                it is a test framework, an AI agent, or a data pipeline.
+              </p>
+            </div>
+            <PipelineInteractive />
+          </div>
+        </section>
+      </AnimateInView>
+
       {/* Projects section */}
       <AnimateInView>
         <section id="projects" className="scroll-mt-24 border-b border-zinc-800/30 py-28">
@@ -170,11 +215,11 @@ export default function Home() {
                 <p className="font-mono text-xs text-cyan-500 uppercase tracking-[0.15em]">02 / Projects</p>
               </div>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-100 md:text-5xl">
-                Engineering portfolio
+                Automation engineering portfolio
               </h2>
               <p className="mt-4 text-sm text-zinc-400 leading-relaxed max-w-lg">
-                Real projects in QA automation, agentic testing, data reliability, and
-                workflow automation. Each is documented with architecture, decisions, and honest limitations.
+                Seven projects spanning test automation, agentic AI systems, performance
+                pipelines, data validation, workflow orchestration, and predictive testing.
               </p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -207,7 +252,7 @@ export default function Home() {
                 Automation that works
               </h2>
               <p className="mt-4 text-sm text-zinc-400 leading-relaxed max-w-lg">
-                Stagbyte does not only connect applications. It quality-engineers
+                Stagbyte does not only connect applications. It engineers automation
                 workflows — with validation, testing, error handling, monitoring, and
                 human approval built in.
               </p>
@@ -244,16 +289,16 @@ export default function Home() {
         <section id="cta" className="scroll-mt-24 py-28">
           <div className="mx-auto max-w-6xl px-6">
             <div className="rounded-xl border border-zinc-800/40 bg-zinc-900/10 p-12 md:p-16">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-5">
                 <span className="h-px w-6 bg-cyan-500/50" />
                 <p className="font-mono text-xs text-cyan-500 uppercase tracking-[0.15em]">04 / Contact</p>
               </div>
-              <h2 className="mt-5 text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl max-w-2xl">
-                Have an automation problem or an unreliable test suite?
+              <h2 className="text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl max-w-2xl">
+                Have an engineering process that needs automation?
               </h2>
               <p className="mt-5 max-w-lg text-sm text-zinc-400 leading-relaxed">
                 Describe the process, system, or quality problem. Stagbyte will help
-                determine whether it needs QA automation, an agentic workflow, low-code
+                determine whether it needs test automation, an agentic workflow, low-code
                 orchestration, or custom engineering.
               </p>
               <div className="mt-10">
