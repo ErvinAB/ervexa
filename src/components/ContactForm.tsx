@@ -14,12 +14,12 @@ interface FormData {
 }
 
 const projectTypes = [
-  "QA Automation Framework",
+  "Test Automation Framework",
+  "Agentic Automation System",
+  "Workflow Orchestration (n8n)",
+  "Data Pipeline",
+  "Performance Testing (k6)",
   "API or Backend Testing",
-  "AI QA or Agentic Testing",
-  "Data Quality",
-  "n8n Workflow Automation",
-  "Low-Code or No-Code Automation",
   "Custom Automation Engineering",
   "CI/CD Integration",
   "Technical Collaboration",
@@ -46,7 +46,7 @@ export default function ContactForm() {
     setError("");
 
     try {
-      const res = await fetch("/", {
+      const res = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
@@ -87,7 +87,6 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      data-netlify="true"
       name="contact"
       className="space-y-4"
     >
