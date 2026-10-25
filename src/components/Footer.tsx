@@ -1,41 +1,50 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Mail } from "lucide-react";
-import { navigation, socialLinks } from "@/lib/content/navigation";
+import {
+  navigation,
+  secondaryNavigation,
+  socialLinks,
+} from "@/lib/content/navigation";
+import BrandMark from "@/components/site/BrandMark";
+import NewsletterForm from "@/components/site/NewsletterForm";
+import FooterStag from "@/components/site/FooterStag";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-800/50 bg-zinc-950">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid gap-8 md:grid-cols-3">
+    <footer className="on-night relative border-t border-night-line bg-night text-ivory">
+      <FooterStag />
+      <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-16">
+        <div className="grid gap-10 md:grid-cols-3">
           <div>
             <Link
               href="/"
-              className="flex items-center gap-2 font-mono text-sm font-bold tracking-tight text-zinc-100"
+              className="group inline-flex items-center gap-3 text-ivory transition-colors hover:text-accent"
             >
-              <Image
-                src="/logoSBWhite.svg"
-                alt="Stagbyte"
-                width={18}
-                height={18}
-                className="h-4 w-auto"
-              />
-              Stagbyte
+              <BrandMark variant="icon" className="logo-wiggle h-9 w-auto origin-bottom" />
+              <span className="font-display text-lg font-bold uppercase tracking-[0.02em]">
+                Stagbyte
+              </span>
             </Link>
-            <p className="mt-3 max-w-xs text-xs text-zinc-500 leading-relaxed">
-              Automation engineering for modern teams. Test automation, agentic systems,
-              workflow orchestration, data pipelines, and custom automation.
+            <p className="mt-5 max-w-sm text-base leading-relaxed text-ivory/70">
+              An independent, product-led studio making small apps that solve one
+              everyday problem properly.
             </p>
+
+            <div className="mt-7 max-w-sm">
+              <p className="label font-semibold text-ivory/70">
+                When the first app ships
+              </p>
+              <NewsletterForm className="mt-4" />
+            </div>
           </div>
 
           <div>
-            <p className="mb-3 font-mono text-xs font-medium text-zinc-400">Pages</p>
-            <ul className="space-y-1.5">
+            <p className="label font-semibold text-ivory/55">Explore</p>
+            <ul className="mt-5 space-y-3">
               {navigation.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="font-mono text-xs text-zinc-500 hover:text-zinc-400 transition-colors"
+                    className="text-base text-ivory/75 transition-colors hover:text-ivory"
                   >
                     {item.label}
                   </Link>
@@ -45,16 +54,26 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="mb-3 font-mono text-xs font-medium text-zinc-400">Connect</p>
-            <ul className="space-y-2">
+            <p className="label font-semibold text-ivory/55">Elsewhere</p>
+            <ul className="mt-5 space-y-3">
+              {secondaryNavigation.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-base text-ivory/75 transition-colors hover:text-ivory"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <a
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 hover:text-zinc-400 transition-colors"
+                  className="text-base text-ivory/75 transition-colors hover:text-ivory"
                 >
-                  <Github className="h-3.5 w-3.5" /> GitHub
+                  GitHub
                 </a>
               </li>
               <li>
@@ -62,38 +81,32 @@ export default function Footer() {
                   href={socialLinks.linkedinCompany}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 hover:text-zinc-400 transition-colors"
+                  className="text-base text-ivory/75 transition-colors hover:text-ivory"
                 >
-                  <Linkedin className="h-3.5 w-3.5" /> Stagbyte
-                </a>
-              </li>
-              <li>
-                <a
-                  href={socialLinks.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 hover:text-zinc-400 transition-colors"
-                >
-                  <Linkedin className="h-3.5 w-3.5" /> Ervin
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${socialLinks.email}`}
-                  className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 hover:text-zinc-400 transition-colors"
-                >
-                  <Mail className="h-3.5 w-3.5" /> Email
+                  LinkedIn
                 </a>
               </li>
             </ul>
-            <p className="mt-4 text-[10px] text-zinc-600">
-              Built in Skopje. Working globally.
-            </p>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-zinc-800/30 pt-6 text-center">
-          <p className="font-mono text-[10px] text-zinc-600">
+        {/*
+         * Colophon. Every claim here is checkable against the repository: four
+         * entries in `dependencies`, no analytics package, and every content
+         * route prerendered statically. It is the driest possible way to say
+         * "built properly" and it cannot go stale quietly.
+         */}
+        <div className="mt-12 border-t border-night-line pt-6">
+          <p className="max-w-3xl text-sm leading-relaxed text-ivory/70">
+            <span className="label mr-3 font-semibold text-ivory/75">
+              Colophon
+            </span>
+            Set in Sora and Inter, rendered to static HTML. Four
+            production dependencies, no trackers, no cookies and therefore no
+            consent banner. Independent since 2025, in Skopje.
+          </p>
+
+          <p className="label mt-6 text-ivory/60">
             &copy; {new Date().getFullYear()} Stagbyte. All rights reserved.
           </p>
         </div>

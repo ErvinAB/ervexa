@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://stagbyte.netlify.app/sitemap.xml",
+    sitemap: "https://stagbyte.com/sitemap.xml",
   };
 }

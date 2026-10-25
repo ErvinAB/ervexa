@@ -3,171 +3,219 @@ import Link from "next/link";
 import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AnimateInView from "@/components/AnimateInView";
-import PageHeader from "@/components/PageHeader";
-import { socialLinks } from "@/lib/content/navigation";
+import PageIntro from "@/components/site/PageIntro";
+import CTASection from "@/components/site/CTASection";
+import Eyebrow from "@/components/site/Eyebrow";
+import { contactDetails, socialLinks } from "@/lib/content/navigation";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "Studio",
   description:
-    "Stagbyte is an independent automation engineering studio created by Ervin Abedin — test automation, agentic systems, workflow orchestration, data pipelines, and custom automation.",
+    "Stagbyte is an independent, product-led studio building its own small apps. Games are exploratory and client work is selective. Founded by Ervin Abedin in Skopje.",
+  alternates: { canonical: "/about" },
 };
 
-  const focusAreas = [
-    "Test automation engineering",
-    "Agentic automation systems",
-    "Workflow orchestration (n8n)",
-    "Data automation pipelines",
-    "Custom automation engineering",
-    "API and backend testing",
-    "CI/CD integration",
-    "Local-first AI systems",
-    "Performance testing (k6)",
-    "Cloud infrastructure (Azure, AWS)",
-    "Docker and containerisation",
-    "Mobile automation (Appium, XCTest)",
-  ];
+const focusAreas = [
+  "Our own small apps",
+  "Product and interface design",
+  "Mobile app development",
+  "Desktop and web apps",
+  "Prototypes and MVPs",
+  "Selective client work",
+];
+
+const making = [
+  {
+    title: "Apps",
+    status: "The focus",
+    body: "Our own small apps. This is what the studio exists to do, and where our time goes first.",
+  },
+  {
+    title: "Games",
+    status: "Exploratory",
+    body: "Prototyped privately and talked about only when something is worth playing. Not our main line.",
+  },
+  {
+    title: "Client work",
+    status: "Selective",
+    body: "A small number of engagements a year, taken on when the fit is genuinely right.",
+  },
+];
+
+const stack = [
+  "TypeScript",
+  "Next.js",
+  "React Native",
+  "Swift",
+  "Kotlin",
+  "PostgreSQL",
+  "Docker",
+  "Unity",
+  "Godot",
+  "Blender",
+];
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-ivory text-charcoal">
       <Header />
-      <PageHeader
-        eyebrow="About"
-        title="Stagbyte"
-        description="An independent automation engineering studio."
+
+      <PageIntro
+        eyebrow="Studio"
+        title="A product studio that builds its own apps."
+        description="Stagbyte is independent and deliberately small. We make our own apps first, treat games as an experiment, and take on client work only when it is a real fit."
       />
 
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid gap-12 md:grid-cols-5">
-          <AnimateInView className="md:col-span-3">
-            <div className="space-y-6 text-sm text-zinc-400 leading-relaxed">
+      <section className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-7">
+            <Eyebrow>The studio</Eyebrow>
+            <div className="mt-7 space-y-5 text-base leading-relaxed text-charcoal/80">
               <p>
-                Stagbyte is an independent automation engineering studio created
-                by Ervin Abedin, an automation engineer based in
-                Skopje, North Macedonia.
+                Stagbyte is an independent, product-led software studio founded
+                by Ervin Abedin. Our own small apps come first — picking one
+                real problem, solving it properly, and shipping it.
               </p>
               <p>
-                Ervin has more than six years of experience designing automation systems —
-                test frameworks, AI agent workflows, data pipelines, and CI/CD orchestration —
-                across web, mobile, backend, data, and AI-powered products.
+                The studio is based in Skopje, North Macedonia, and works with
+                clients remotely. Being small is the point: the people who scope
+                the work are the people who build, release and support it.
               </p>
               <p>
-                Stagbyte is where that experience is applied to practical projects: automation
-                frameworks, agentic systems, data-reliability pipelines, workflow orchestration,
-                and custom automation. Every system is built with reliability, observability,
-                and maintainability as core requirements.
+                We would rather ship one finished app than announce ten, and we
+                would rather turn down a project we cannot do well than take it
+                and hope. That is the whole philosophy, and it is why client work
+                stays selective and games stay an experiment.
               </p>
             </div>
-          </AnimateInView>
 
-          <div className="md:col-span-2">
-            <AnimateInView delay={0.15}>
-              <div className="group rounded-lg border border-zinc-800/50 bg-zinc-900/20 p-6 transition-all hover:border-zinc-700/50 hover:bg-zinc-900/30 hover:shadow-lg hover:shadow-zinc-900/20">
-                <p className="mb-3 font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
-                  Focus Areas
-                </p>
-                <ul className="space-y-1.5">
-                  {focusAreas.map((area) => (
-                    <li
-                      key={area}
-                      className="flex items-start gap-2 font-mono text-[11px] text-zinc-500"
-                    >
-                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-zinc-700" />
-                      {area}
-                    </li>
-                  ))}
-                </ul>
+            <div className="mt-11">
+              <Eyebrow>Tooling</Eyebrow>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {stack.map((item) => (
+                  <span
+                    key={item}
+                    className="label rounded border border-charcoal/20 bg-ivory-soft px-2 py-1 text-charcoal/70"
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
-            </AnimateInView>
+            </div>
+          </div>
 
-            <AnimateInView delay={0.25}>
-              <div className="group mt-6 rounded-lg border border-zinc-800/50 bg-zinc-900/20 p-6 transition-all hover:border-zinc-700/50 hover:bg-zinc-900/30 hover:shadow-lg hover:shadow-zinc-900/20">
-                <p className="mb-3 font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
-                  Connect
-                </p>
-                <ul className="space-y-2">
-                  <li>
-                    <a
-                      href={socialLinks.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-zinc-100 transition-colors"
-                    >
-                      <Github className="h-3.5 w-3.5" /> GitHub
-                    </a>
+          <div className="lg:col-span-5">
+            <div className="border border-charcoal/15 bg-ivory-soft p-8">
+              {/* A real h2, not a styled <p>: the three items below are h3, and
+                  an h1 -> h3 jump breaks the heading outline for screen
+                  readers. The label styling is unchanged. */}
+              <h2 className="label font-semibold text-charcoal/70">
+                What we make
+              </h2>
+              <ul className="mt-6 space-y-6">
+                {making.map((item) => (
+                  <li key={item.title} className="border-t border-charcoal/15 pt-4">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <h3 className="text-lg font-semibold text-charcoal">
+                        {item.title}
+                      </h3>
+                      <span className="label font-semibold text-forest">
+                        {item.status}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-base leading-relaxed text-charcoal/75">
+                      {item.body}
+                    </p>
                   </li>
-                  <li>
-                    <a
-                      href={socialLinks.linkedinCompany}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-zinc-100 transition-colors"
-                    >
-                      <Linkedin className="h-3.5 w-3.5" /> Stagbyte on LinkedIn
-                    </a>
+                ))}
+              </ul>
+              <Link
+                href="/apps"
+                className="group mt-7 inline-flex items-center gap-2 text-base font-medium text-forest underline-offset-4 transition-colors hover:text-charcoal hover:underline"
+              >
+                See the apps
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </div>
+
+            <div className="mt-6 border border-charcoal/15 bg-ivory-soft p-8">
+              <p className="label font-semibold text-charcoal/70">Focus</p>
+              <ul className="mt-5 space-y-2.5">
+                {focusAreas.map((area) => (
+                  <li
+                    key={area}
+                    className="flex items-start gap-2 text-base leading-relaxed text-charcoal/75"
+                  >
+                    <span
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-forest/70"
+                      aria-hidden="true"
+                    />
+                    {area}
                   </li>
-                  <li>
-                    <a
-                      href={socialLinks.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-zinc-100 transition-colors"
-                    >
-                      <Linkedin className="h-3.5 w-3.5" /> Ervin on LinkedIn
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`mailto:${socialLinks.email}`}
-                      className="inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-zinc-100 transition-colors"
-                    >
-                      <Mail className="h-3.5 w-3.5" /> {socialLinks.email}
-                    </a>
-                  </li>
-                  <li className="inline-flex items-center gap-2 text-xs text-zinc-400">
-                    <MapPin className="h-3.5 w-3.5" /> Skopje, North Macedonia
-                  </li>
-                </ul>
-                <p className="mt-4 text-[10px] text-zinc-500">
-                  Available for remote collaboration and consulting.
-                </p>
-              </div>
-            </AnimateInView>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-6 border border-charcoal/15 bg-ivory-soft p-8">
+              <p className="label font-semibold text-charcoal/70">Connect</p>
+              <ul className="mt-5 space-y-3">
+                <li>
+                  <a
+                    href={socialLinks.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-base text-charcoal/75 transition-colors hover:text-charcoal"
+                  >
+                    <Github className="h-4 w-4" /> GitHub
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={socialLinks.linkedinCompany}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-base text-charcoal/75 transition-colors hover:text-charcoal"
+                  >
+                    <Linkedin className="h-4 w-4" /> Stagbyte on LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-base text-charcoal/75 transition-colors hover:text-charcoal"
+                  >
+                    <Linkedin className="h-4 w-4" /> Ervin on LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${socialLinks.email}`}
+                    className="inline-flex items-center gap-2 text-base text-charcoal/75 transition-colors hover:text-charcoal"
+                  >
+                    <Mail className="h-4 w-4" /> {socialLinks.email}
+                  </a>
+                </li>
+                <li className="inline-flex items-center gap-2 text-base text-charcoal/75">
+                  <MapPin className="h-4 w-4" /> {contactDetails.location}
+                </li>
+              </ul>
+              <p className="mt-5 text-sm leading-relaxed text-charcoal/70">
+                {contactDetails.availability}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* CTA */}
-      <AnimateInView>
-        <section className="border-t border-zinc-800/30 py-16">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="rounded-xl border border-zinc-800/40 bg-zinc-900/10 p-10 md:p-12">
-              <h2 className="text-lg font-bold text-zinc-100">
-                Want to work together?
-              </h2>
-              <p className="mt-2 text-sm text-zinc-400 max-w-xl">
-                Whether you need a test automation framework, agentic system, data pipeline,
-                or workflow automation — Stagbyte can help.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-zinc-700 bg-zinc-800 px-5 py-2.5 font-mono text-xs text-zinc-100 hover:bg-zinc-700 transition-all hover:scale-105 hover:shadow-lg hover:shadow-zinc-900/50"
-                >
-                  Contact <ArrowUpRight className="h-3 w-3" />
-                </Link>
-                <Link
-                  href="/projects"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 px-5 py-2.5 font-mono text-xs text-zinc-400 hover:text-zinc-100 hover:border-zinc-700 transition-all hover:scale-105"
-                >
-                  View projects <ArrowUpRight className="h-3 w-3" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      </AnimateInView>
+      <CTASection
+        eyebrow="Get in touch"
+        title="Want to hear when the first app ships?"
+        body="Tell us what you would want it to solve. If you have a project you think is a fit for selective client work, say so and we will be straight with you about it."
+        secondaryHref="/client-work"
+        secondaryLabel="Selective client work"
+      />
 
       <Footer />
     </div>
