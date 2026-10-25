@@ -1,54 +1,614 @@
 @import "tailwindcss";
 
-@theme inline {
-  --color-background: #0a0a0b;
-  --color-foreground: #e4e4e7;
-  --color-muted: #a1a1aa;
-  --color-muted-foreground: #71717a;
-  --color-border: #27272a;
-  --color-border-subtle: #18181b;
-  --color-accent: #06b6d4;
-  --color-accent-subtle: #0891b2;
-  --color-surface: #18181b;
-  --color-surface-hover: #27272a;
-  --color-success: #22c55e;
-  --color-warning: #eab308;
-  --color-error: #ef4444;
-  --font-sans: var(--font-geist-sans);
+@theme {
+  /* ---- Palette: Forest Lime (brand system 01, Oct 2026) --------------
+   * The token NAMES predate the rebrand and are kept so every component
+   * keeps working; their roles are what matter:
+   *   ivory    = page surface   -> Deep Forest
+   *   charcoal = main text      -> Off-White
+   *   forest   = brand colour   -> Stag Lime (links, primary buttons)
+   * Dark "night" sections re-scope ivory/charcoal back to text/ink below
+   * (see .on-night), so text on them stays light.
+   */
+  --color-ivory: #0f1511;
+  --color-ivory-soft: #16201a;
+  --color-charcoal: #f5f7f2;
+  --color-charcoal-soft: #c9cec2;
+
+  --color-forest: #c5f277;
+  --color-forest-soft: #d6f79c;
+
+  /* Muted Moss: secondary, calm accent. */
+  --color-warm: #7e8f63;
+  --color-warm-soft: #c9cec2;
+
+  --color-night: #0a0f0c;
+  --color-night-soft: #142019;
+  --color-night-line: #26352b;
+
+  --color-accent: #c5f277;
+  --color-accent-soft: #d6f79c;
+
+  /* Raw brand tokens, for places that need the literal colour. */
+  --color-lime: #c5f277;
+  --color-deep: #0f1511;
+  --color-offwhite: #f5f7f2;
+  --color-moss: #7e8f63;
+  --color-stone: #c9cec2;
+
+  /* ---- Type scale -----------------------------------------------------
+   * Deliberately raised at the small end and given a real intermediate tier
+   * so section headings no longer jump straight from the hero display size
+   * down to 13px labels. Line heights are set alongside each size because
+   * overriding only the size would inherit a mismatched default leading.
+   */
+  --text-xs: 0.8125rem; /* 13px */
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem; /* 15px */
+  --text-sm--line-height: 1.6;
+  --text-base: 1.0625rem; /* 17px */
+  --text-base--line-height: 1.7;
+  --text-lg: 1.1875rem; /* 19px */
+  --text-lg--line-height: 1.65;
+  --text-xl: 1.375rem; /* 22px */
+  --text-xl--line-height: 1.45;
+  --text-2xl: 1.75rem; /* 28px */
+  --text-2xl--line-height: 1.3;
+  --text-3xl: 2.25rem; /* 36px */
+  --text-3xl--line-height: 1.2;
+  --text-4xl: 2.875rem; /* 46px */
+  --text-4xl--line-height: 1.12;
+  --text-5xl: 3.5rem; /* 56px */
+  --text-5xl--line-height: 1.06;
+
+  /*
+   * Display — the ONE genuinely large statement on a page: the hero headline
+   * and each page's opening title. Everything else is a section heading at
+   * 36-46px and stays quiet against it.
+   *
+   * Restraint needs something loud to be restrained against. Before this step
+   * existed the hero (56px) and the games/arms bands (56px, uppercase) shouted
+   * at the same volume, so nothing on the page caught the eye.
+   */
+  --text-6xl: clamp(2.75rem, 7vw, 4.5rem);
+  --text-6xl--line-height: 1.02;
+
+  /*
+   * Poster — the homepage hero only, deliberately larger than the display step
+   * the interior pages use, so the front page is the loudest page on the site.
+   * The type is the hero's visual: there is no product screenshot yet and we do
+   * not draw mockups, so the statement itself has to carry the fold.
+   */
+  --text-poster: clamp(2.9rem, 8.5vw, 7.25rem);
+  --text-poster--line-height: 0.94;
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-sora);
   --font-mono: var(--font-geist-mono);
+}
+
+/*
+ * Hero entrance — a single restrained fade-and-rise, nothing scroll-triggered.
+ * The global prefers-reduced-motion rule below collapses this to ~0ms.
+ */
+/* Transform only: the headline is fully visible from the first paint, so
+   the entrance never delays Largest Contentful Paint. */
+@keyframes hero-rise {
+  from {
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ===================================================================
+ * Forest Lime hero
+ * The hero root carries --mx/--my (pointer, -1..1) and --sy (scroll px),
+ * written by HeroStage. Everything below is transform/opacity only.
+ * =================================================================== */
+/* Pointer position, written on <html> by PointerTracker. */
+:root {
+  --mx: 0;
+  --my: 0;
+}
+
+.hero-root {
+  --sy: 0;
+}
+
+/* Backdrop layers: deeper (--depth higher) moves more with the pointer, and
+   near layers scroll away faster than far ones. */
+.hero-layer {
+  transform: translate3d(
+    calc(var(--mx) * var(--depth, 0.5) * -22px),
+    calc(var(--my) * var(--depth, 0.5) * -12px + var(--sy) * (1 - var(--depth, 0.5)) * 0.35px),
+    0
+  );
+  will-change: transform;
+}
+
+/* Foreground objects drift the opposite way, so they read as in front. */
+.hero-obj {
+  --d: 1;
+  transform: translate3d(calc(var(--mx) * var(--d) * 14px), calc(var(--my) * var(--d) * 10px), 0);
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.hero-float {
+  animation: hero-float 7s ease-in-out infinite;
+}
+
+@keyframes hero-twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.8; }
+}
+.hero-twinkle {
+  animation: hero-twinkle 4s ease-in-out infinite;
+}
+
+@keyframes hero-breathe {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+.hero-breathe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-breathe 8s ease-in-out infinite;
+}
+
+/* Two soft fog bands sliding sideways. The strip is 200% wide and moves by
+   half, so the loop is seamless. */
+@keyframes hero-mist {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.hero-mist {
+  background:
+    radial-gradient(40% 50% at 15% 50%, rgba(201, 206, 194, 0.12), transparent 70%),
+    radial-gradient(30% 40% at 40% 60%, rgba(197, 242, 119, 0.06), transparent 70%),
+    radial-gradient(40% 50% at 65% 50%, rgba(201, 206, 194, 0.12), transparent 70%),
+    radial-gradient(30% 40% at 90% 60%, rgba(197, 242, 119, 0.06), transparent 70%);
+  filter: blur(8px);
+  animation: hero-mist 60s linear infinite;
+}
+
+.hero-firefly {
+  position: absolute;
+  border-radius: 9999px;
+  background: #e2ffb0;
+  box-shadow: 0 0 10px 3px rgba(197, 242, 119, 0.55);
+  animation-name: firefly-a, firefly-glow;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+.hero-firefly-1 { animation-name: firefly-b, firefly-glow; }
+.hero-firefly-2 { animation-name: firefly-c, firefly-glow; }
+
+@keyframes firefly-a {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(40px, -30px); }
+  66% { transform: translate(-20px, -60px); }
+}
+@keyframes firefly-b {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-50px, -40px); }
+}
+@keyframes firefly-c {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(25px, 20px); }
+  75% { transform: translate(-30px, -35px); }
+}
+@keyframes firefly-glow {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 1; }
+}
+
+.hero-glow {
+  text-shadow: 0 0 40px rgba(197, 242, 119, 0.35);
+}
+
+/* ---- The stag's eyes: blink every few seconds, look toward the cursor ---- */
+.stag-look {
+  transform: translate(calc(var(--mx, 0) * 7px), calc(var(--my, 0) * 6px));
+}
+@keyframes stag-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+.stag-blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: stag-blink 5.5s ease-in-out infinite;
+}
+
+/* ---- Extruded lime tile ---- */
+.tile3d-stage {
+  position: relative;
+  perspective: 1200px;
+}
+.tile3d-float {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: hero-float 6s ease-in-out infinite;
+}
+.tile3d-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(10deg - var(--my, 0) * 10deg)) rotateY(calc(24deg + var(--mx, 0) * 16deg)) rotateZ(-4deg);
+}
+.tile3d-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.tile3d-gloss {
+  position: absolute;
+  inset: 3% 3% 3% 3%;
+  border-radius: 22%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 38%);
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+.tile3d-shadow {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: -6%;
+  height: 9%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.65), transparent);
+  filter: blur(6px);
+  animation: tile-shadow 6s ease-in-out infinite;
+}
+@keyframes tile-shadow {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(0.85); opacity: 0.7; }
+}
+
+/* ---- Phone ---- */
+.phone3d {
+  width: 15rem;
+  height: 31rem;
+  padding: 7px;
+  border-radius: 2.5rem;
+  background: linear-gradient(145deg, #3a4a3e, #121a15 45%, #0b100d);
+  box-shadow:
+    inset 0 0 0 1px rgba(245, 247, 242, 0.12),
+    0 50px 80px -30px rgba(0, 0, 0, 0.85),
+    0 0 60px -20px rgba(197, 242, 119, 0.25);
+  transform: perspective(1400px) rotateY(calc(-16deg + var(--mx, 0) * 8deg)) rotateX(calc(6deg - var(--my, 0) * 6deg)) rotateZ(5deg);
+}
+
+/* ===================================================================
+ * Playful details
+ * =================================================================== */
+
+/* Cards lift, tilt a hair and catch a lime glow. */
+.card-pop {
+  transition:
+    transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 260ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+.card-pop:hover {
+  transform: translateY(-5px) rotate(-0.35deg);
+  box-shadow:
+    0 22px 40px -22px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(197, 242, 119, 0.35),
+    0 0 40px -12px rgba(197, 242, 119, 0.35);
+}
+
+/* Pill buttons squish when pressed. */
+a[class*="rounded-full"]:active,
+button[class*="rounded-full"]:active {
+  transform: scale(0.95);
+}
+
+/* Header logo: a little antler wiggle on hover. */
+@keyframes logo-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-9deg); }
+  60% { transform: rotate(7deg); }
+  80% { transform: rotate(-3deg); }
+}
+.group:hover .logo-wiggle {
+  animation: logo-wiggle 600ms ease-in-out;
+}
+
+/* Footer stag: peeks over the edge, rises on hover, hops on click. */
+.footer-stag-svg {
+  filter: drop-shadow(0 0 10px rgba(197, 242, 119, 0.35));
+}
+.footer-stag-btn {
+  transform: translateY(3.4rem);
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+.footer-stag-btn:hover,
+.footer-stag-btn:focus-visible {
+  transform: translateY(2.5rem);
+}
+@keyframes stag-hop {
+  0% { transform: translateY(0) scale(1, 1); }
+  15% { transform: translateY(0) scale(1.08, 0.9); }
+  45% { transform: translateY(-34px) scale(0.94, 1.08); }
+  70% { transform: translateY(0) scale(1.06, 0.94); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+.stag-hop {
+  transform-origin: 50% 100%;
+  animation: stag-hop 620ms cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+@keyframes bubble-pop {
+  from { opacity: 0; transform: translateY(6px) scale(0.9); }
+}
+.stag-bubble {
+  transform-origin: 90% 100%;
+  animation: bubble-pop 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media print {
+  .reveal {
+    animation: none !important;
+  }
+}
+
+/* ===================================================================
+ * Scroll reveal. Content is always visible by default; browsers with
+ * scroll-driven animations get a rise-in as sections enter the screen.
+ * =================================================================== */
+/* Starts partly visible, never fully hidden, so print, previews and
+   full-page captures still show the content. */
+@keyframes reveal-rise {
+  from {
+    opacity: 0.25;
+    transform: translateY(40px) scale(0.985);
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+/*
+ * 3D monogram device (hero only).
+ *
+ * `.monogram-stage` owns the perspective, `.monogram-idle` drifts the object
+ * side to side, and `.monogram-body` carries the pointer tilt written by JS.
+ * Nesting them means the gentle idle motion and the user's tilt compose instead
+ * of fighting over one transform.
+ *
+ * A full 360-degree spin was rejected: the mark turns edge-on and vanishes
+ * twice per revolution, which reads as a glitch on a decorative device.
+ */
+.monogram-stage {
+  perspective: 1100px;
+}
+
+.monogram-idle {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: monogram-idle 13s ease-in-out infinite;
+}
+
+.monogram-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.monogram-layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+@keyframes monogram-idle {
+  0%,
+  100% {
+    transform: rotateY(-14deg) rotateX(4deg);
+  }
+  50% {
+    transform: rotateY(14deg) rotateX(-4deg);
+  }
 }
 
 @layer base {
   * {
-    scrollbar-color: var(--color-border) transparent;
+    scrollbar-color: rgba(245, 247, 242, 0.22) transparent;
     scrollbar-width: thin;
   }
 
   body {
-    background: var(--color-background);
-    color: var(--color-foreground);
+    background: var(--color-ivory);
+    color: var(--color-charcoal);
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background: rgba(6, 182, 212, 0.2);
-    color: var(--color-foreground);
+    background: var(--color-lime);
+    color: var(--color-deep);
+  }
+
+  /* Headings use Sora, per the brand type spec (Sora / Inter). */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /*
+   * Focus rings stay on the stable brand colours rather than the experimental
+   * accent, so contrast against ivory is guaranteed regardless of which accent
+   * is being previewed.
+   */
+  :focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
   }
 }
 
 @layer utilities {
-  .grid-pattern {
-    background-image: linear-gradient(to right, #18181b 1px, transparent 1px),
-      linear-gradient(to bottom, #18181b 1px, transparent 1px);
-    background-size: 48px 48px;
+  /*
+   * Dark showcase sections. The page surface is dark now too, so inside these
+   * the old "ivory" (used as text here) must be light again and "charcoal"
+   * dark, or the text would vanish.
+   */
+  .on-night {
+    --color-ivory: #f5f7f2;
+    --color-ivory-soft: #c9cec2;
+    --color-charcoal: #0f1511;
+  }
+
+  .on-night ::selection {
+    background: var(--color-accent);
+    color: var(--color-night);
+  }
+
+  .on-night :focus-visible {
+    outline-color: var(--color-lime);
+  }
+
+  /* Paper grain — subtle dot grid for light editorial surfaces. */
+  .paper-grain {
+    background-image:
+      radial-gradient(rgba(197, 242, 119, 0.05) 1px, transparent 1px),
+      radial-gradient(rgba(245, 247, 242, 0.025) 1px, transparent 1px);
+    background-position: 0 0, 12px 12px;
+    background-size: 24px 24px, 24px 24px;
+  }
+
+  /* Diagonal hatch — reads as "reserved / in production" placeholder space. */
+  .hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      currentColor 0,
+      currentColor 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  }
+
+  /*
+   * Small label — the recurring eyebrow/tag style. Sized so it is legible
+   * rather than decorative, with tracking dialled back from the previous
+   * 0.35em which made short words hard to read.
+   */
+  .label {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: var(--text-xs);
+    line-height: 1.4;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
 }
 
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+/*
+ * Inkline — the game's two pieces of motion.
+ *
+ * The win is a wash of ink across the board's frame rather than a scale-up:
+ * the board is the thing a player is aiming at, so nothing may move it at the
+ * exact moment they hit it. The statement underneath rises in, which is far
+ * enough from the tiles to be felt rather than seen as a jump. Both are
+ * collapsed to nothing by the global prefers-reduced-motion rule below.
+ */
+@keyframes inkline-wash {
+  from {
+    background-color: rgba(197, 242, 119, 0);
+  }
+  35% {
+    background-color: rgba(197, 242, 119, 0.18);
+  }
+  to {
+    background-color: rgba(197, 242, 119, 0.06);
+  }
+}
+
+.inkline-wash {
+  animation: inkline-wash 900ms ease-out both;
+}
+
+@keyframes inkline-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inkline-win {
+  animation: inkline-rise 340ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/*
+ * Scrolling band. The duration is a variable so a longer track (the build-log
+ * ticker) can slow down without a second keyframe or a second class of motion.
+ * Hover pauses it, so the ticker is readable without waiting for the loop.
+ */
+.marquee-track {
+  display: inline-flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: marquee-scroll var(--marquee-duration, 32s) linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.ticker-track {
+  --marquee-duration: 68s;
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.status-pulse {
+  animation: status-pulse 2s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -60,58 +620,9 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
 
-@keyframes status-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.status-pulse {
-  animation: status-pulse 2s ease-in-out infinite;
-}
-
-@keyframes word-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
+  .marquee-track {
+    animation: none;
+    transform: none;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.kinetic-word {
-  display: inline-block;
-  opacity: 0;
-  animation: word-fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes nav-line-grow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.nav-line-active {
-  animation: nav-line-grow 0.3s ease-out forwards;
-  transform-origin: left;
-}
-
-@keyframes subtle-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-
-.float-subtle {
-  animation: subtle-float 4s ease-in-out infinite;
-}
-
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 0 rgba(6, 182, 212, 0); }
-  50% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.15); }
-}
-
-.glow-cyan {
-  animation: glow-pulse 3s ease-in-out infinite;
 }

@@ -1,32 +1,28 @@
 import type { Metadata } from "next";
 
-const baseUrl = "https://stagbyte.netlify.app";
+const baseUrl = "https://stagbyte.com";
+
+const description =
+  "Stagbyte is an independent, product-led software studio making small apps that solve one everyday problem properly. Games are exploratory; client work is selective.";
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Stagbyte — Automation Engineering",
+    default: "Stagbyte — Small apps, built properly",
     template: "%s — Stagbyte",
   },
-  description:
-    "Test automation, agentic systems, workflow orchestration, data pipelines, and custom automation engineering by Stagbyte.",
-   keywords: [
-    "test automation",
-    "Playwright",
-    "agentic automation",
-    "workflow orchestration",
-    "data pipelines",
-    "automation engineering",
-    "n8n",
-    "CI/CD automation",
-    "performance testing",
-    "TypeScript",
-    "Python",
+  description,
+  keywords: [
+    "small apps",
+    "utility apps",
+    "independent software studio",
+    "product-led studio",
+    "one-time purchase apps",
+    "privacy-first apps",
   ],
   openGraph: {
-    title: "Stagbyte — Automation Engineering",
-    description:
-      "Test automation, agentic systems, workflow orchestration, data pipelines, and custom automation engineering.",
+    title: "Stagbyte — Small apps, built properly",
+    description,
     url: baseUrl,
     siteName: "Stagbyte",
     locale: "en_US",
@@ -35,9 +31,8 @@ export const defaultMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stagbyte — Automation Engineering",
-    description:
-      "Test automation, agentic systems, workflow orchestration, data pipelines, and custom automation engineering.",
+    title: "Stagbyte — Small apps, built properly",
+    description,
     images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
   robots: { index: true, follow: true },

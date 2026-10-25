@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Sora, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { defaultMetadata } from "@/lib/metadata";
+import PointerTracker from "@/components/site/PointerTracker";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
 });
 
@@ -22,13 +28,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${inter.variable} ${sora.variable} ${geistMono.variable}`}>
         <a
           href="#main-content"
           className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded focus-visible:border focus-visible:border-zinc-700 focus-visible:bg-zinc-900 focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:text-zinc-100"
         >
           Skip to content
         </a>
+        <PointerTracker />
         <main id="main-content">
           {children}
         </main>

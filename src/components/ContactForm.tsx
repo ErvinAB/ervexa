@@ -14,28 +14,31 @@ interface FormData {
 }
 
 const projectTypes = [
-  "Test Automation Framework",
-  "Agentic Automation System",
-  "Workflow Orchestration (n8n)",
-  "Data Pipeline",
-  "Performance Testing (k6)",
-  "API or Backend Testing",
-  "Custom Automation Engineering",
-  "CI/CD Integration",
-  "Technical Collaboration",
-  "Other",
+  "Hear about the first app",
+  "Suggest a problem to solve",
+  "Client project",
+  "Prototype or MVP",
+  "Ongoing partnership",
+  "Game work",
+  "Something else",
 ];
 
+const emptyForm: FormData = {
+  name: "",
+  email: "",
+  company: "",
+  projectType: "",
+  challenge: "",
+  tools: "",
+  message: "",
+};
+
+const fieldClasses =
+  "w-full rounded-none border border-charcoal/20 bg-ivory px-3 py-2.5 text-base text-charcoal placeholder:text-charcoal/40 transition-colors focus:border-forest focus:outline-none";
+const labelClasses = "label font-semibold text-charcoal/70";
+
 export default function ContactForm() {
-  const [form, setForm] = useState<FormData>({
-    name: "",
-    email: "",
-    company: "",
-    projectType: "",
-    challenge: "",
-    tools: "",
-    message: "",
-  });
+  const [form, setForm] = useState<FormData>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -57,15 +60,7 @@ export default function ContactForm() {
 
       if (!res.ok) throw new Error("Failed to submit");
       setSubmitted(true);
-      setForm({
-        name: "",
-        email: "",
-        company: "",
-        projectType: "",
-        challenge: "",
-        tools: "",
-        message: "",
-      });
+      setForm(emptyForm);
     } catch {
       setError("Failed to send message. Please try again or email directly.");
     } finally {
@@ -75,148 +70,152 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-lg border border-emerald-900/50 bg-emerald-950/20 p-8 text-center">
-        <p className="font-mono text-sm text-emerald-400">Message received.</p>
-        <p className="mt-2 text-xs text-zinc-500">
-          Stagbyte will review and respond within 48 hours.
+      <div className="border border-forest/30 bg-forest/5 p-10 text-center">
+        <p className="font-mono text-sm uppercase tracking-[0.2em] text-forest">
+          Message received
+        </p>
+        <p className="mt-3 text-base leading-relaxed text-charcoal/70">
+          Thanks for getting in touch. We read everything and reply within 48
+          hours.
         </p>
       </div>
     );
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      name="contact"
-      className="space-y-4"
-    >
+    <form onSubmit={handleSubmit} name="contact" className="space-y-5">
       <input type="hidden" name="form-name" value="contact" />
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="space-y-1.5">
-          <label htmlFor="name" className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="space-y-2">
+          <label htmlFor="name" className={labelClasses}>
             Name *
           </label>
           <input
             id="name"
+            name="name"
             required
             type="text"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="w-full rounded border border-zinc-800 bg-zinc-900/50 px-3 py-2 text-xs text-zinc-100 placeholder:text-zinc-700 focus:border-cyan-800 focus:outline-none transition-colors"
+            className={fieldClasses}
             placeholder="Your name"
           />
         </div>
-        <div className="space-y-1.5">
-          <label htmlFor="email" className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
+        <div className="space-y-2">
+          <label htmlFor="email" className={labelClasses}>
             Email *
           </label>
           <input
             id="email"
+            name="email"
             required
             type="email"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="w-full rounded border border-zinc-800 bg-zinc-900/50 px-3 py-2 text-xs text-zinc-100 placeholder:text-zinc-700 focus:border-cyan-800 focus:outline-none transition-colors"
-            placeholder="you@company.com"
+            className={fieldClasses}
+            placeholder="you@example.com"
           />
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="space-y-1.5">
-          <label htmlFor="company" className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="space-y-2">
+          <label htmlFor="company" className={labelClasses}>
             Company
           </label>
           <input
             id="company"
+            name="company"
             type="text"
             value={form.company}
             onChange={(e) => setForm({ ...form, company: e.target.value })}
-            className="w-full rounded border border-zinc-800 bg-zinc-900/50 px-3 py-2 text-xs text-zinc-100 placeholder:text-zinc-700 focus:border-cyan-800 focus:outline-none transition-colors"
-            placeholder="Company name"
+            className={fieldClasses}
+            placeholder="Company or studio name"
           />
         </div>
-        <div className="space-y-1.5">
-          <label htmlFor="projectType" className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
-            Project Type *
+        <div className="space-y-2">
+          <label htmlFor="projectType" className={labelClasses}>
+            I am writing about *
           </label>
           <select
             id="projectType"
+            name="projectType"
             required
             value={form.projectType}
             onChange={(e) => setForm({ ...form, projectType: e.target.value })}
-            className="w-full rounded border border-zinc-800 bg-zinc-900/50 px-3 py-2 text-xs text-zinc-100 focus:border-cyan-800 focus:outline-none transition-colors"
+            className={fieldClasses}
           >
-            <option value="">Select a type</option>
-            {projectTypes.map((t) => (
-              <option key={t} value={t}>
-                {t}
+            <option value="">Select a topic</option>
+            {projectTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
               </option>
             ))}
           </select>
         </div>
       </div>
 
-      <div className="space-y-1.5">
-        <label htmlFor="challenge" className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
-          Current Challenge
+      <div className="space-y-2">
+        <label htmlFor="challenge" className={labelClasses}>
+          What is it about?
         </label>
         <input
           id="challenge"
+          name="challenge"
           type="text"
           value={form.challenge}
           onChange={(e) => setForm({ ...form, challenge: e.target.value })}
-          className="w-full rounded border border-zinc-800 bg-zinc-900/50 px-3 py-2 text-xs text-zinc-100 placeholder:text-zinc-700 focus:border-cyan-800 focus:outline-none transition-colors"
-          placeholder="What problem are you solving?"
+          className={fieldClasses}
+          placeholder="An app idea, a problem, or a project"
         />
       </div>
 
-      <div className="space-y-1.5">
-        <label htmlFor="tools" className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
-          Existing Tools
+      <div className="space-y-2">
+        <label htmlFor="tools" className={labelClasses}>
+          Platforms or tech in mind
         </label>
         <input
           id="tools"
+          name="tools"
           type="text"
           value={form.tools}
           onChange={(e) => setForm({ ...form, tools: e.target.value })}
-          className="w-full rounded border border-zinc-800 bg-zinc-900/50 px-3 py-2 text-xs text-zinc-100 placeholder:text-zinc-700 focus:border-cyan-800 focus:outline-none transition-colors"
-          placeholder="What tools or frameworks are you using?"
+          className={fieldClasses}
+          placeholder="iOS, Android, desktop, web, React Native"
         />
       </div>
 
-      <div className="space-y-1.5">
-        <label htmlFor="message" className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
-          Message *
+      <div className="space-y-2">
+        <label htmlFor="message" className={labelClasses}>
+          Tell us more *
         </label>
         <textarea
           id="message"
+          name="message"
           required
-          rows={4}
+          rows={5}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          className="w-full resize-none rounded border border-zinc-800 bg-zinc-900/50 px-3 py-2 text-xs text-zinc-100 placeholder:text-zinc-700 focus:border-cyan-800 focus:outline-none transition-colors"
-          placeholder="Describe the process, system, or quality problem..."
+          className={`${fieldClasses} resize-none`}
+          placeholder="What should it do, who is it for, and when does it need to exist?"
         />
       </div>
 
-      {error && (
-        <p className="text-xs text-red-400">{error}</p>
-      )}
+      {error && <p className="text-base text-red-700">{error}</p>}
 
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-800 px-5 py-2.5 font-mono text-xs text-zinc-100 hover:bg-zinc-700 disabled:opacity-50 transition-all hover:scale-105 hover:shadow-lg hover:shadow-zinc-900/50"
+        className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 text-base font-semibold text-ivory transition-colors hover:bg-charcoal active:bg-charcoal disabled:opacity-50"
       >
         {submitting ? (
           <>
-            <Loader2 className="h-3 w-3 animate-spin" /> Sending...
+            <Loader2 className="h-4 w-4 animate-spin" /> Sending...
           </>
         ) : (
           <>
-            <Send className="h-3 w-3" /> Send Message
+            <Send className="h-4 w-4" /> Send message
           </>
         )}
       </button>

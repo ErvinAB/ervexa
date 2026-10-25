@@ -1,80 +1,95 @@
 import type { Metadata } from "next";
-import { Mail } from "lucide-react";
+import { Linkedin, Mail, MapPin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AnimateInView from "@/components/AnimateInView";
-import PageHeader from "@/components/PageHeader";
+import PageIntro from "@/components/site/PageIntro";
 import ContactForm from "@/components/ContactForm";
-import { socialLinks } from "@/lib/content/navigation";
+import { contactDetails, socialLinks } from "@/lib/content/navigation";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Have an engineering process that needs automation? Contact Stagbyte.",
+    "Get in touch with Stagbyte — about our apps, a problem you want solved, or a selective client project.",
+  alternates: { canonical: "/contact" },
 };
+
+const enquiryTypes = [
+  "Hear about the first app",
+  "Suggest a problem to solve",
+  "Client project",
+  "Prototype or MVP",
+  "Ongoing partnership",
+  "Game work",
+];
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-ivory text-charcoal">
       <Header />
-      <PageHeader
+
+      <PageIntro
         eyebrow="Contact"
-        title="Have an automation problem?"
-        description="Describe the process, system, or quality problem. Stagbyte will help determine whether it needs test automation, an agentic workflow, low-code orchestration, or custom engineering."
+        title="Get in touch."
+        description="Tell us what you would want a small app to do, or describe a project you think is a fit for selective client work. The more specific you are, the more useful our reply will be."
       />
 
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid gap-12 md:grid-cols-5">
-          <AnimateInView className="md:col-span-3">
+      <section className="mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-20">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-7">
             <ContactForm />
-          </AnimateInView>
+          </div>
 
-          <div className="md:col-span-2 space-y-6">
-            <AnimateInView delay={0.15}>
-              <div className="group rounded-lg border border-zinc-800/50 bg-zinc-900/20 p-6 transition-all hover:border-zinc-700/50 hover:bg-zinc-900/30 hover:shadow-lg hover:shadow-zinc-900/20">
-                <p className="mb-3 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">
-                  Email
-                </p>
-                <a
-                  href={`mailto:${socialLinks.email}`}
-                  className="inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-zinc-100 transition-colors"
-                >
-                  <Mail className="h-3.5 w-3.5" /> {socialLinks.email}
-                </a>
-              </div>
-            </AnimateInView>
+          <div className="space-y-6 lg:col-span-5">
+            <div className="border border-charcoal/15 bg-ivory-soft p-8">
+              <p className="label font-semibold text-charcoal/70">Email</p>
+              <a
+                href={`mailto:${socialLinks.email}`}
+                className="mt-4 inline-flex items-center gap-2 text-base text-charcoal/75 transition-colors hover:text-charcoal"
+              >
+                <Mail className="h-4 w-4" /> {socialLinks.email}
+              </a>
+            </div>
 
-            <AnimateInView delay={0.25}>
-              <div className="group rounded-lg border border-zinc-800/50 bg-zinc-900/20 p-6 transition-all hover:border-zinc-700/50 hover:bg-zinc-900/30 hover:shadow-lg hover:shadow-zinc-900/20">
-                <p className="mb-3 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">
-                  Project Types
-                </p>
-                <ul className="space-y-1.5">
-                  {[
-                    "Test Automation Framework",
-                    "Agentic Automation System",
-                    "Workflow Orchestration (n8n)",
-                    "Data Pipeline",
-                    "Performance Testing (k6)",
-                    "API or Backend Testing",
-                    "Custom Automation Engineering",
-                    "CI/CD Integration",
-                    "Technical Collaboration",
-                  ].map((type) => (
-                    <li
-                      key={type}
-                      className="flex items-start gap-2 font-mono text-[10px] text-zinc-500"
-                    >
-                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-zinc-700" />
-                      {type}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </AnimateInView>
+            <div className="border border-charcoal/15 bg-ivory-soft p-8">
+              <p className="label font-semibold text-charcoal/70">Studio</p>
+              <p className="mt-4 inline-flex items-center gap-2 text-base text-charcoal/75">
+                <MapPin className="h-4 w-4" /> {contactDetails.location}
+              </p>
+              <p className="mt-3 text-base leading-relaxed text-charcoal/70">
+                {contactDetails.availability}
+              </p>
+              <a
+                href={socialLinks.linkedinCompany}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 text-base text-charcoal/75 transition-colors hover:text-charcoal"
+              >
+                <Linkedin className="h-4 w-4" /> Stagbyte on LinkedIn
+              </a>
+            </div>
+
+            <div className="border border-charcoal/15 bg-ivory-soft p-8">
+              <p className="label font-semibold text-charcoal/70">
+                What people write about
+              </p>
+              <ul className="mt-5 space-y-2.5">
+                {enquiryTypes.map((type) => (
+                  <li
+                    key={type}
+                    className="flex items-start gap-2 text-base leading-relaxed text-charcoal/75"
+                  >
+                    <span
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-forest/70"
+                      aria-hidden="true"
+                    />
+                    {type}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <Footer />
     </div>
